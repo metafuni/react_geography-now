@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-function App() {
-  return (
+import {Home} from './components/Home';
+import {Explorer} from './components/Explorer';
+import {Quiz} from './components/Quiz';
+import {GeoMap} from './components/GeoMap';
+import {Info} from './components/Info';
+import {NotFound} from './components/NotFound';
+
+import Navbar from './components/Navbar';
+
+
+const App = () => (
+  <BrowserRouter>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/explorer" exact component={Explorer} />
+        <Route path="/quiz" exact component={Quiz} />
+        <Route path="/geomap" exact component={GeoMap} />
+        <Route path="/info" exact component={Info} />
+        <Route path="/" component={NotFound} />
+      </Switch>
+      <Navbar />
     </div>
-  );
-}
+  </BrowserRouter>
+);
 
 export default App;
