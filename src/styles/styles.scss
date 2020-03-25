@@ -1,0 +1,55 @@
+@import "config";
+@import "mobile";
+@import "navbar";
+@import "home";
+@import "footer";
+@import "animations";
+
+@import "./explorer/search";
+@import "./explorer/card";
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: $black;
+  font-family: $primary-font;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+//Buttons
+
+.btn {
+  outline: none;
+  text-decoration: none;
+  background: white;
+  padding: 0.55rem 1.25rem;
+  opacity: 0.9;
+  font-size: 1.25rem;
+  border-radius: 10px;
+
+  &:hover {
+      opacity: 1;
+  }
+}
+
+//E-learn heading
+
+.elearn {
+  font-family: $third-font;
+  color: $green;
+
+  .fa-graduation-cap {
+    color: $blue;
+    opacity: 0.8;
+  }
+
+  .e {
+    color: $blue;
+    font-family: $third-font;
+  }
+}
