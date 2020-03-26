@@ -4,7 +4,7 @@ import './styles/styles.css';
 
 import Home from './components/Home';
 import Explorer from './components/Explorer/Explorer';
-import Quiz from './components/Quiz';
+import Quiz from './components/Quiz/Quiz';
 import GeoMap from './components/GeoMap';
 import Info from './components/Info';
 import NotFound from './components/NotFound';

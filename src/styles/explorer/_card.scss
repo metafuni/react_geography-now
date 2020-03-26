@@ -27,13 +27,14 @@
     .country-header {
       display: flex;
       align-items: center;
+
       div {
         display: flex;
         align-items: baseline;
 
         h1 {
           font-size: 4.75rem;
-          margin-right: 0.75rem;
+          margin: 3.75rem 0.75rem;
         }
 
         h3 {
@@ -72,6 +73,36 @@
     }
   }
 
+  .country-images {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .info-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 1.5rem auto;
+  }
+
+  .info-modals {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 1.75rem;
+
+    .info-card {
+      
+      span {
+        color: $green;
+      }
+    }
+
+    .timezone-info, .telephone-info, .language-info, .regionalbloc {
+      display: none;
+    }
+  }
+
   .info-card {
     width: 375px;
     padding: 2.5rem;
@@ -82,20 +113,26 @@
     border-radius: 1.5rem;
     text-align: center;
     box-shadow: -6px -6px 20px rgb(255, 255, 255),
-                6px 6px 20px rgba(0, 0, 0, 0.1);
+      6px 6px 20px rgba(0, 0, 0, 0.1);
+  }
 
-    div {
-        margin: .75rem auto;
-    }
+  div {
+    margin: 0.75rem auto;
+  }
 
-    span {
-        color: $grey;
-        font-family: $secondary-font;
-        font-weight: normal;
-    }
+  span {
+    color: $grey;
+    font-family: $secondary-font;
+    font-weight: normal;
+  }
 
-    ul {
-        list-style: none;
+  ul {
+    list-style: none;
+  }
+
+  .country-image {
+    svg {
+      width: 100%;
     }
   }
 }
