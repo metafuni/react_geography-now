@@ -2,10 +2,15 @@ import React, { useState, useEffect } from 'react';
 
 import CountryImg from '../Quiz/CountryImg';
 import Logo from '../../img/logo.png';
+import Axios from 'axios';
 
 const Card = ({ loading, country }) => {
 
+    let borders = [];
+
     useEffect(() => {
+
+        //Highlight country in world map svg
         const allElements = document.querySelectorAll("path");
 
         allElements.forEach(el => {
@@ -28,6 +33,7 @@ const Card = ({ loading, country }) => {
                 });
             };
         }
+
     }, [country.alpha2Code]);
 
     return (
@@ -50,29 +56,29 @@ const Card = ({ loading, country }) => {
                             {country.name ?
                                 <div className="info-buttons">
                                     <button className="btn btn-info" id="timezone-info" onClick={() => {
-                                            if(document.querySelector('.timezone-info').style.display === 'block') {
-                                                document.querySelector('.timezone-info').style.display = 'none';
-                                                document.querySelector(".fa-clock").style.color = '#01aaad';
-                                            } else {
-                                                document.querySelector('.timezone-info').style.display = 'block';
-                                                document.querySelector(".fa-clock").style.color = '#3ab54a';
-                                            }
-                                        }}>
+                                        if (document.querySelector('.timezone-info').style.display === 'block') {
+                                            document.querySelector('.timezone-info').style.display = 'none';
+                                            document.querySelector(".fa-clock").style.color = '#01aaad';
+                                        } else {
+                                            document.querySelector('.timezone-info').style.display = 'block';
+                                            document.querySelector(".fa-clock").style.color = '#3ab54a';
+                                        }
+                                    }}>
                                         <i className="far fa-clock fa-2x"></i>
                                     </button>
                                     <button className="btn btn-info" id="regionalbloc" onClick={() => {
-                                        if(document.querySelector('.regionalbloc').style.display === 'block') {
+                                        if (document.querySelector('.regionalbloc').style.display === 'block') {
                                             document.querySelector('.regionalbloc').style.display = 'none';
                                             document.querySelector(".fa-landmark").style.color = '#01aaad';
                                         } else {
                                             document.querySelector('.regionalbloc').style.display = 'block';
                                             document.querySelector(".fa-landmark").style.color = '#3ab54a';
                                         }
-                                        }}>
+                                    }}>
                                         <i className="fas fa-landmark fa-2x"></i>
                                     </button>
                                     <button className="btn btn-info" id="language-info" onClick={() => {
-                                        if(document.querySelector('.language-info').style.display === 'block') {
+                                        if (document.querySelector('.language-info').style.display === 'block') {
                                             document.querySelector('.language-info').style.display = 'none';
                                             document.querySelector(".fa-language").style.color = '#01aaad';
 
@@ -80,11 +86,11 @@ const Card = ({ loading, country }) => {
                                             document.querySelector('.language-info').style.display = 'block';
                                             document.querySelector(".fa-language").style.color = '#3ab54a';
                                         }
-                                        }}>
+                                    }}>
                                         <i className="fas fa-language fa-2x"></i>
                                     </button>
                                     <button className="btn btn-info" id="telephone-info" onClick={() => {
-                                        if(document.querySelector('.telephone-info').style.display === 'block') {
+                                        if (document.querySelector('.telephone-info').style.display === 'block') {
                                             document.querySelector('.telephone-info').style.display = 'none';
                                             document.querySelector(".fa-phone").style.color = '#01aaad';
 
@@ -92,7 +98,7 @@ const Card = ({ loading, country }) => {
                                             document.querySelector('.telephone-info').style.display = 'block';
                                             document.querySelector(".fa-phone").style.color = '#3ab54a';
                                         }
-                                        }}>
+                                    }}>
                                         <i className="fas fa-phone fa-2x"></i>
                                     </button>
                                 </div> :
@@ -171,6 +177,17 @@ const Card = ({ loading, country }) => {
                     {/* Map */}
                     <div className="map">
                         <CountryImg />
+                        <div className="info-card map-box">
+                            {country.name && <h5>{country.name} <span>({country.nativeName})</span></h5>}<br></br>
+                            {country.latlng && <p>Latitude <span>{country.latlng[0]}&deg; N</span></p>}
+                            {country.latlng && <p>Longitude <span>{country.latlng[1]}&deg; E</span></p>}
+                        </div>
+                        {country.borders.length > 0 && 
+                            <div className="info-card borders-box">
+                                <h5>Borders</h5><br></br>
+                        {country.borders.map(el => (<span>{el.toLowerCase()} </span>))}
+                            </div>
+                        }
                     </div>
 
                 </div>

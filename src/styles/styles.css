@@ -188,7 +188,7 @@
 .info .card {
   width: 375px;
   margin: 4rem 2rem;
-  padding: 1rem 0.5rem 2.5rem 0.5rem;
+  padding: 1rem 0.5rem 1rem 0.5rem;
   text-align: center;
   border-radius: 1.5rem;
   -webkit-transition: .2s;
@@ -324,6 +324,7 @@
 }
 
 .search .search-form input {
+  background: white;
   -webkit-transform: scale(1.3);
           transform: scale(1.3);
   padding: 0.8rem 1rem;
@@ -347,7 +348,7 @@
 .search .search-form .x-button {
   outline: none;
   border: none;
-  background: none;
+  background: white;
   opacity: 0.8;
   -webkit-transition: 0.2s;
   transition: 0.2s;
@@ -586,8 +587,22 @@
   list-style: none;
 }
 
-.card .country-image svg {
-  width: 100%;
+.card .map {
+  position: relative;
+}
+
+.card .map .map-box, .card .map .borders-box {
+  padding: 1rem .75rem .75rem .75rem;
+  width: 250px;
+  line-height: 1.15rem;
+}
+
+.card .map .map-box span, .card .map .borders-box span {
+  color: #01aaad;
+}
+
+.card .map .map-box p, .card .map .borders-box p {
+  font-size: .75rem;
 }
 
 * {
@@ -630,5 +645,9 @@ body {
 .elearn .e {
   color: #01aaad;
   font-family: "Pacifico", cursive;
+}
+
+.Explorer {
+  padding-top: .75rem;
 }
 /*# sourceMappingURL=styles.css.map */
