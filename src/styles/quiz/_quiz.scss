@@ -1,0 +1,59 @@
+.quiz {
+  text-align: center;
+
+  h1 {
+    margin: 2rem auto;
+
+    .elearn {
+      margin-right: 0.75rem;
+      .fa-graduation-cap {
+        position: absolute;
+        transform: rotate(-15deg) scale(0.75) translate(-45px, -15px);
+      }
+    }
+  }
+
+  .input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    input {
+      background: white;
+      transform: scale(1.3);
+      padding: 0.8rem 1rem;
+      margin: 0 2.75rem;
+      opacity: 0.8;
+      transition: 0.2s;
+      outline: none;
+      border: none;
+      border-radius: 10px;
+      box-shadow: inset -4px -4px 5px rgba(200, 200, 200, 0.1),
+        inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+
+      &:focus {
+        box-shadow: inset -4px -4px 5px rgba(200, 200, 200, 0.2),
+          inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+        opacity: 1;
+      }
+    }
+
+    .btn {
+      border-radius: 0.5rem;
+      border: none;
+      margin: 0 0.25rem;
+      box-shadow: -4px -4px 5px rgba(200, 200, 200, 0.1),
+        4px 4px 5px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        box-shadow: inset -4px -4px 5px rgba(200, 200, 200, 0.1),
+          inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+      }
+
+      i {
+        color: $blue;
+      }
+    }
+  }
+}

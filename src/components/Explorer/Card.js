@@ -6,10 +6,7 @@ import Axios from 'axios';
 
 const Card = ({ loading, country }) => {
 
-    let borders = [];
-
     useEffect(() => {
-
         //Highlight country in world map svg
         const allElements = document.querySelectorAll("path");
 
@@ -33,7 +30,6 @@ const Card = ({ loading, country }) => {
                 });
             };
         }
-
     }, [country.alpha2Code]);
 
     return (
@@ -182,10 +178,10 @@ const Card = ({ loading, country }) => {
                             {country.latlng && <p>Latitude <span>{country.latlng[0]}&deg; N</span></p>}
                             {country.latlng && <p>Longitude <span>{country.latlng[1]}&deg; E</span></p>}
                         </div>
-                        {country.borders.length > 0 && 
+                        {country.borders.length > 0 &&
                             <div className="info-card borders-box">
-                                <h5>Borders</h5><br></br>
-                        {country.borders.map(el => (<span>{el.toLowerCase()} </span>))}
+                                <h5>Land borders</h5><br></br>
+                                {country.borders.map(el => (<span key={el}>{el.toLowerCase()} </span>))}
                             </div>
                         }
                     </div>

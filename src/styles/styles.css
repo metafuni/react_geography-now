@@ -185,10 +185,11 @@
   background: #f6fbff;
 }
 
-.info .card {
+.info .cardi {
   width: 375px;
+  height: auto;
   margin: 4rem 2rem;
-  padding: 1rem 0.5rem 1rem 0.5rem;
+  padding: 1rem 0.5rem 2.5rem 0.5rem;
   text-align: center;
   border-radius: 1.5rem;
   -webkit-transition: .2s;
@@ -197,34 +198,45 @@
           box-shadow: -6px -6px 20px white, 6px 6px 20px rgba(0, 0, 0, 0.1);
 }
 
-.info .card:hover {
+.info .cardi:hover {
   -webkit-box-shadow: -6px -6px 20px white, 6px 6px 20px rgba(0, 0, 0, 0.3);
           box-shadow: -6px -6px 20px white, 6px 6px 20px rgba(0, 0, 0, 0.3);
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
 }
 
-.info .card img {
+.info .cardi img {
   width: 100%;
   max-width: 450px;
   margin: 0.75rem auto;
 }
 
-.info .card h2,
-.info .card p {
+.info .cardi h2,
+.info .cardi p {
   margin: 0.75rem .5rem 2rem .5rem;
   line-height: 1.5rem;
 }
 
-.info .card a {
+.info .cardi a {
   font-family: "Varela Round", sans-serif;
-  -webkit-box-shadow: -4px -4px 5px rgba(200, 200, 200, 0.1), 4px 4px 5px rgba(0, 0, 0, 0.1);
-          box-shadow: -4px -4px 5px rgba(200, 200, 200, 0.1), 4px 4px 5px rgba(0, 0, 0, 0.1);
+  color: #1c166be6;
+  -webkit-box-shadow: -4px -4px 5px rgba(0, 200, 200, 0.1), 4px 4px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: -4px -4px 5px rgba(0, 200, 200, 0.1), 4px 4px 5px rgba(0, 0, 0, 0.1);
 }
 
-.info .card a:hover {
+.info .cardi a:hover {
   -webkit-box-shadow: inset -4px -4px 5px rgba(200, 200, 200, 0.1), inset 2px 2px 5px rgba(0, 0, 0, 0.1);
           box-shadow: inset -4px -4px 5px rgba(200, 200, 200, 0.1), inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.video-container {
+  text-align: center;
+}
+
+.video-container iframe {
+  margin: 7.5rem auto;
+  -webkit-box-shadow: -4px -4px 7.5px rgba(0, 0, 0, 0.75), 4px 4px 7.5px rgba(68, 49, 49, 0.75), 4px -4px 7.5px rgba(0, 0, 0, 0.75), -4px 4px 7.5px rgba(0, 0, 0, 0.75);
+          box-shadow: -4px -4px 7.5px rgba(0, 0, 0, 0.75), 4px 4px 7.5px rgba(68, 49, 49, 0.75), 4px -4px 7.5px rgba(0, 0, 0, 0.75), -4px 4px 7.5px rgba(0, 0, 0, 0.75);
 }
 
 .banner-img {
@@ -429,7 +441,7 @@
 }
 
 .card {
-  min-height: 100vh;
+  min-height: 32vh;
   padding: 5rem;
 }
 
@@ -529,6 +541,11 @@
           align-items: center;
 }
 
+.card .country-images img {
+  -webkit-box-shadow: -4px -4px 15px rgba(200, 200, 200, 0.25), 4px 4px 15px rgba(0, 0, 0, 0.25);
+          box-shadow: -4px -4px 15px rgba(200, 200, 200, 0.25), 4px 4px 15px rgba(0, 0, 0, 0.25);
+}
+
 .card .info-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -603,6 +620,76 @@
 
 .card .map .map-box p, .card .map .borders-box p {
   font-size: .75rem;
+}
+
+.quiz {
+  text-align: center;
+}
+
+.quiz h1 {
+  margin: 2rem auto;
+}
+
+.quiz h1 .elearn {
+  margin-right: 0.75rem;
+}
+
+.quiz h1 .elearn .fa-graduation-cap {
+  position: absolute;
+  -webkit-transform: rotate(-15deg) scale(0.75) translate(-45px, -15px);
+          transform: rotate(-15deg) scale(0.75) translate(-45px, -15px);
+}
+
+.quiz .input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.quiz .input input {
+  background: white;
+  -webkit-transform: scale(1.3);
+          transform: scale(1.3);
+  padding: 0.8rem 1rem;
+  margin: 0 2.75rem;
+  opacity: 0.8;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  -webkit-box-shadow: inset -4px -4px 5px rgba(200, 200, 200, 0.1), inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: inset -4px -4px 5px rgba(200, 200, 200, 0.1), inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.quiz .input input:focus {
+  -webkit-box-shadow: inset -4px -4px 5px rgba(200, 200, 200, 0.2), inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: inset -4px -4px 5px rgba(200, 200, 200, 0.2), inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+}
+
+.quiz .input .btn {
+  border-radius: 0.5rem;
+  border: none;
+  margin: 0 0.25rem;
+  -webkit-box-shadow: -4px -4px 5px rgba(200, 200, 200, 0.1), 4px 4px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: -4px -4px 5px rgba(200, 200, 200, 0.1), 4px 4px 5px rgba(0, 0, 0, 0.1);
+}
+
+.quiz .input .btn:hover {
+  -webkit-box-shadow: inset -4px -4px 5px rgba(200, 200, 200, 0.1), inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: inset -4px -4px 5px rgba(200, 200, 200, 0.1), inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.quiz .input .btn i {
+  color: #01aaad;
 }
 
 * {

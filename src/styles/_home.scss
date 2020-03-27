@@ -90,10 +90,11 @@
   width: 100%;
   background: $bluegrey;
 
-  .card {
+  .cardi {
     width: 375px;
+    height: auto;
     margin: 4rem 2rem;
-    padding: 1rem 0.5rem 1rem 0.5rem;
+    padding: 1rem 0.5rem 2.5rem 0.5rem;
     text-align: center;
     border-radius: 1.5rem;
     transition: .2s;
@@ -120,7 +121,8 @@
 
     a {
       font-family: $secondary-font;
-      box-shadow: -4px -4px 5px rgba(200, 200, 200, 0.1),
+      color: $darkblue;
+      box-shadow: -4px -4px 5px rgba(0, 200, 200, 0.1),
         4px 4px 5px rgba(0, 0, 0, 0.1);
 
       &:hover {
@@ -128,6 +130,19 @@
           inset 2px 2px 5px rgba(0, 0, 0, 0.1);
       }
     }
+  }
+}
+
+//Video Container
+.video-container {
+  text-align: center;
+  
+  iframe {
+    margin: 7.5rem auto;
+    box-shadow: -4px -4px 7.5px rgba(0, 0, 0, 0.75),
+        4px 4px 7.5px rgba(68, 49, 49, 0.75),
+        4px -4px 7.5px rgba(0, 0, 0, 0.75),
+        -4px 4px 7.5px rgba(0, 0, 0, 0.75);
   }
 }
 

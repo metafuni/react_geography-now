@@ -25,13 +25,13 @@ const Home = () => {
                     </div>
                     <div className="header-paragraph">
                         <p>Let's explore the world together</p>
-                        <NavLink to="/explorer" className="btn btn-header"><i class="far fa-caret-square-right"></i> start</NavLink>
+                        <NavLink to="/explorer" className="btn btn-header"><i className="far fa-caret-square-right"></i> start</NavLink>
                     </div>
                 </div>
             </div>
 
             <div className="info">
-                <div className="card card-l">
+                <div className="cardi card-l">
                     <div className="img-box img-l">
                         <img src={ExplorerImg} alt="Geography Now! Explorer" />
                     </div>
@@ -41,7 +41,7 @@ const Home = () => {
                     </p><br></br>
                     <NavLink to="/explorer" className="btn btn-l">Explore</NavLink>
                 </div>
-                <div className="card card-m">
+                <div className="cardi card-m">
                     <div className="img-box img-m">
                         <img src={QuizImg} alt="Geography Now! Quiz" />
                     </div>
@@ -51,7 +51,7 @@ const Home = () => {
                     </p><br></br>
                     <NavLink to="/quiz" className="btn btn-m">take the Quiz</NavLink>
                 </div>
-                <div className="card card-r">
+                <div className="cardi card-r">
                     <div className="img-box img-r">
                         <img src={GeoMapImg} alt="Geography Now! GeoMap" />
                     </div>
@@ -61,6 +61,17 @@ const Home = () => {
                     </p><br></br>
                     <NavLink to="/geomap" className="btn btn-r">GeoMap now!</NavLink>
                 </div>
+            </div>
+
+            <div className="video-container">
+                <iframe 
+                    width="560" 
+                    height="315" 
+                    src="https://www.youtube.com/embed/_GyOH5_b4Xg?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
             </div>
 
             <a href="https://www.youtube.com/user/GeographyNow" target="blank" title="Geography Now Youtube Channel">

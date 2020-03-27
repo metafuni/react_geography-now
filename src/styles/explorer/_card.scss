@@ -1,5 +1,5 @@
 .card {
-  min-height: 100vh;
+  min-height: 32vh;
   padding: 5rem;
 
   .loading {
@@ -77,6 +77,11 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+
+    img {
+      box-shadow: -4px -4px 15px rgba(200, 200, 200, 0.25),
+        4px 4px 15px rgba(0, 0, 0, 0.25);
+    }
   }
 
   .info-container {
