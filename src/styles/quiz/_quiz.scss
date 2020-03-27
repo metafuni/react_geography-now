@@ -15,14 +15,16 @@
 
   .input {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    padding: 2rem 3.75rem;
 
     input {
       background: white;
       transform: scale(1.3);
       padding: 0.8rem 1rem;
       margin: 0 2.75rem;
+      width: 375px;
       opacity: 0.8;
       transition: 0.2s;
       outline: none;
@@ -38,7 +40,7 @@
       }
     }
 
-    .btn {
+    .btn-start {
       border-radius: 0.5rem;
       border: none;
       margin: 0 0.25rem;
@@ -52,7 +54,62 @@
       }
 
       i {
-        color: $blue;
+        color: $green;
+      }
+    }
+
+    .quiz-timer {
+      background: white;
+      transform: scale(1.3);
+      padding: 0.8rem 1rem;
+      margin: 0 2.75rem;
+      font-size: 1.25rem;
+      transition: 0.2s;
+      outline: none;
+      border: none;
+      border-radius: 10px;
+      box-shadow: inset -4px -4px 5px rgba(200, 200, 200, 0.2),
+          inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .quiz-buttons {
+      position: relative;
+
+      .question-box {
+        display: none;
+        position: absolute;
+        top: 50px;
+        background: $blue;
+        padding: 1rem;
+        width: 375px;
+        border-radius: 2rem;
+        box-shadow: -4px -4px 15px rgba(255, 255, 255, .4),
+                    4px 4px 15px rgba(255, 255, 255, .4),
+                    -4px 4px 15px rgba(255, 255, 255, .4),
+                    4px -4px 15px rgba(255, 255, 255, .4); 
+
+          p{
+            color: white;
+
+          }
+      }
+
+      .btn {
+        border-radius: 0.5rem;
+        border: none;
+        margin: 0 0.25rem;
+        box-shadow: -4px -4px 5px rgba(200, 200, 200, 0.1),
+          4px 4px 5px rgba(0, 0, 0, 0.1);
+  
+        &:hover {
+          box-shadow: inset -4px -4px 5px rgba(200, 200, 200, 0.1),
+            inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+          cursor: pointer;
+        }
+  
+        i {
+          color: $blue;
+        }
       }
     }
   }

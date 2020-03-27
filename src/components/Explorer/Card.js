@@ -13,7 +13,7 @@ const Card = ({ loading, country }) => {
         allElements.forEach(el => {
             el.setAttribute("fill", "grey");
         });
-
+        
         if (country.alpha2Code) {
             const code = country.alpha2Code.toLowerCase();
             const element = document.getElementById(`${code}`);
