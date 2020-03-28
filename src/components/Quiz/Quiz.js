@@ -9,17 +9,18 @@ const Quiz = () => {
     const [timer, setTimer] = useState(15);
     const [score, setScore] = useState(0);
 
-    const countriesArray = [];
+    let countriesArray = [];
 
     //set countriesArray
     const getCountries = async () => {
         const result = await Axios(`https://restcountries.eu/rest/v2/all`);
         result.data.forEach(el => {
             //set name with alternative names and translated names for the quiz, flag and region
-            countriesArray.push({ 
+            countriesArray.push({
                 name: [el.name, el.nativeName, el.translations.de, el.translations.es, el.translations.fr, el.translations.ja, el.translations.it, el.translations.br, el.translations.pt, el.translations.nl, el.translations.hr, el.translations.fa],
                 flag: el.flag,
-                region: el.region
+                region: el.region,
+                id: el.alpha2Code
             });
             let altArray = el.altSpellings;
             altArray.shift();
@@ -32,25 +33,48 @@ const Quiz = () => {
     //check the input answer if correct
     const checkAnswer = (e) => {
         e.preventDefault();
-        console.log(e.target.value);
+
+        //define regular expression input string
+        let inputString = new RegExp(e.target.value, "i");
+
+        // loop through all country names in array and match regular expression if exists
         for (let i = 0; i < countriesArray.length; i++) {
             for (let j = 0; j < countriesArray[i].name.length; j++) {
-                if (countriesArray[i].name[j] === e.target.value && e.target.value !=='') {
-                    console.log('Correct');
-                    setScore(score+1);
-                    e.target.value = '';
+                let testString = countriesArray[i].name[j];
+                let result;
+                if (testString) {
+                    result = testString.match(inputString)
+                } else {
+                    result = null;
                 };
+
+                // answer correct, set score, empty input field, mark country on map and trigger animations
+                if (result !== null && result[0] === testString) {
+                    setScore(score + 1);
+                    e.target.value = '';
+
+                    //mark country green on map
+                    const code = countriesArray[i].id.toLowerCase();
+                    const element = document.getElementById(`${code}`);
+                    if (element) {
+                        element.setAttribute("fill", "#3ab54a");
+                        element.querySelectorAll("path").forEach(el => {
+                            el.setAttribute("fill", "#3ab54a");
+                        });
+                    };
+
+                    //add animation green color when answer is correct
+                    const scorebox = document.querySelector(".score-box");
+                    scorebox.style.backgroundColor = '#3ab54a';
+                    setTimeout(() => {
+                        scorebox.style.backgroundColor = '#01aaad';
+                    }, 1000);                    
+                }
             }
         }
     };
 
     useEffect(() => {
-        //set background color for world map svg
-        const allElements = document.querySelectorAll("path");
-        allElements.forEach(el => {
-            el.setAttribute("fill", "grey");
-        })
-
         //set all countries array
         getCountries();
     });
@@ -69,7 +93,7 @@ const Quiz = () => {
                 </h1>
             </div>
             <Input checkAnswer={checkAnswer} />
-            <div className="score-box">score: {score}</div>
+            <div className="score-box">score: <span style={{ color: 'white' }} id="score">{score}</span></div>
             <CountryImg />
         </div>
     )

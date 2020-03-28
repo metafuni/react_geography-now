@@ -4,7 +4,7 @@ const Input = ({ checkAnswer }) => {
     return (
         <div className="input">
             <form onChange={checkAnswer} onSubmit={checkAnswer}>
-                <input placeholder="Enter country..."></input>
+                <input id="inputbox" placeholder="Enter country..."></input>
             </form>
             <div className="quiz-buttons">
                 <button className="btn btn-question" onClick={() => {
@@ -19,9 +19,11 @@ const Input = ({ checkAnswer }) => {
                     }
                 }}><i className="fas fa-question"></i></button>
                 <div className="question-box">
+                    <br></br>
+                    <h3>Guess all the countries and territories in the world</h3><br></br>
                     <p>Enter your answers in the <span style={{ fontStyle: 'italic', color: '#5757579d' }}>"Enter country... "</span> input-field, whether it's in English or your own language. <br></br><br></br>
                         The input field is case insensitive, so lowercase or uppercase does not matter. <br></br><br></br>
-                        There is no specific order, just try to guess all the countries in the world within the time limit. Good luck!
+                        There is no specific order, just try to guess all the countries and independent territories in the world within the time limit. <br></br><br></br>Good luck!<br></br>
                     </p>
                 </div>
                 <button className="btn btn-pause"><i className="fas fa-pause"></i></button>

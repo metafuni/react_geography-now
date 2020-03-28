@@ -2,6 +2,14 @@ import React, { useEffect } from 'react';
 
 const CountryImg = () => {
 
+    useEffect(() => {
+        //set background color for world map svg
+        const allElements = document.querySelectorAll("path");
+        allElements.forEach(el => {
+            el.setAttribute("fill", "grey");
+        })
+    }, []);
+
     return (
         <div className="countryimg">
             <svg id="map" width="100vw" height="800" viewBox="550 0 5500 2804" xmlns="http://www.w3.org/2000/svg">
