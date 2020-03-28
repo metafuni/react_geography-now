@@ -15,23 +15,33 @@ const Quiz = () => {
     const getCountries = async () => {
         const result = await Axios(`https://restcountries.eu/rest/v2/all`);
         result.data.forEach(el => {
-            countriesArray.push(el.name);
+            //set name with alternative names and translated names for the quiz, flag and region
+            countriesArray.push({ 
+                name: [el.name, el.nativeName, el.translations.de, el.translations.es, el.translations.fr, el.translations.ja, el.translations.it, el.translations.br, el.translations.pt, el.translations.nl, el.translations.hr, el.translations.fa],
+                flag: el.flag,
+                region: el.region
+            });
+            let altArray = el.altSpellings;
+            altArray.shift();
+            altArray.forEach(el => countriesArray[countriesArray.length - 1].name.push(el));
         });
     };
     console.log(score);
+    console.log(countriesArray)
 
     //check the input answer if correct
     const checkAnswer = (e) => {
         e.preventDefault();
         console.log(e.target.value);
         for (let i = 0; i < countriesArray.length; i++) {
-            if (e.target.value === countriesArray[i]) {
-                console.log('BINGO');
-                setScore(score+1);
-                console.log(score);
-                e.target.value = '';
-            };
-        };
+            for (let j = 0; j < countriesArray[i].name.length; j++) {
+                if (countriesArray[i].name[j] === e.target.value && e.target.value !=='') {
+                    console.log('Correct');
+                    setScore(score+1);
+                    e.target.value = '';
+                };
+            }
+        }
     };
 
     useEffect(() => {
@@ -58,7 +68,8 @@ const Quiz = () => {
                     Quiz
                 </h1>
             </div>
-            <Input checkAnswer={checkAnswer}/>
+            <Input checkAnswer={checkAnswer} />
+            <div className="score-box">score: {score}</div>
             <CountryImg />
         </div>
     )

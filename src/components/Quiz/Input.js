@@ -19,7 +19,7 @@ const Input = ({ checkAnswer }) => {
                     }
                 }}><i className="fas fa-question"></i></button>
                 <div className="question-box">
-                    <p>Enter your answers in the <span style={{ fontStyle: 'italic', color: '#5757579d' }}>"Enter country... "</span> input-field. <br></br><br></br>
+                    <p>Enter your answers in the <span style={{ fontStyle: 'italic', color: '#5757579d' }}>"Enter country... "</span> input-field, whether it's in English or your own language. <br></br><br></br>
                         The input field is case insensitive, so lowercase or uppercase does not matter. <br></br><br></br>
                         There is no specific order, just try to guess all the countries in the world within the time limit. Good luck!
                     </p>
