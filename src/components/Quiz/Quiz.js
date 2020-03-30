@@ -6,10 +6,10 @@ import Axios from 'axios';
 
 const Quiz = () => {
 
-    const [timer, setTimer] = useState(15);
     const [score, setScore] = useState(0);
 
     let countriesArray = [];
+    let answerArray = [];
 
     //set countriesArray
     const getCountries = async () => {
@@ -27,6 +27,7 @@ const Quiz = () => {
             altArray.forEach(el => countriesArray[countriesArray.length - 1].name.push(el));
         });
     };
+
     console.log(score);
     console.log(countriesArray)
 
@@ -49,13 +50,25 @@ const Quiz = () => {
                 };
 
                 // answer correct, set score, empty input field, mark country on map and trigger animations
-                if (result !== null && result[0] === testString) {
+                const code = countriesArray[i].id.toLowerCase();
+                const element = document.getElementById(`${code}`);
+
+                // STILL TO DO: MAKE SURE THAT WHEN GUESSING THE COUNTRY THAT DOES NOT EXIST ON THE MAP, NOT BEING ABLE TO GUESS AGAIN
+                // LOOP THROUGH ALL THE NAMES OF THIS ANSWER AND PUSH THEM ONTO THE ANSWER-ARRAY, WHEN CHECKING FOR THE INPUT, MAKE SURE TO CHECK WITH THIS ANSWER-ARRAY AS WELL
+
+                //in case country does not exist on map, set score and empty input field
+                if (result !== null && result[0] === testString && !element) {
                     setScore(score + 1);
+                    e.target.value = '';
+                };
+
+                if (result !== null && result[0] === testString && element && element.getAttribute('fill') !== '#3ab54a') {
+                    setScore(score + 1);
+                    answerArray.push(countriesArray[i]);
+                    console.log(answerArray);
                     e.target.value = '';
 
                     //mark country green on map
-                    const code = countriesArray[i].id.toLowerCase();
-                    const element = document.getElementById(`${code}`);
                     if (element) {
                         element.setAttribute("fill", "#3ab54a");
                         element.querySelectorAll("path").forEach(el => {
@@ -68,14 +81,25 @@ const Quiz = () => {
                     scorebox.style.backgroundColor = '#3ab54a';
                     setTimeout(() => {
                         scorebox.style.backgroundColor = '#01aaad';
-                    }, 1000);                    
+                    }, 1000);
                 }
             }
         }
     };
 
+    //reset score when game has ended
+    const resetScore = () => {
+        setScore(0);
+
+        //set background color for world map svg to default grey
+        const allElements = document.querySelectorAll("path");
+        allElements.forEach(el => {
+            el.setAttribute("fill", "grey");
+        });
+    };
+
     useEffect(() => {
-        //set all countries array
+        // set the countries array
         getCountries();
     });
 
@@ -92,8 +116,8 @@ const Quiz = () => {
                     Quiz
                 </h1>
             </div>
-            <Input checkAnswer={checkAnswer} />
-            <div className="score-box">score: <span style={{ color: 'white' }} id="score">{score}</span></div>
+            <Input checkAnswer={checkAnswer} score={score} resetScore={resetScore} />
+            <div className="score-box">score: <span style={{ color: 'white' }} id="score">{score} / 250</span></div>
             <CountryImg />
         </div>
     )
