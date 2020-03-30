@@ -127,17 +127,13 @@
     transition: 0.2s;
   }
 
-  .time-up-overlay {
-    display: none;
-  }
-
   .time-up-overlay, .winner-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    background: $faintblue;
+    background: $grey;
     z-index: 100;
 
     .time-up-box, .winner-box {

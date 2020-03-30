@@ -12,7 +12,7 @@ const CountryImg = () => {
 
     return (
         <div className="countryimg">
-            <svg id="map" width="100vw" height="800" viewBox="550 0 5500 2804" xmlns="http://www.w3.org/2000/svg">
+            <svg id="map" width="100vw" height="800" viewBox="550 0 5500 2400" xmlns="http://www.w3.org/2000/svg">
                 <g id="worldmap 1">
                     <g clipPath="url(#clip0)">
                         <g id="g4527">

@@ -764,17 +764,13 @@
   transition: 0.2s;
 }
 
-.quiz .time-up-overlay {
-  display: none;
-}
-
 .quiz .time-up-overlay, .quiz .winner-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  background: #007c7e54;
+  background: #5757579d;
   z-index: 100;
 }
 

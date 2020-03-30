@@ -20,7 +20,7 @@ const Input = ({ checkAnswer, score, resetScore }) => {
             document.querySelector('.fa-play').style.color = 'white';
 
             setPlaying(true);
-            setMinutes(14);
+            setMinutes(0);
             setSeconds(59);
         };
     };
@@ -60,9 +60,8 @@ const Input = ({ checkAnswer, score, resetScore }) => {
     };
 
     //timer function
-    //MAKE SURE TO STOP IT ONCE IT HITS 0 FOR BOTH SECONDS AND MINUTES
     if (playing && !paused) {
-        setTimeout(() => {
+        let timer = setTimeout(() => {
             if (seconds > 0) {
                 setSeconds(seconds - 1);
             };
@@ -71,11 +70,30 @@ const Input = ({ checkAnswer, score, resetScore }) => {
                 setMinutes(minutes - 1);
             };
         }, 1000);
+
+        //time running low
+        if (minutes === 0) {
+            //orange box shadow time and input animation
+        };
+        if (minutes === 0 && seconds < 15) {
+            //red box shadow time and iput animation
+        };
+
+        //time up        
+        if (minutes === 0 && seconds === 0) {
+            clearInterval(timer);
+            setPlaying(false);
+            setStop(true);
+
+            document.querySelector('.btn-start').style.backgroundColor = 'white';
+            document.querySelector('.fa-play').style.color = '#3ab54a';
+        };
     };
 
     //end quiz when all answers correct
     if (score === 250) {
-
+        setPlaying(false);
+        setStop(true);
     };
 
     return (
@@ -120,33 +138,33 @@ const Input = ({ checkAnswer, score, resetScore }) => {
 
             {/* testcode */}
             {seconds === 0 && minutes === 0 ?
-            <div className="time-up-overlay">
-                <div className="time-up-box">
-                    <h3>Aaah... time's up!</h3><br></br>
-                    <p>Good effort though, you managed to guess <span style={{color: 'lightgreen', fontSize: '1.25rem'}}>{score}</span> of the total <span style={{color: 'lightblue', fontSize: '1.25rem'}}>250</span> countries and territories.</p><br></br>
-                    <p>Have a look below the map to see an overview of what you missed ...</p>
-                    <button className="btn btn-time-up" onClick={() => {document.querySelector(".time-up-overlay").style.display = 'none'}}>close</button>
-                    <button className="btn btn-try-again" onClick={() => {
-                        document.querySelector(".time-up-overlay").style.display = 'none';
-                        startQuiz();
-                    }}>try again</button>
-                </div>
-            </div> : null}
+                <div className="time-up-overlay">
+                    <div className="time-up-box">
+                        <h3>Aaah... time's up!</h3><br></br>
+                        <p>Good effort though, you managed to guess <span style={{ color: 'lightgreen', fontSize: '1.25rem' }}>{score}</span> of the total <span style={{ color: 'lightblue', fontSize: '1.25rem' }}>250</span> countries and territories.</p><br></br>
+                        <p>Have a look below the map to see an overview of what you missed ...</p>
+                        <button className="btn btn-time-up" onClick={() => { document.querySelector(".time-up-overlay").style.display = 'none' }}>close</button>
+                        <button className="btn btn-try-again" onClick={() => {
+                            document.querySelector(".time-up-overlay").style.display = 'none';
+                            startQuiz();
+                        }}>try again</button>
+                    </div>
+                </div> : null}
 
             {/* testcode */}
             {score === 250 &&
-            <div className="winner-overlay">
-                <div className="winner-box">
-                    <h3>We have a Winner !!!</h3><br></br>
-                    <p>Amazing, you managed to get all the countries and territories: <span style={{color: 'lightgreen', fontSize: '1.25rem'}}>{score}</span> out of  <span style={{color: 'lightblue', fontSize: '1.25rem'}}>250</span>.</p><br></br>
-                    <p>Consider yourself a true Geograpeeps Master!</p>
-                    <button className="btn btn-time-up" onClick={() => {document.querySelector(".winner-overlay").style.display = 'none'}}>close</button>
-                    <button className="btn btn-try-again" onClick={() => {
-                        document.querySelector(".winner-overlay").style.display = 'none';
-                        startQuiz();
+                <div className="winner-overlay">
+                    <div className="winner-box">
+                        <h3>We have a Winner !!!</h3><br></br>
+                        <p>Amazing, you managed to get all the countries and territories: <span style={{ color: 'lightgreen', fontSize: '1.25rem' }}>{score}</span> out of  <span style={{ color: 'lightblue', fontSize: '1.25rem' }}>250</span>.</p><br></br>
+                        <p>Consider yourself a true Geograpeeps Master!</p>
+                        <button className="btn btn-time-up" onClick={() => { document.querySelector(".winner-overlay").style.display = 'none' }}>close</button>
+                        <button className="btn btn-try-again" onClick={() => {
+                            document.querySelector(".winner-overlay").style.display = 'none';
+                            startQuiz();
                         }}>do it again</button>
-                </div>
-            </div>}
+                    </div>
+                </div>}
         </div>
     )
 }

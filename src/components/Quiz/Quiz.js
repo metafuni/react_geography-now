@@ -82,6 +82,8 @@ const Quiz = () => {
                     setTimeout(() => {
                         scorebox.style.backgroundColor = '#01aaad';
                     }, 1000);
+
+                    //add animation green color on inputfield
                 }
             }
         }
