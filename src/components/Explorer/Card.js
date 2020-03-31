@@ -13,7 +13,7 @@ const Card = ({ loading, country }) => {
         allElements.forEach(el => {
             el.setAttribute("fill", "grey");
         });
-        
+
         if (country.alpha2Code) {
             const code = country.alpha2Code.toLowerCase();
             const element = document.getElementById(`${code}`);
@@ -184,6 +184,9 @@ const Card = ({ loading, country }) => {
                                 {country.borders.map(el => (<span key={el}>{el.toLowerCase()} </span>))}
                             </div>
                         }
+                        <div className="info-card weather-box">
+                            <h5>Live weather in <span>{country.capital}</span></h5>
+                        </div>
                     </div>
 
                 </div>

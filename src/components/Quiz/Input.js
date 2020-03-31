@@ -103,7 +103,7 @@ const Input = ({ checkAnswer, score, resetScore }) => {
             const allElements = document.querySelectorAll("path");
             allElements.forEach(el => {
                 if (el.getAttribute("fill") !== '#3ab54a') {
-                    el.setAttribute("fill", "#01aaad");
+                    el.setAttribute("fill", "red");
                 };
             })
         };

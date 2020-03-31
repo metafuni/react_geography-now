@@ -7,10 +7,11 @@ import Axios from 'axios';
 
 const Quiz = () => {
 
-    const [score, setScore] = useState(0);
-
     let countriesArray = [];
-    let answerArray = [];
+
+    const [score, setScore] = useState(0);
+    const [answers, setAnswers] = useState([]);
+    const [missedCountries, setMissedCountries] = useState([]);
 
     //set countriesArray
     const getCountries = async () => {
@@ -21,16 +22,14 @@ const Quiz = () => {
                 name: [el.name, el.nativeName, el.translations.de, el.translations.es, el.translations.fr, el.translations.ja, el.translations.it, el.translations.br, el.translations.pt, el.translations.nl, el.translations.hr, el.translations.fa],
                 flag: el.flag,
                 region: el.region,
-                id: el.alpha2Code
+                id: el.alpha2Code,
+                completed: false
             });
             let altArray = el.altSpellings;
             altArray.shift();
             altArray.forEach(el => countriesArray[countriesArray.length - 1].name.push(el));
         });
     };
-
-    console.log(score);
-    console.log(countriesArray)
 
     //check the input answer if correct
     const checkAnswer = (e) => {
@@ -50,24 +49,32 @@ const Quiz = () => {
                     result = null;
                 };
 
-                // answer correct, set score, empty input field, mark country on map and trigger animations
                 const code = countriesArray[i].id.toLowerCase();
                 const element = document.getElementById(`${code}`);
 
-                // STILL TO DO: MAKE SURE THAT WHEN GUESSING THE COUNTRY THAT DOES NOT EXIST ON THE MAP, NOT BEING ABLE TO GUESS AGAIN
-                // LOOP THROUGH ALL THE NAMES OF THIS ANSWER AND PUSH THEM ONTO THE ANSWER-ARRAY, WHEN CHECKING FOR THE INPUT, MAKE SURE TO CHECK WITH THIS ANSWER-ARRAY AS WELL
-
-                //in case country does not exist on map, set score and empty input field
+                //answer correct, in case country does not exist on map, set score and empty input field
                 if (result !== null && result[0] === testString && !element) {
+
+                    //check if not already in answers
+                    if (answers.length > 0) {
+                        for (let x = 0; x < answers.length; x++) {
+                            if (countriesArray[i].name[0] === answers[x].name[0]) {
+                                return;
+                            };
+                        };
+                    };
+
+                    // answer correct, set score, empty input field, mark country on map and trigger animations
                     setScore(score + 1);
+                    setAnswers([...answers, countriesArray[i]]);
                     e.target.value = '';
                 };
 
-                //in case country does exist on map
+                //answer correct, in case country does exist on map
                 if (result !== null && result[0] === testString && element && element.getAttribute('fill') !== '#3ab54a') {
                     setScore(score + 1);
-                    answerArray.push(countriesArray[i]);
-                    console.log(answerArray);
+                    //test
+                    setAnswers([...answers, countriesArray[i]]);
                     e.target.value = '';
 
                     //mark country green on map
@@ -106,9 +113,15 @@ const Quiz = () => {
         });
     };
 
+    //clear results when game has ended/stopped
+    const clearResults = () => {
+
+    };
+
     useEffect(() => {
         // set the countries array
         getCountries();
+        console.log(answers);
     });
 
     return (
@@ -127,7 +140,7 @@ const Quiz = () => {
             <Input checkAnswer={checkAnswer} score={score} resetScore={resetScore} />
             <div className="score-box">score: <span style={{ color: 'white' }} id="score">{score} / 250</span></div>
             <CountryImg />
-            <Results score={score} />
+            <Results answers={answers} countriesArray={countriesArray} />
         </div>
     )
 }
