@@ -1,9 +1,48 @@
 //Loading Animation
 @keyframes loading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes score {
+  from {
+    box-shadow: 4px 4px 5px $green, -4px 4px 5px $green, -4px -4px 5px $green,
+      4px -4px 5px $green, inset 2px 2px 2.5px $green,
+      inset -2px 2px 2.5px $green, inset -2px -2px 2.5px $green,
+      inset 2px -2px 2.5px $green;
+  }
+  to {
+    box-shadow: inset -4px -4px 5px rgba(200, 200, 200, 0.1),
+      inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes timelow {
     from {
-        transform: rotate(0deg);
+        box-shadow: 4px 4px 5px orange, -4px 4px 5px orange, -4px -4px 5px orange,
+      4px -4px 5px orange, inset 2px 2px 2.5px orange,
+      inset -2px 2px 2.5px orange, inset -2px -2px 2.5px orange,
+      inset 2px -2px 2.5px orange;
     }
     to {
-        transform: rotate(360deg);
+        box-shadow: inset -4px -4px 5px rgba(200, 200, 200, 0.2),
+        inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+}
+
+@keyframes timeverylow {
+    0% {
+        box-shadow: 4px 4px 5px $red, -4px 4px 5px $red, -4px -4px 5px $red,
+      4px -4px 5px $red, inset 2px 2px 2.5px $red,
+      inset -2px 2px 2.5px $red, inset -2px -2px 2.5px $red,
+      inset 2px -2px 2.5px $red;
+    }
+    100% {
+        box-shadow: inset -4px -4px 5px rgba(200, 200, 200, 0.2),
+        inset 2px 2px 5px rgba(0, 0, 0, 0.2);
     }
 }

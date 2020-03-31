@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CountryImg from './CountryImg';
 
 import Input from './Input';
+import Results from './Results';
 import Axios from 'axios';
 
 const Quiz = () => {
@@ -62,6 +63,7 @@ const Quiz = () => {
                     e.target.value = '';
                 };
 
+                //in case country does exist on map
                 if (result !== null && result[0] === testString && element && element.getAttribute('fill') !== '#3ab54a') {
                     setScore(score + 1);
                     answerArray.push(countriesArray[i]);
@@ -77,13 +79,17 @@ const Quiz = () => {
                     };
 
                     //add animation green color when answer is correct
+                    const input = document.getElementById('inputbox');
+                    input.style.animationName = 'score';
+                    setTimeout(() => {
+                        input.style.animationName = 'none';
+                    }, 1000);
+
                     const scorebox = document.querySelector(".score-box");
                     scorebox.style.backgroundColor = '#3ab54a';
                     setTimeout(() => {
                         scorebox.style.backgroundColor = '#01aaad';
                     }, 1000);
-
-                    //add animation green color on inputfield
                 }
             }
         }
@@ -121,6 +127,7 @@ const Quiz = () => {
             <Input checkAnswer={checkAnswer} score={score} resetScore={resetScore} />
             <div className="score-box">score: <span style={{ color: 'white' }} id="score">{score} / 250</span></div>
             <CountryImg />
+            <Results score={score} />
         </div>
     )
 }

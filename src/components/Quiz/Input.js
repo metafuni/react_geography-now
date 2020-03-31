@@ -20,8 +20,8 @@ const Input = ({ checkAnswer, score, resetScore }) => {
             document.querySelector('.fa-play').style.color = 'white';
 
             setPlaying(true);
-            setMinutes(0);
-            setSeconds(59);
+            setMinutes(1);
+            setSeconds(10);
         };
     };
 
@@ -32,6 +32,8 @@ const Input = ({ checkAnswer, score, resetScore }) => {
 
             document.querySelector('.btn-pause').style.backgroundColor = '#01aaad';
             document.querySelector('.fa-pause').style.color = 'white';
+
+            document.querySelector(".quiz-timer").style.animationName = 'none';
 
             if (paused) {
                 document.querySelector('.btn-pause').style.backgroundColor = 'white';
@@ -57,6 +59,8 @@ const Input = ({ checkAnswer, score, resetScore }) => {
 
         document.querySelector('.btn-start').style.backgroundColor = 'white';
         document.querySelector('.fa-play').style.color = '#3ab54a';
+
+        document.querySelector(".quiz-timer").style.animationName = 'none';
     };
 
     //timer function
@@ -73,10 +77,15 @@ const Input = ({ checkAnswer, score, resetScore }) => {
 
         //time running low
         if (minutes === 0) {
-            //orange box shadow time and input animation
+            //orange box shadow time box animation
+            document.querySelector(".quiz-timer").style.color = 'orange';
+            document.querySelector(".quiz-timer").style.animationName = 'timelow';
         };
         if (minutes === 0 && seconds < 15) {
-            //red box shadow time and iput animation
+            //red box shadow time box animation
+            document.querySelector(".quiz-timer").style.color = 'red';
+            document.querySelector(".quiz-timer").style.animationName = 'timeverylow';
+            document.querySelector(".quiz-timer").style.animationDuration = '.5s';
         };
 
         //time up        
@@ -87,6 +96,16 @@ const Input = ({ checkAnswer, score, resetScore }) => {
 
             document.querySelector('.btn-start').style.backgroundColor = 'white';
             document.querySelector('.fa-play').style.color = '#3ab54a';
+
+            document.querySelector(".quiz-timer").style.animationName = 'none';
+
+            //set styling for all countries that were not guessed
+            const allElements = document.querySelectorAll("path");
+            allElements.forEach(el => {
+                if (el.getAttribute("fill") !== '#3ab54a') {
+                    el.setAttribute("fill", "#01aaad");
+                };
+            })
         };
     };
 
