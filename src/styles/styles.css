@@ -938,7 +938,6 @@
 }
 
 .quiz .results h3 {
-  margin-bottom: 0.5rem;
   text-align: center;
 }
 
@@ -970,6 +969,11 @@
   height: 19px;
   -webkit-box-shadow: -2px -2px 5px rgba(200, 200, 200, 0.1), 2px 2px 5px rgba(0, 0, 0, 0.1);
           box-shadow: -2px -2px 5px rgba(200, 200, 200, 0.1), 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.quiz .results .results-top .result-box .country-li,
+.quiz .results .results-bottom .result-box .country-li {
+  display: none;
 }
 
 .quiz .results .results-top .result-box li,

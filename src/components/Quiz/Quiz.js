@@ -11,7 +11,6 @@ const Quiz = () => {
 
     const [score, setScore] = useState(0);
     const [answers, setAnswers] = useState([]);
-    const [missedCountries, setMissedCountries] = useState([]);
 
     //set countriesArray
     const getCountries = async () => {
@@ -64,6 +63,9 @@ const Quiz = () => {
                         };
                     };
 
+                    //amend the countriesArray
+                    countriesArray.filter(el => el === countriesArray[i]);
+
                     // answer correct, set score, empty input field, mark country on map and trigger animations
                     setScore(score + 1);
                     setAnswers([...answers, countriesArray[i]]);
@@ -76,6 +78,9 @@ const Quiz = () => {
                     //test
                     setAnswers([...answers, countriesArray[i]]);
                     e.target.value = '';
+
+                    //amend the countriesArray
+                    countriesArray.filter(el => el === countriesArray[i]);
 
                     //mark country green on map
                     if (element) {

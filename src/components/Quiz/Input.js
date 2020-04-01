@@ -20,7 +20,7 @@ const Input = ({ checkAnswer, score, resetScore }) => {
             document.querySelector('.fa-play').style.color = 'white';
 
             setPlaying(true);
-            setMinutes(1);
+            setMinutes(0);
             setSeconds(10);
         };
     };
@@ -103,7 +103,7 @@ const Input = ({ checkAnswer, score, resetScore }) => {
             const allElements = document.querySelectorAll("path");
             allElements.forEach(el => {
                 if (el.getAttribute("fill") !== '#3ab54a') {
-                    el.setAttribute("fill", "red");
+                    el.setAttribute("fill", "#1c166be6");
                 };
             })
         };
@@ -116,9 +116,12 @@ const Input = ({ checkAnswer, score, resetScore }) => {
     };
 
     return (
+        //Note that the input will break once you type in a ) or (, anything else permitted
         <div className="input">
             <form onChange={checkAnswer} onSubmit={checkAnswer}>
-                {playing && !paused ? <input id="inputbox" placeholder="Enter country..." autoComplete="off"></input> : <input id="inputbox" placeholder="Enter country..." autoComplete="off" disabled style={{ backgroundColor: '#f6fbff' }}></input>}
+                {playing && !paused ?
+                    <input id="inputbox" type="text" placeholder="Enter country..." pattern="[A-Za-z]" autoComplete="off"></input> :
+                    <input id="inputbox" placeholder="Enter country..." disabled style={{ backgroundColor: '#f6fbff' }}></input>}
             </form>
             <div className="quiz-buttons">
                 <button className="btn btn-question" onClick={() => {

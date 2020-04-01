@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
+
 import Search from './Search';
 import Card from './Card';
 
