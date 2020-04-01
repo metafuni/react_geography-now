@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 import CountryImg from '../Quiz/CountryImg';
+import Weather from './Weather';
+import Currency from './Currency';
 import Logo from '../../img/logo.png';
+
 import Axios from 'axios';
 
 const Card = ({ loading, country }) => {
@@ -164,9 +167,7 @@ const Card = ({ loading, country }) => {
                                 {country.population ? <div>Population<br></br><span>{parseFloat(country.population).toLocaleString('en')}</span></div> : null}
                                 {country.area ? <div>Total area<br></br><span>{parseFloat(country.area).toLocaleString('en')} km&sup2;</span></div> : null}
                             </div>
-                            <div className="info-card currency-card">
-                                <h3>Currency Converter</h3>
-                            </div>
+                            <Currency country={country} />
                         </div>
                     </div>
 
@@ -184,9 +185,7 @@ const Card = ({ loading, country }) => {
                                 {country.borders.map(el => (<span key={el}>{el.toLowerCase()} </span>))}
                             </div>
                         }
-                        <div className="info-card weather-box">
-                            <h5>Live weather in <span>{country.capital}</span></h5>
-                        </div>
+                        <Weather country={country} />
                     </div>
 
                 </div>
