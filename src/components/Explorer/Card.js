@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import CountryImg from '../Quiz/CountryImg';
 import Weather from './Weather';
 import Currency from './Currency';
+import CapitalMap from './CapitalMap';
 import Logo from '../../img/logo.png';
 
 import Axios from 'axios';
@@ -171,9 +172,10 @@ const Card = ({ loading, country }) => {
                         </div>
                     </div>
 
+                    <CountryImg />
+
                     {/* Map */}
                     <div className="map">
-                        <CountryImg />
                         <div className="info-card map-box">
                             {country.name && <h5>{country.name} <span>({country.nativeName})</span></h5>}<br></br>
                             {country.latlng && <p>Latitude <span>{country.latlng[0]}&deg; N</span></p>}
@@ -181,12 +183,14 @@ const Card = ({ loading, country }) => {
                         </div>
                         {country.borders.length > 0 &&
                             <div className="info-card borders-box">
-                                <h5>Land borders</h5><br></br>
+                                <h5>Land Borders</h5><br></br>
                                 {country.borders.map(el => (<span key={el}>{el.toLowerCase()} </span>))}
                             </div>
                         }
                         <Weather country={country} />
                     </div>
+
+                    <CapitalMap country={country} />
 
                 </div>
             }
