@@ -1,0 +1,17 @@
+.weather-box {
+    width: 350px !important;
+
+    .weather-main, .weather-extra {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+}
+
+.fa-dot-circle {
+    color: $red;
+    transform: scale(0.8);
+    margin-right: .15rem;
+    animation: liveweather .5s alternate infinite ease-in-out;
+}
+

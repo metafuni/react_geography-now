@@ -371,6 +371,24 @@
   }
 }
 
+@-webkit-keyframes liveweather {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: .1;
+  }
+}
+
+@keyframes liveweather {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: .1;
+  }
+}
+
 .search {
   text-align: center;
 }
@@ -686,6 +704,30 @@
 
 .card .map .map-box p, .card .map .borders-box p, .card .map .weather-box p {
   font-size: .75rem;
+}
+
+.weather-box {
+  width: 350px !important;
+}
+
+.weather-box .weather-main, .weather-box .weather-extra {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.fa-dot-circle {
+  color: #c4302b;
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+  margin-right: .15rem;
+  -webkit-animation: liveweather .5s alternate infinite ease-in-out;
+          animation: liveweather .5s alternate infinite ease-in-out;
 }
 
 .quiz {
