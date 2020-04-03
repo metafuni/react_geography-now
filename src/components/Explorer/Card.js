@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import CountryImg from '../Quiz/CountryImg';
 import Weather from './Weather';
 import Currency from './Currency';
 import CapitalMap from './CapitalMap';
 import Logo from '../../img/logo.png';
-
-import Axios from 'axios';
 
 const Card = ({ loading, country }) => {
 
@@ -50,10 +48,30 @@ const Card = ({ loading, country }) => {
                             <div className="country-header">
                                 {country.name ? <div><h1>{country.name}</h1><h3>{country.altSpellings[country.altSpellings.length - 1]}, {country.nativeName}</h3></div> : null}
                             </div>
+                        </div>
 
-                            {/* Info Buttons */}
+                        {/* Image */}
 
-                            {country.name ?
+                        <div className="country-images">
+                            {country.flag ? <img src={country.flag} alt={country.name} width="80%"></img> : null}
+                        </div>
+
+                        {/* Info Container */}
+
+                        <div className="info-container">
+                            <div className="info-card">
+                                {country.capital ? <div>Capital<br></br><span>{country.capital}</span></div> : null}
+                                {country.region ? <div>Region<br></br><span>{country.subregion}, {country.region}</span></div> : null}
+                                {country.population ? <div>Population<br></br><span>{parseFloat(country.population).toLocaleString('en')}</span></div> : null}
+                                {country.area ? <div>Total area<br></br><span>{parseFloat(country.area).toLocaleString('en')} km&sup2;</span></div> : null}
+                            </div>
+                            <Currency country={country} />
+                        </div>
+                    </div>
+
+                    {/* Info Buttons */}
+
+                    {country.name ?
                                 <div className="info-buttons">
                                     <button className="btn btn-info" id="timezone-info" onClick={() => {
                                         if (document.querySelector('.timezone-info').style.display === 'block') {
@@ -118,6 +136,16 @@ const Card = ({ loading, country }) => {
                                         null
                                     }
                                 </div>
+                                <div className="info-card regionalbloc">
+                                    {country.name && country.regionalBlocs.length > 0 ?
+                                        <p>{country.name} belongs to the {country.regionalBlocs[0].name} <span className="alternative-text">(or {country.regionalBlocs[0].acronym})</span></p> :
+                                        null
+                                    }
+                                    {country.name && country.regionalBlocs.length === 0 ?
+                                        <p>{country.name} is completely independent and does not belong to any political or economic union!</p> :
+                                        null
+                                    }
+                                </div>
                                 <div className="info-card language-info">
                                     {country.name && country.languages.length === 1 ?
                                         <p>The native language spoken in {country.name} is {country.languages[0].name} {country.languages[0].nativeName ? <span className="alternative-text">({country.languages[0].nativeName})</span> : null}</p> :
@@ -139,38 +167,7 @@ const Card = ({ loading, country }) => {
                                 <div className="info-card telephone-info">
                                     {country.name && country.callingCodes ? <p>The country code for calling {country.demonym} phonenumbers is <span>+{country.callingCodes[0]}</span></p> : null}
                                 </div>
-                                <div className="info-card regionalbloc">
-                                    {country.name && country.regionalBlocs.length > 0 ?
-                                        <p>{country.name} belongs to the {country.regionalBlocs[0].name} <span className="alternative-text">(or {country.regionalBlocs[0].acronym})</span></p> :
-                                        null
-                                    }
-                                    {country.name && country.regionalBlocs.length === 0 ?
-                                        <p>{country.name} is completely independent and does not belong to any political or economic union!</p> :
-                                        null
-                                    }
-                                </div>
                             </div>
-
-                        </div>
-
-                        {/* Image */}
-
-                        <div className="country-images">
-                            {country.flag ? <img src={country.flag} alt={country.name} width="80%"></img> : null}
-                        </div>
-
-                        {/* Info Container */}
-
-                        <div className="info-container">
-                            <div className="info-card">
-                                {country.capital ? <div>Capital<br></br><span>{country.capital}</span></div> : null}
-                                {country.region ? <div>Region<br></br><span>{country.subregion}, {country.region}</span></div> : null}
-                                {country.population ? <div>Population<br></br><span>{parseFloat(country.population).toLocaleString('en')}</span></div> : null}
-                                {country.area ? <div>Total area<br></br><span>{parseFloat(country.area).toLocaleString('en')} km&sup2;</span></div> : null}
-                            </div>
-                            <Currency country={country} />
-                        </div>
-                    </div>
 
                     <CountryImg />
 

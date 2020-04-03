@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-const Results = ({ answers, countriesArray, completed }) => {
+const Results = ({ answers, countriesArray }) => {
     
-    const [countries, setCountries] = useState(countriesArray);
+    const [countries] = useState(countriesArray);
 
     return (
         <div className="results">

@@ -28,6 +28,7 @@ const Weather = ({ country }) => {
             {weather &&
                 <div className="info-card weather-box">
                     {country.capital && <h5><i className="fas fa-dot-circle"></i>LIVE weather in <span>{country.capital}</span></h5>}
+                    {!country.capital && <h5><i className="fas fa-dot-circle"></i>LIVE weather</h5>}
 
                     <div className="weather-main">
                         {weather.description && <span style={{color: '#5757579d', textTransform: 'capitalize'}}>{weather.description}</span>}

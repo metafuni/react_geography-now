@@ -119,9 +119,7 @@ const Quiz = () => {
     };
 
     //clear results when game has ended/stopped
-    const clearResults = () => {
 
-    };
 
     useEffect(() => {
         // set the countries array

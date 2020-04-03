@@ -68,9 +68,9 @@ const Home = () => {
                     width="560" 
                     height="315" 
                     src="https://www.youtube.com/embed/_GyOH5_b4Xg?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1" 
-                    frameborder="0" 
+                    frameBorder="0" 
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
+                    allowFullScreen>
                 </iframe>
             </div>
 
