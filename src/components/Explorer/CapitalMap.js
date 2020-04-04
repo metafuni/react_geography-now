@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ReactMapGl, { Marker } from 'react-map-gl';
+import ReactMapGl, { Marker, Popup } from 'react-map-gl';
 import Axios from 'axios';
 
 import Logo from '../../img/logo.png'
@@ -10,7 +10,8 @@ const CapitalMap = ({ country }) => {
 
     const [lat, setLat] = useState();
     const [lng, setLng] = useState();
-    const [markers, setMarkers] = useState([]);
+    // const [markers, setMarkers] = useState([]);
+    const [selected, setSelected] = useState(false);
 
     const [viewport, setViewport] = useState({
         width: 1050,
@@ -33,50 +34,54 @@ const CapitalMap = ({ country }) => {
     };
 
     //set all the markers with coordinates on the map for the capital cities/countries
-    const getAllCapitals = async () => {
-        const result = await Axios(`https://restcountries.eu/rest/v2/all`);
-        result.data.forEach(async el => {
-            if (el.capital) {
-                const result = await Axios(`https://api.mapbox.com/geocoding/v5/mapbox.places/${el.capital}.json?access_token=${API_KEY}`);
-                if (result.data.features[0] && result.data.features[0].center[1] && result.data.features[0].center[0]) {
-                    setMarkers(markers => [...markers, {
-                        name: el.name,
-                        capital: el.capital,
-                        latitude: result.data.features[0].center[1],
-                        longitude: result.data.features[0].center[0]
-                    }]);
-                } else {
-                    setMarkers(markers => [...markers, {
-                        name: el.name,
-                        capital: el.capital,
-                        latitude: 0,
-                        longitude: 0
-                    }]);
-                };
+    // const getAllCapitals = async () => {
+    //     const result = await Axios(`https://restcountries.eu/rest/v2/all`);
+    //     result.data.forEach(async el => {
+    //         if (el.capital) {
+    //             const result = await Axios(`https://api.mapbox.com/geocoding/v5/mapbox.places/${el.capital}.json?access_token=${API_KEY}`);
+    //             if (result.data.features[0] && result.data.features[0].center[1] && result.data.features[0].center[0]) {
+    //                 setMarkers(markers => [...markers, {
+    //                     name: el.name,
+    //                     capital: el.capital,
+    //                     latitude: result.data.features[0].center[1],
+    //                     longitude: result.data.features[0].center[0]
+    //                 }]);
+    //             } else {
+    //                 setMarkers(markers => [...markers, {
+    //                     name: el.name,
+    //                     capital: el.capital,
+    //                     latitude: 0,
+    //                     longitude: 0
+    //                 }]);
+    //             };
 
-            } else {
-                if (el.latlng[0] && el.latlng[1]) {
-                    setMarkers(markers => [...markers, {
-                        name: el.name,
-                        capital: undefined,
-                        latitude: el.latlng[0],
-                        longitude: el.latlng[1]
-                    }]);
-                } else {
-                    setMarkers(markers => [...markers, {
-                        name: el.name,
-                        capital: undefined,
-                        latitude: 0,
-                        longitude: 0
-                    }]);
-                };
-            };
-        });
+    //         } else {
+    //             if (el.latlng[0] && el.latlng[1]) {
+    //                 setMarkers(markers => [...markers, {
+    //                     name: el.name,
+    //                     capital: undefined,
+    //                     latitude: el.latlng[0],
+    //                     longitude: el.latlng[1]
+    //                 }]);
+    //             } else {
+    //                 setMarkers(markers => [...markers, {
+    //                     name: el.name,
+    //                     capital: undefined,
+    //                     latitude: 0,
+    //                     longitude: 0
+    //                 }]);
+    //             };
+    //         };
+    //     });
+    // };
+
+    const fetchCapitalInfo = async () => {
+
     };
 
-    useEffect(() => {
-        getAllCapitals();
-    }, []);
+    // useEffect(() => {
+    //     getAllCapitals();
+    // }, []);
 
     useEffect(() => {
         getCoord();
@@ -95,6 +100,8 @@ const CapitalMap = ({ country }) => {
                 mapboxApiAccessToken={API_KEY}
                 mapStyle='mapbox://styles/metafunistefano/ck8iw9s0y08xf1iqvywbh9jnt'
             >
+                {/* map over all capital cities in the world to alternatively display all markers */}
+
                 {/* {markers && markers.map(el => (
                 <Marker key={el.name} latitude={el.latitude} longitude={el.longitude}>
                     <button style={{background: 'white', border: 'none', outline: 'none', borderRadius: '50%'}}>
@@ -102,11 +109,25 @@ const CapitalMap = ({ country }) => {
                     </button>
                 </Marker>
             ))} */}
-                {/* {lat && lng && <Marker key={country.name} latitude={lat} longitude={lng}>
-                    <button style={{ background: 'white', border: 'none', outline: 'none', borderRadius: '50%' }}>
-                        <img src={Logo} alt={`${country.capital} ${country.name}`} style={{boxShadow: '4px 4px 5px white', borderRadius: '50%'}} width="50px"></img>
+                {lat && lng && <Marker key={country.name} latitude={lat} longitude={lng}>
+                    <button onClick={(e) => {
+                        e.preventDefault();
+                        setSelected(!selected);
+                        fetchCapitalInfo();
+                    }}>
+                        <img src={Logo} alt={`${country.capital} ${country.name}`} style={{borderRadius: '50%'}} width="50px"></img>
                     </button>
-                </Marker>} */}
+                </Marker>}
+                {selected && (
+                    <Popup 
+                        latitude={lat} 
+                        longitude={lng}
+                        onClose={() => setSelected(false)}
+                    >
+                        <div className="capital-info">
+                            
+                        </div>
+                    </Popup>)}
             </ReactMapGl>
         </div>
     )
