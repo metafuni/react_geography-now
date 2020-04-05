@@ -810,6 +810,25 @@
   opacity: 1;
 }
 
+.capitalmap .capital-info {
+  padding: .35rem;
+  max-width: 500px;
+}
+
+.capitalmap .capital-info h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.capitalmap .capital-info p:nth-child(2) {
+  display: none;
+}
+
+.capitalmap .capital-info #wiki-info, .capitalmap .capital-info #teleport-info {
+  margin: 1rem auto;
+  display: block;
+}
+
 .quiz {
   text-align: center;
 }

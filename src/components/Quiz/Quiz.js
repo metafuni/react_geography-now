@@ -13,7 +13,6 @@ const Quiz = () => {
 
     const [score, setScore] = useState(0);
     const [answers, setAnswers] = useState([]);
-    const [loading, setLoading] = useState(true);
 
     //set countriesArray
     const getCountries = async () => {
@@ -128,12 +127,10 @@ const Quiz = () => {
         // set the countries array
         getCountries();
         console.log(answers);
-        setLoading(false);
     });
 
     return (
         <>
-            {loading ? <div className="loading"><span className="loading-icon"><img src={Logo} alt="Geography Now! Loading"></img></span></div> : null}
             <div className="quiz">
                 <div className="header">
                     <h1>

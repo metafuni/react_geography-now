@@ -18,6 +18,8 @@ const Currency = ({ country }) => {
 
     };
 
+    console.log(conversionRate);
+
     useEffect(() => {
         getCurrencies();
     }, []);

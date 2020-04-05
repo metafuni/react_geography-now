@@ -21,4 +21,23 @@
             opacity: 1;
         }
     }
+
+    .capital-info {
+        padding: .35rem;
+        max-width: 500px;
+
+        h3 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        p:nth-child(2) {
+            display: none;
+        }
+
+        #wiki-info, #teleport-info {
+            margin: 1rem auto;  
+            display: block;    
+        }
+    }
 }

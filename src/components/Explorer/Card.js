@@ -204,10 +204,11 @@ const Card = ({ country }) => {
                                 <div className="info-card borders-box">
                                     <h5>Land Borders</h5><br></br>
                                     {borders.map(el => (
+                                        //each ul, li and span requires an unique key value, to avoid any warnings set key as Math.random()
                                         <ul key={el.name}>
-                                            <li key={el.name}>
-                                                <img src={el.flag} alt={el.name} key={el.name} height="15px"></img>
-                                                <span key={el.name}>{el.name}</span>
+                                            <li key={Math.random()}>
+                                                <img src={el.flag} alt={el.name} height="15px"></img>
+                                                <span key={Math.random()}>{el.name}</span>
                                             </li>
                                         </ul>
                                     ))}

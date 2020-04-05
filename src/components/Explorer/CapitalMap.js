@@ -10,8 +10,8 @@ const CapitalMap = ({ country }) => {
 
     const [lat, setLat] = useState();
     const [lng, setLng] = useState();
-    // const [markers, setMarkers] = useState([]);
     const [selected, setSelected] = useState(false);
+    const [teleportUrl, setTeleportUrl] = useState(`https://api.teleport.org/api/urban_areas/slug:${country.capital.toLowerCase()}/scores/`);
 
     const [viewport, setViewport] = useState({
         width: 1050,
@@ -35,11 +35,11 @@ const CapitalMap = ({ country }) => {
         } else {
             setLat(country.latlng[0]);
             setLng(country.latlng[1]);
-            };
         };
+    };
 
     //alternative JS promise handling:
-    
+
     // const getCoord = () => {
     //     if (country.capital) {
     //         Axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${country.capital}.json?&country=${country.alpha2Code}&access_token=${API_KEY}`)
@@ -63,59 +63,53 @@ const CapitalMap = ({ country }) => {
     //     };
     // };
 
-    //set all the markers with coordinates on the map for the capital cities/countries
-    // const getAllCapitals = async () => {
-    //     const result = await Axios(`https://restcountries.eu/rest/v2/all`);
-    //     result.data.forEach(async el => {
-    //         if (el.capital) {
-    //             const result = await Axios(`https://api.mapbox.com/geocoding/v5/mapbox.places/${el.capital}.json?access_token=${API_KEY}`);
-    //             if (result.data.features[0] && result.data.features[0].center[1] && result.data.features[0].center[0]) {
-    //                 setMarkers(markers => [...markers, {
-    //                     name: el.name,
-    //                     capital: el.capital,
-    //                     latitude: result.data.features[0].center[1],
-    //                     longitude: result.data.features[0].center[0]
-    //                 }]);
-    //             } else {
-    //                 setMarkers(markers => [...markers, {
-    //                     name: el.name,
-    //                     capital: el.capital,
-    //                     latitude: 0,
-    //                     longitude: 0
-    //                 }]);
-    //             };
+    const fetchCountryWikiInfo = () => {
+        //Wikipedia
+        //fetch summary data from wikipedia API
+        let url = "https://en.wikipedia.org/w/api.php";
 
-    //         } else {
-    //             if (el.latlng[0] && el.latlng[1]) {
-    //                 setMarkers(markers => [...markers, {
-    //                     name: el.name,
-    //                     capital: undefined,
-    //                     latitude: el.latlng[0],
-    //                     longitude: el.latlng[1]
-    //                 }]);
-    //             } else {
-    //                 setMarkers(markers => [...markers, {
-    //                     name: el.name,
-    //                     capital: undefined,
-    //                     latitude: 0,
-    //                     longitude: 0
-    //                 }]);
-    //             };
-    //         };
-    //     });
-    // };
+        //url parameters, with maximum 2 sentences of the intro section on the Wikipedia page
+        let params = {
+            action: "query",
+            titles: country.capital,
+            prop: "extracts",
+            format: "json",
+            exintro: true,
+            exsentences: 2
+        };
 
-    const fetchCapitalInfo = async () => {
+        //loop over object parameter keys and append to base url
+        url = url + "?origin=*";
+        Object.keys(params).forEach(function (key) { url += "&" + key + "=" + params[key]; });
 
+        //fetch the url and avoid 'did you mean?' pages by setting minimum amount of characters to 50
+        fetch(url)
+            .then(function (response) { return response.json(); })
+            .then(function (response) {
+                if (response.query.pages[Object.keys(response.query.pages)[0]].extract && response.query.pages[Object.keys(response.query.pages)[0]].extract.length > 50) {
+                    document.getElementById('wiki-info').innerHTML = response.query.pages[Object.keys(response.query.pages)[0]].extract;
+                }
+            })
+            .catch(function (error) { console.log(error); });
     };
 
-    // useEffect(() => {
-    //     getAllCapitals();
-    // }, []);
+    const fetchCountryTeleportInfo = async () => {
+        const result = await Axios(`https://api.teleport.org/api/urban_areas/slug:${country.capital.toLowerCase()}/scores/`);
+        if (result.data.summary) {
+            document.getElementById('teleport-info').innerHTML = result.data.summary;
+        };
+        console.log(result.data);
+    };
+
 
     useEffect(() => {
         getCoord();
+        console.log(selected);
     });
+
+    useEffect(() => {
+        setSelected(false);
+    }, [country]);
 
     useEffect(() => {
         setViewport({ ...viewport, latitude: lat, longitude: lng, zoom: 6 });
@@ -130,20 +124,14 @@ const CapitalMap = ({ country }) => {
                 mapboxApiAccessToken={API_KEY}
                 mapStyle='mapbox://styles/metafunistefano/ck8iw9s0y08xf1iqvywbh9jnt'
             >
-                {/* map over all capital cities in the world to alternatively display all markers */}
-
-                {/* {markers && markers.map(el => (
-                <Marker key={el.name} latitude={el.latitude} longitude={el.longitude}>
-                    <button style={{background: 'white', border: 'none', outline: 'none', borderRadius: '50%'}}>
-                        <img src={Logo} alt={`${el.capital} ${el.name}`} width="50px"></img>
-                    </button>
-                </Marker>
-            ))} */}
                 {lat && lng && <Marker key={country.name} latitude={lat} longitude={lng}>
                     <button onClick={(e) => {
                         e.preventDefault();
                         setSelected(!selected);
-                        fetchCapitalInfo();
+                        if (!selected) {
+                            fetchCountryWikiInfo();
+                            fetchCountryTeleportInfo();
+                        };
                     }}>
                         <img src={Logo} alt={`${country.capital} ${country.name}`} style={{ borderRadius: '50%' }} width="50px"></img>
                     </button>
@@ -155,7 +143,12 @@ const CapitalMap = ({ country }) => {
                         onClose={() => setSelected(false)}
                     >
                         <div className="capital-info">
-
+                            <h3>
+                                <img src={country.flag} alt={country.name} height="20px"></img>
+                                <span> {country.name}</span> {country.capital && <span style={{ fontStyle: 'italic' }}>({country.capital})</span>}
+                            </h3>
+                            <div id="wiki-info"></div><span></span>
+                            <div id="teleport-info"></div>
                         </div>
                     </Popup>)}
             </ReactMapGl>

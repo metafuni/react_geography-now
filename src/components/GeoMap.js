@@ -65,7 +65,7 @@ const GeoMap = ({ country }) => {
         setLoading(false);
     };
 
-    const fetchCapitalInfo = async () => {
+    const fetchCountryInfo = async () => {
 
     };
 
