@@ -37,21 +37,11 @@ const Home = () => {
                     </div>
                     <h2>Explorer</h2>
                     <p>
-                        Get to know your world by looking up your favourite countries, and learn all about them!
+                        Get to know our beautiful planet earth by looking up all your favourite countries, and learn about them!
                     </p><br></br>
                     <NavLink to="/explorer" className="btn btn-l">Explore</NavLink>
                 </div>
                 <div className="cardi card-m">
-                    <div className="img-box img-m">
-                        <img src={QuizImg} alt="Geography Now! Quiz" />
-                    </div>
-                    <h2>Quiz</h2>
-                    <p>
-                        You think your geographicational knowledge is up to date?<br></br> Well... let's see if you can pass the <span style={{ textTransform: 'italic' }}>Geography Now!</span> quiz.
-                    </p><br></br>
-                    <NavLink to="/quiz" className="btn btn-m">take the Quiz</NavLink>
-                </div>
-                <div className="cardi card-r">
                     <div className="img-box img-r">
                         <img src={GeoMapImg} alt="Geography Now! GeoMap" />
                     </div>
@@ -60,6 +50,16 @@ const Home = () => {
                         Explore all the Geography Now! videos with the GeoMap and improve your all-round and geographical knowledge.
                     </p><br></br>
                     <NavLink to="/geomap" className="btn btn-r">GeoMap now!</NavLink>
+                </div>
+                <div className="cardi card-r">
+                    <div className="img-box img-m">
+                        <img src={QuizImg} alt="Geography Now! Quiz" />
+                    </div>
+                    <h2>Quiz</h2>
+                    <p>
+                        You think your geographicational knowledge is up to date now?<br></br> Well... let's see if you can pass the <span style={{ textTransform: 'italic' }}>Geography Now!</span> quiz.
+                    </p><br></br>
+                    <NavLink to="/quiz" className="btn btn-m">take the Quiz</NavLink>
                 </div>
             </div>
 

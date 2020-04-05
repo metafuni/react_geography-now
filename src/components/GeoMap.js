@@ -12,6 +12,7 @@ const GeoMap = ({ country }) => {
     const [lng, setLng] = useState(15);
     const [markers, setMarkers] = useState([]);
     const [selected, setSelected] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const [viewport, setViewport] = useState({
         width: 1400,
@@ -21,24 +22,12 @@ const GeoMap = ({ country }) => {
         zoom: 2
     });
 
-    //get coordinates of capital city
-    // const getCoord = async () => {
-    //     if (country.capital) {
-    //         const result = await Axios(`https://api.mapbox.com/geocoding/v5/mapbox.places/${country.capital}.json?access_token=${API_KEY}`);
-    //         setLat(result.data.features[0].center[1]);
-    //         setLng(result.data.features[0].center[0]);
-    //     } else {
-    //         setLat(country.latlng[0]);
-    //         setLng(country.latlng[1]);
-    //     };
-    // };
-
     //set all the markers with coordinates on the map for the capital cities/countries
     const getAllCapitals = async () => {
         const result = await Axios(`https://restcountries.eu/rest/v2/all`);
         result.data.forEach(async el => {
             if (el.capital) {
-                const result = await Axios(`https://api.mapbox.com/geocoding/v5/mapbox.places/${el.capital}.json?access_token=${API_KEY}`);
+                const result = await Axios(`https://api.mapbox.com/geocoding/v5/mapbox.places/${el.capital}.json?&country=${el.alpha2Code}&access_token=${API_KEY}`);
                 if (result.data.features[0] && result.data.features[0].center[1] && result.data.features[0].center[0]) {
                     setMarkers(markers => [...markers, {
                         name: el.name,
@@ -50,8 +39,8 @@ const GeoMap = ({ country }) => {
                     setMarkers(markers => [...markers, {
                         name: el.name,
                         capital: el.capital,
-                        latitude: 0,
-                        longitude: 0
+                        latitude: el.latlng[0],
+                        longitude: el.latlng[1]
                     }]);
                 };
 
@@ -73,6 +62,7 @@ const GeoMap = ({ country }) => {
                 };
             };
         });
+        setLoading(false);
     };
 
     const fetchCapitalInfo = async () => {
@@ -83,44 +73,42 @@ const GeoMap = ({ country }) => {
         getAllCapitals();
     }, []);
 
-    // useEffect(() => {
-    //     getCoord();
-    // });
-
     useEffect(() => {
         setViewport({ ...viewport, latitude: lat, longitude: lng });
     }, [lat, lng]);
 
     return (
-        <div className="geomap-container">
-            <div className="header">
-                <h1>
-                    <span className="elearn">
-                        <span className="e">
-                            e <i className="fas fa-graduation-cap"></i>
-                        </span>
+        <>
+            {loading ? <div className="loading"><span className="loading-icon"><img src={Logo} alt="Geography Now! Loading"></img></span></div> : null}
+            <div className="geomap-container">
+                <div className="header">
+                    <h1>
+                        <span className="elearn">
+                            <span className="e">
+                                e <i className="fas fa-graduation-cap"></i>
+                            </span>
                         learn
                     </span>
                     GeoMap
                 </h1>
-            </div>
-            <ReactMapGl
-                className="geomap"
-                {...viewport}
-                onViewportChange={(viewport) => { setViewport(viewport) }}
-                mapboxApiAccessToken={API_KEY}
-                mapStyle='mapbox://styles/metafunistefano/ck8iw9s0y08xf1iqvywbh9jnt'
-            >
-                {/* map over all capital cities in the world to alternatively display all markers */}
+                </div>
+                <ReactMapGl
+                    className="geomap"
+                    {...viewport}
+                    onViewportChange={(viewport) => { setViewport(viewport) }}
+                    mapboxApiAccessToken={API_KEY}
+                    mapStyle='mapbox://styles/metafunistefano/ck8iw9s0y08xf1iqvywbh9jnt'
+                >
+                    {/* map over all capital cities in the world to display all markers */}
 
-                {markers && markers.map(el => (
-                <Marker key={el.name} latitude={el.latitude} longitude={el.longitude}>
-                    <button style={{background: 'none', border: 'none', outline: 'none'}}>
-                        <img src={Logo} alt={`${el.capital} ${el.name}`} width="30px" style={{background: 'white', borderRadius: '50%'}}></img>
-                    </button>
-                </Marker>
-            ))}
-                {/* {lat && lng && <Marker key={country.name} latitude={lat} longitude={lng}>
+                    {markers && markers.map(el => (
+                        <Marker key={el.name} latitude={el.latitude} longitude={el.longitude}>
+                            <button style={{ background: 'none', border: 'none', outline: 'none' }}>
+                                <img src={Logo} alt={`${el.capital} ${el.name}`} width="30px" style={{ background: 'white', borderRadius: '50%' }}></img>
+                            </button>
+                        </Marker>
+                    ))}
+                    {/* {lat && lng && <Marker key={country.name} latitude={lat} longitude={lng}>
                     <button onClick={(e) => {
                         e.preventDefault();
                         setSelected(!selected);
@@ -139,8 +127,9 @@ const GeoMap = ({ country }) => {
                             
                         </div>
                     </Popup>)} */}
-            </ReactMapGl>
-        </div>
+                </ReactMapGl>
+            </div>
+        </>
     )
 }
 

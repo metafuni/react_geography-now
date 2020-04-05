@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 
 import CountryImg from '../Quiz/CountryImg';
 import Weather from './Weather';
@@ -6,7 +7,28 @@ import Currency from './Currency';
 import CapitalMap from './CapitalMap';
 import Logo from '../../img/logo.png';
 
-const Card = ({ loading, country }) => {
+const Card = ({ country }) => {
+
+    const [borders, setBorders] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    const convertBorders = async (code) => {
+        const result = await Axios(`https://restcountries.eu/rest/v2/alpha/${code.toLowerCase()}`);
+        setBorders(borders => [...borders, {
+            name: result.data.name,
+            flag: result.data.flag
+        }]);
+    };
+
+    useEffect(() => {
+        if (country.borders) {
+            setBorders([]);
+            country.borders.forEach((el) => {
+                convertBorders(el.toLowerCase());
+            });
+        };
+        setLoading(false);
+    }, [country.borders]);
 
     useEffect(() => {
         //Highlight country in world map svg
@@ -36,9 +58,8 @@ const Card = ({ loading, country }) => {
 
     return (
         <div>
+            {loading ? <div className="loading"><span className="loading-icon"><img src={Logo} alt="Geography Now! Loading"></img></span></div> : null}
             <div className="card">
-                {loading ? <div className="loading"><span className="loading-icon"><img src={Logo} alt="Geography Now! Loading"></img></span></div> : null}
-
                 {country.name &&
                     <div className="card-container">
                         <div className="card-inner-container">
@@ -54,7 +75,7 @@ const Card = ({ loading, country }) => {
                             {/* Image */}
 
                             <div className="country-images">
-                                {country.flag ? <img src={country.flag} alt={country.name} width="80%"></img> : null}
+                                {country.flag ? <img src={country.flag} alt={country.name} width="75%"></img> : null}
                             </div>
 
                             {/* Info Container */}
@@ -62,7 +83,7 @@ const Card = ({ loading, country }) => {
                             <div className="info-container">
                                 <div className="info-card">
                                     {country.capital ? <div>Capital<br></br><span>{country.capital}</span></div> : null}
-                                    {country.region ? <div>Region<br></br><span>{country.subregion}, {country.region}</span></div> : null}
+                                    {country.region ? <div>Region<br></br><span>{country.subregion} ({country.region})</span></div> : null}
                                     {country.population ? <div>Population<br></br><span>{parseFloat(country.population).toLocaleString('en')}</span></div> : null}
                                     {country.area ? <div>Total area<br></br><span>{parseFloat(country.area).toLocaleString('en')} km&sup2;</span></div> : null}
                                 </div>
@@ -182,7 +203,14 @@ const Card = ({ loading, country }) => {
                             {country.borders.length > 0 &&
                                 <div className="info-card borders-box">
                                     <h5>Land Borders</h5><br></br>
-                                    {country.borders.map(el => (<span key={el}>{el.toLowerCase()} </span>))}
+                                    {borders.map(el => (
+                                        <ul key={el.name}>
+                                            <li key={el.name}>
+                                                <img src={el.flag} alt={el.name} key={el.name} height="15px"></img>
+                                                <span key={el.name}>{el.name}</span>
+                                            </li>
+                                        </ul>
+                                    ))}
                                 </div>
                             }
                             <Weather country={country} />
@@ -191,7 +219,7 @@ const Card = ({ loading, country }) => {
                 }
             </div>
             {country.name && country.latlng[0] && <CapitalMap country={country} />}
-        </div>
+        </div >
     )
 };
 

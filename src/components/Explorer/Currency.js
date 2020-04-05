@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 
 const Currency = ({ country }) => {
+
     const [base, setBase] = useState(country.currencies[0].code);
     const [conversion, setConversion] = useState([]);
     const [conversionRate, setConversionRate] = useState([]);
-    const [value, setValue] = useState();
+    // const [value, setValue] = useState();
 
     const getCurrencies = async () => {
         const result = await Axios(`https://api.openrates.io/latest?base=${base}`);
@@ -13,33 +14,35 @@ const Currency = ({ country }) => {
         setConversionRate(conversionRate => [...conversionRate, result.data.rates]);
     };
 
-    const calculateCurrency = (input) => {
-        console.log(input);
-        console.log(conversionRate[0]);
-        // setValue(conversionRate[0].input);
+    const calculateCurrency = async (input) => {
+
     };
 
     useEffect(() => {
         getCurrencies();
-    }, [country]);
+    }, []);
+
+    useEffect(() => {
+        calculateCurrency();
+    }, [country.currencies[0], conversionRate]);
 
     return (
         <div className="info-card currency-card">
-            <h3>Currency Converter</h3><br></br>
-            <p>The {country.demonym} currency is the <span>{country.currencies[0].name} ({country.currencies[0].code})</span></p>
+            <h3>Local Currency</h3><br></br>
+            <p>The currency used in {country.name} is the <span>{country.currencies[0].name} ({country.currencies[0].code})</span></p>
+
             <div className="currency-container">
-                <select disabled>
-                    <option value={country.currencies[0].code}>{country.currencies[0].code}</option>
-                </select>
-                {country.currencies[0].symbol}1
-                <i className="fas fa-equals"></i>
+                {country.currencies[0].symbol ?
+                    <div>{country.currencies[0].symbol} 1 <i className="fas fa-equals"></i></div>
+                    :
+                    <div>1 {country.currencies[0].code} <i className="fas fa-equals"></i></div>}
                 <select onChange={(e) => {
                     calculateCurrency(e.target.value);
                 }}>
-                    {conversion[0] && conversion[0].map(el => 
+                    {conversion[0] && conversion[0].map(el =>
                         <option value={el} key={el}>{el}</option>)}
                 </select>
-                {value && value}
+                {/* {value && value} */}
             </div>
         </div>
     )

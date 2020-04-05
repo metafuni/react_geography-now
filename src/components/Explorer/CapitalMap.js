@@ -24,14 +24,44 @@ const CapitalMap = ({ country }) => {
     //get coordinates of capital city
     const getCoord = async () => {
         if (country.capital) {
-            const result = await Axios(`https://api.mapbox.com/geocoding/v5/mapbox.places/${country.capital}.json?access_token=${API_KEY}`);
-            setLat(result.data.features[0].center[1]);
-            setLng(result.data.features[0].center[0]);
+            const result = await Axios(`https://api.mapbox.com/geocoding/v5/mapbox.places/${country.capital}.json?&country=${country.alpha2Code}&access_token=${API_KEY}`);
+            if (result.data.features[0]) {
+                setLat(result.data.features[0].center[1]);
+                setLng(result.data.features[0].center[0]);
+            } else {
+                setLat(country.latlng[0]);
+                setLng(country.latlng[1]);
+            };
         } else {
             setLat(country.latlng[0]);
             setLng(country.latlng[1]);
+            };
         };
-    };
+
+    //alternative JS promise handling:
+    
+    // const getCoord = () => {
+    //     if (country.capital) {
+    //         Axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${country.capital}.json?&country=${country.alpha2Code}&access_token=${API_KEY}`)
+    //             .then(function (result) {
+    //                 if (result.data.features[0].center[0] && result.data.features[0].center[1]) {
+    //                     setLat(result.data.features[0].center[1]);
+    //                     setLng(result.data.features[0].center[0]);
+    //                 } else {
+    //                     setLat(country.latlng[0]);
+    //                     setLng(country.latlng[1]);
+    //                 };
+    //             })
+    //             .catch(function (error) {
+    //                 console.log(error)
+    //                 setLat(country.latlng[0]);
+    //                 setLng(country.latlng[1]);
+    //             })
+    //     } else {
+    //         setLat(country.latlng[0]);
+    //         setLng(country.latlng[1]);
+    //     };
+    // };
 
     //set all the markers with coordinates on the map for the capital cities/countries
     // const getAllCapitals = async () => {
@@ -115,17 +145,17 @@ const CapitalMap = ({ country }) => {
                         setSelected(!selected);
                         fetchCapitalInfo();
                     }}>
-                        <img src={Logo} alt={`${country.capital} ${country.name}`} style={{borderRadius: '50%'}} width="50px"></img>
+                        <img src={Logo} alt={`${country.capital} ${country.name}`} style={{ borderRadius: '50%' }} width="50px"></img>
                     </button>
                 </Marker>}
                 {selected && (
-                    <Popup 
-                        latitude={lat} 
+                    <Popup
+                        latitude={lat}
                         longitude={lng}
                         onClose={() => setSelected(false)}
                     >
                         <div className="capital-info">
-                            
+
                         </div>
                     </Popup>)}
             </ReactMapGl>

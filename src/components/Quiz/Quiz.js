@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
+
 import CountryImg from './CountryImg';
+import Logo from '../../img/logo.png';
 
 import Input from './Input';
 import Results from './Results';
-import Axios from 'axios';
 
 const Quiz = () => {
 
@@ -11,6 +13,7 @@ const Quiz = () => {
 
     const [score, setScore] = useState(0);
     const [answers, setAnswers] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     //set countriesArray
     const getCountries = async () => {
@@ -125,26 +128,30 @@ const Quiz = () => {
         // set the countries array
         getCountries();
         console.log(answers);
+        setLoading(false);
     });
 
     return (
-        <div className="quiz">
-            <div className="header">
-                <h1>
-                    <span className="elearn">
-                        <span className="e">
-                            e <i className="fas fa-graduation-cap"></i>
-                        </span>
+        <>
+            {loading ? <div className="loading"><span className="loading-icon"><img src={Logo} alt="Geography Now! Loading"></img></span></div> : null}
+            <div className="quiz">
+                <div className="header">
+                    <h1>
+                        <span className="elearn">
+                            <span className="e">
+                                e <i className="fas fa-graduation-cap"></i>
+                            </span>
                         learn
                     </span>
                     Quiz
                 </h1>
+                </div>
+                <Input checkAnswer={checkAnswer} score={score} resetScore={resetScore} />
+                <div className="score-box">score: <span style={{ color: 'white' }} id="score">{score} / 250</span></div>
+                <CountryImg />
+                <Results answers={answers} countriesArray={countriesArray} />
             </div>
-            <Input checkAnswer={checkAnswer} score={score} resetScore={resetScore} />
-            <div className="score-box">score: <span style={{ color: 'white' }} id="score">{score} / 250</span></div>
-            <CountryImg />
-            <Results answers={answers} countriesArray={countriesArray} />
-        </div>
+        </>
     )
 }
 
