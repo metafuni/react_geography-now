@@ -11,7 +11,10 @@ const CapitalMap = ({ country }) => {
     const [lat, setLat] = useState();
     const [lng, setLng] = useState();
     const [selected, setSelected] = useState(false);
+
     const [teleportUrl, setTeleportUrl] = useState(`https://api.teleport.org/api/urban_areas/slug:${country.capital.toLowerCase()}/scores/`);
+    const [teleportImg, setTeleportImg] = useState([]);
+    const [teleportData, setTeleportData] = useState([]);
 
     const [viewport, setViewport] = useState({
         width: 1050,
@@ -94,21 +97,37 @@ const CapitalMap = ({ country }) => {
     };
 
     const fetchCountryTeleportInfo = async () => {
-        const result = await Axios(`https://api.teleport.org/api/urban_areas/slug:${country.capital.toLowerCase()}/scores/`);
-        if (result.data.summary) {
-            document.getElementById('teleport-info').innerHTML = result.data.summary;
+        const scoresresult = await Axios(`https://api.teleport.org/api/urban_areas/slug:${country.capital.toLowerCase()}/scores/`);
+        if (scoresresult.data.summary) {
+            document.getElementById('teleport-info').innerHTML = scoresresult.data.summary;
+            setTeleportData(teleportData => [...teleportData, {
+                housing: scoresresult.data.categories[0],
+                col: scoresresult.data.categories[1],
+                safety: scoresresult.data.categories[7],
+                healthcare: scoresresult.data.categories[8],
+                education: scoresresult.data.categories[9],
+                environment: scoresresult.data.categories[10],
+                economy: scoresresult.data.categories[11],
+                leisure: scoresresult.data.categories[14]
+            }]);
         };
-        console.log(result.data);
+        console.log(scoresresult.data);
+
+        const imgresult = await Axios(`https://api.teleport.org/api/urban_areas/slug:${country.capital.toLowerCase()}/images/`);
+        if (imgresult.data.photos[0].image.web) {
+            setTeleportImg(teleportImg => [...teleportImg, { img: imgresult.data.photos[0].image.web }]);
+        };
     };
 
 
     useEffect(() => {
         getCoord();
-        console.log(selected);
+        console.log(teleportData);
     });
 
     useEffect(() => {
         setSelected(false);
+        setTeleportData([]);
     }, [country]);
 
     useEffect(() => {
@@ -129,7 +148,7 @@ const CapitalMap = ({ country }) => {
                         e.preventDefault();
                         setSelected(!selected);
                         if (!selected) {
-                            fetchCountryWikiInfo();
+                            // fetchCountryWikiInfo();
                             fetchCountryTeleportInfo();
                         };
                     }}>
@@ -147,8 +166,19 @@ const CapitalMap = ({ country }) => {
                                 <img src={country.flag} alt={country.name} height="20px"></img>
                                 <span> {country.name}</span> {country.capital && <span style={{ fontStyle: 'italic' }}>({country.capital})</span>}
                             </h3>
-                            <div id="wiki-info"></div><span></span>
+                            {/* <div id="wiki-info"></div><span></span> */}
                             <div id="teleport-info"></div>
+                            {teleportImg[0] && <img src={teleportImg[0].img} alt={country.capital} width="100%"></img>}
+                            <div className="teleport-data">
+                                {teleportData[0] && <span>{teleportData[0].housing.name}</span>}
+                                {teleportData[0] && <span>{teleportData[0].col.name}</span>}
+                                {teleportData[0] && <span>{teleportData[0].safety.name}</span>}
+                                {teleportData[0] && <span>{teleportData[0].healthcare.name}</span>}
+                                {teleportData[0] && <span>{teleportData[0].education.name}</span>}
+                                {teleportData[0] && <span>{teleportData[0].environment.name}</span>}
+                                {teleportData[0] && <span>{teleportData[0].economy.name}</span>}
+                                {teleportData[0] && <span>{teleportData[0].leisure.name}</span>}
+                            </div>
                         </div>
                     </Popup>)}
             </ReactMapGl>
