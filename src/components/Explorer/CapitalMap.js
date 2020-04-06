@@ -128,6 +128,7 @@ const CapitalMap = ({ country }) => {
     useEffect(() => {
         setSelected(false);
         setTeleportData([]);
+        setTeleportImg([]);
     }, [country]);
 
     useEffect(() => {
@@ -166,18 +167,141 @@ const CapitalMap = ({ country }) => {
                                 <img src={country.flag} alt={country.name} height="20px"></img>
                                 <span> {country.name}</span> {country.capital && <span style={{ fontStyle: 'italic' }}>({country.capital})</span>}
                             </h3>
+
                             {/* <div id="wiki-info"></div><span></span> */}
+
                             <div id="teleport-info"></div>
                             {teleportImg[0] && <img src={teleportImg[0].img} alt={country.capital} width="100%"></img>}
+
                             <div className="teleport-data">
-                                {teleportData[0] && <span>{teleportData[0].housing.name}</span>}
-                                {teleportData[0] && <span>{teleportData[0].col.name}</span>}
-                                {teleportData[0] && <span>{teleportData[0].safety.name}</span>}
-                                {teleportData[0] && <span>{teleportData[0].healthcare.name}</span>}
-                                {teleportData[0] && <span>{teleportData[0].education.name}</span>}
-                                {teleportData[0] && <span>{teleportData[0].environment.name}</span>}
-                                {teleportData[0] && <span>{teleportData[0].economy.name}</span>}
-                                {teleportData[0] && <span>{teleportData[0].leisure.name}</span>}
+
+                                {/* First container */}
+
+                                <div className="charts-container">
+                                    {teleportData[0] &&
+                                        <div className="chart">
+                                            <div
+                                                style={{
+                                                    backgroundColor: `${teleportData[0].housing.color}`,
+                                                    width: `${teleportData[0].housing[Object.keys(teleportData[0].housing)[2]]}rem`,
+                                                    boxShadow: `1px 1px 5px ${teleportData[0].housing.color}, -1px 1px 5px ${teleportData[0].housing.color}, -1px -1px 5px ${teleportData[0].housing.color}, 1px -1px 5px ${teleportData[0].housing.color}`
+                                                }}
+                                                className="bar"
+                                            >
+                                            </div>
+                                            <span>{teleportData[0].housing.name}</span>
+                                            <div>{Math.floor(teleportData[0].housing[Object.keys(teleportData[0].housing)[2]] * 100) / 10} %</div>
+                                        </div>}
+                                    {teleportData[0] &&
+                                        <div className="chart">
+                                            <div
+                                                style={{
+                                                    backgroundColor: `${teleportData[0].col.color}`,
+                                                    width: `${teleportData[0].col[Object.keys(teleportData[0].col)[2]]}rem`,
+                                                    boxShadow: `1px 1px 5px ${teleportData[0].col.color}, -1px 1px 5px ${teleportData[0].col.color}, -1px -1px 5px ${teleportData[0].col.color}, 1px -1px 5px ${teleportData[0].col.color}`
+
+                                                }}
+                                                className="bar"
+                                            >
+                                            </div>
+                                            <span>{teleportData[0].col.name}</span>
+                                            <div>{Math.floor(teleportData[0].col[Object.keys(teleportData[0].col)[2]] * 100) / 10} %</div>
+                                        </div>}
+                                    {teleportData[0] &&
+                                        <div className="chart">
+                                            <div
+                                                style={{
+                                                    backgroundColor: `${teleportData[0].safety.color}`,
+                                                    width: `${teleportData[0].safety[Object.keys(teleportData[0].safety)[2]]}rem`,
+                                                    boxShadow: `1px 1px 5px ${teleportData[0].safety.color}, -1px 1px 5px ${teleportData[0].safety.color}, -1px -1px 5px ${teleportData[0].safety.color}, 1px -1px 5px ${teleportData[0].safety.color}`
+
+                                                }}
+                                                className="bar"
+                                            >
+                                            </div>
+                                            <span>{teleportData[0].safety.name}</span>
+                                            <div>{Math.floor(teleportData[0].safety[Object.keys(teleportData[0].safety)[2]] * 100) / 10} %</div>
+                                        </div>}
+                                    {teleportData[0] &&
+                                        <div className="chart">
+                                            <div
+                                                style={{
+                                                    backgroundColor: `${teleportData[0].healthcare.color}`,
+                                                    width: `${teleportData[0].healthcare[Object.keys(teleportData[0].healthcare)[2]]}rem`,
+                                                    boxShadow: `1px 1px 5px ${teleportData[0].healthcare.color}, -1px 1px 5px ${teleportData[0].healthcare.color}, -1px -1px 5px ${teleportData[0].healthcare.color}, 1px -1px 5px ${teleportData[0].healthcare.color}`
+
+                                                }}
+                                                className="bar"
+                                            >
+                                            </div>
+                                            <span>{teleportData[0].healthcare.name}</span>
+                                            <div>{Math.floor(teleportData[0].healthcare[Object.keys(teleportData[0].healthcare)[2]] * 100) / 10} %</div>
+                                        </div>}
+                                </div>
+
+                                {/* Second container */}
+
+                                <div className="charts-container">
+                                    {teleportData[0] &&
+                                        <div className="chart">
+                                            <div
+                                                style={{
+                                                    backgroundColor: `${teleportData[0].education.color}`,
+                                                    width: `${teleportData[0].education[Object.keys(teleportData[0].education)[2]]}rem`,
+                                                    boxShadow: `1px 1px 5px ${teleportData[0].education.color}, -1px 1px 5px ${teleportData[0].education.color}, -1px -1px 5px ${teleportData[0].education.color}, 1px -1px 5px ${teleportData[0].education.color}`
+
+                                                }}
+                                                className="bar"
+                                            >
+                                            </div>
+                                            <span>{teleportData[0].education.name}</span>
+                                            <div>{Math.floor(teleportData[0].education[Object.keys(teleportData[0].education)[2]] * 100) / 10} %</div>
+                                        </div>}
+                                    {teleportData[0] &&
+                                        <div className="chart">
+                                            <div
+                                                style={{
+                                                    backgroundColor: `${teleportData[0].environment.color}`,
+                                                    width: `${teleportData[0].environment[Object.keys(teleportData[0].environment)[2]]}rem`,
+                                                    boxShadow: `1px 1px 5px ${teleportData[0].environment.color}, -1px 1px 5px ${teleportData[0].environment.color}, -1px -1px 5px ${teleportData[0].environment.color}, 1px -1px 5px ${teleportData[0].environment.color}`
+
+                                                }}
+                                                className="bar"
+                                            >
+                                            </div>
+                                            <span>{teleportData[0].environment.name}</span>
+                                            <div>{Math.floor(teleportData[0].environment[Object.keys(teleportData[0].environment)[2]] * 100) / 10} %</div>
+                                        </div>}                                    {teleportData[0] &&
+                                            <div className="chart">
+                                                <div
+                                                    style={{
+                                                        backgroundColor: `${teleportData[0].economy.color}`,
+                                                        width: `${teleportData[0].economy[Object.keys(teleportData[0].economy)[2]]}rem`,
+                                                        boxShadow: `1px 1px 5px ${teleportData[0].economy.color}, -1px 1px 5px ${teleportData[0].economy.color}, -1px -1px 5px ${teleportData[0].economy.color}, 1px -1px 5px ${teleportData[0].economy.color}`
+
+                                                    }}
+                                                    className="bar"
+                                                >
+                                                </div>
+                                                <span>{teleportData[0].economy.name}</span>
+                                                <div>{Math.floor(teleportData[0].economy[Object.keys(teleportData[0].economy)[2]] * 100) / 10} %</div>
+                                            </div>}
+                                    {teleportData[0] &&
+                                        <div className="chart">
+                                            <div
+                                                style={{
+                                                    backgroundColor: `${teleportData[0].leisure.color}`,
+                                                    width: `${teleportData[0].leisure[Object.keys(teleportData[0].leisure)[2]]}rem`,
+                                                    boxShadow: `1px 1px 5px ${teleportData[0].leisure.color}, -1px 1px 5px ${teleportData[0].leisure.color}, -1px -1px 5px ${teleportData[0].leisure.color}, 1px -1px 5px ${teleportData[0].leisure.color}`
+
+                                                }}
+                                                className="bar"
+                                            >
+                                            </div>
+                                            <span>{teleportData[0].leisure.name}</span>
+                                            <div>{Math.floor(teleportData[0].leisure[Object.keys(teleportData[0].leisure)[2]] * 100) / 10} %</div>
+                                        </div>}
+                                </div>
                             </div>
                         </div>
                     </Popup>)}

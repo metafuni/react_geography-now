@@ -811,8 +811,22 @@
 }
 
 .capitalmap .capital-info {
-  padding: .35rem;
+  padding: .15rem .35rem;
   max-width: 500px;
+}
+
+.capitalmap .capital-info > * {
+  margin: .5rem 0;
+}
+
+.capitalmap .capital-info img:nth-child(1) {
+  -webkit-box-shadow: 1px 1px 1px #5757579d, 1px -1px 1px #5757579d, -1px -1px 1px #5757579d, -1px 1px 1px #5757579d;
+          box-shadow: 1px 1px 1px #5757579d, 1px -1px 1px #5757579d, -1px -1px 1px #5757579d, -1px 1px 1px #5757579d;
+}
+
+.capitalmap .capital-info img:nth-child(3) {
+  -webkit-box-shadow: 2px 2px 5px #5757579d, 2px -2px 5px #5757579d, -2px -2px 5px #5757579d, -2px 2px 5px #5757579d;
+          box-shadow: 2px 2px 5px #5757579d, 2px -2px 5px #5757579d, -2px -2px 5px #5757579d, -2px 2px 5px #5757579d;
 }
 
 .capitalmap .capital-info h3 {
@@ -827,6 +841,63 @@
 .capitalmap .capital-info #wiki-info, .capitalmap .capital-info #teleport-info {
   margin: 1rem auto;
   display: block;
+}
+
+.capitalmap .capital-info .teleport-data {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.capitalmap .capital-info .teleport-data .charts-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: .25rem;
+}
+
+.capitalmap .capital-info .teleport-data .charts-container .chart {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: relative;
+  margin: .35rem .25rem;
+  width: 100%;
+  min-width: 225px;
+}
+
+.capitalmap .capital-info .teleport-data .charts-container .chart div {
+  margin: 0 .25rem;
+}
+
+.capitalmap .capital-info .teleport-data .charts-container .chart div:last-child {
+  margin-top: .35rem;
+}
+
+.capitalmap .capital-info .teleport-data .charts-container .chart .bar {
+  position: relative;
+  height: 2rem;
+  width: 2.5rem;
+  border-radius: 1.5px;
+}
+
+.capitalmap .capital-info .teleport-data .charts-container .chart span {
+  position: absolute;
+  color: white;
+  left: 12px;
+  top: 8px;
+  font-size: .85rem;
+  text-shadow: 1px 1px 2px black, 1px -1px 2px black, -1px -1px 2px black, 1px -1px 2px black;
 }
 
 .quiz {
