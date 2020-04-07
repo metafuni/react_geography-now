@@ -19,7 +19,6 @@
     align-items: center;
     padding: 2rem 3.75rem;
     background: linear-gradient(white, rgba(255, 255, 255, 0));
-    position: -webkit-sticky;
     position: sticky;
     top: 0;
 
@@ -204,13 +203,14 @@
       justify-content: space-evenly;
       width: 100%;
 
+      // .result-box {
       .result-box {
         width: 100%;
         margin: 1rem 0.5rem;
         padding: 1rem 0;
         text-align: left;
         border-radius: 1.5rem;
-        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px -2px 3px rgba(0, 0, 0, 0.1);
 
         img {
           margin: 0 0.5rem 0 2rem;
@@ -219,16 +219,28 @@
             2px 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .country-li {
-          display: none;
-        }
-
         li {
           list-style: none;
           margin: 0.5rem;
           height: 1.75rem;
           display: flex;
         }
+      }
+
+      .americas {
+        max-height: 2170px;
+      }
+
+      .europe {
+        max-height: 2050px;
+      }
+
+      .oceania {
+        max-height: 1080px;
+      }
+
+      .polar {
+        max-height: 130px;
       }
     }
   }

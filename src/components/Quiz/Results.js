@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Results = ({ answers, countriesArray }) => {
-    
+
     const [countries] = useState(countriesArray);
+
+    for (let i = 0; i < countries.length; i++) {
+        answers.forEach(el => {
+            if (el.name[0] === countries[i].name[0]) {
+                countries.splice(i, 1);
+            };
+        });
+    };
 
     return (
         <div className="results">
@@ -13,14 +21,12 @@ const Results = ({ answers, countriesArray }) => {
                         <br></br>
                         {answers.map(el => {
                             if (el.region === 'Americas') {
-                            return <li className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
+                                return <li className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
                             };
                         })}<br></br>
                         {countries.map(el => {
-                            for (let i = 0; i < answers.length; i ++) {
-                                if (el.region === 'Americas') {
-                                    return <li className="country-li" key={el.id} style={{ color: '#1c166be6' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
-                                };
+                            if (el.region === 'Americas') {
+                                return <li className="country-li" key={el.id} style={{ color: '#1c166be6' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
                             };
                         })}
                     </ul>
@@ -31,7 +37,7 @@ const Results = ({ answers, countriesArray }) => {
                         <br></br>
                         {answers.map(el => {
                             if (el.region === 'Europe') {
-                            return <li className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
+                                return <li className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
                             };
                         })}<br></br>
                         {countries.map(el => {
@@ -78,6 +84,7 @@ const Results = ({ answers, countriesArray }) => {
                 <div className="result-box oceania">
                     <h3>Oceania</h3>
                     <ul>
+                        <br></br>
                         {answers.map(el => {
                             if (el.region === 'Oceania') {
                                 return <li className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>

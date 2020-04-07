@@ -98,7 +98,7 @@ const GeoMap = ({ country }) => {
                     {...viewport}
                     onViewportChange={(viewport) => { setViewport(viewport) }}
                     mapboxApiAccessToken={API_KEY}
-                    mapStyle='mapbox://styles/metafunistefano/ck8iw9s0y08xf1iqvywbh9jnt'
+                    mapStyle='mapbox://styles/metafunistefano/ck8q6qwwi0vr31imu3g7ikcwn'
                 >
                     {/* map over all capital cities in the world to display all markers */}
 
