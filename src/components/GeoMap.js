@@ -65,8 +65,9 @@ const GeoMap = ({ country }) => {
         setLoading(false);
     };
 
-    const fetchCountryInfo = async () => {
-
+    const fetchCountryInfo = async (e) => {
+        e.preventDefault();
+        console.log(e);
     };
 
     useEffect(() => {
@@ -103,7 +104,7 @@ const GeoMap = ({ country }) => {
 
                     {markers && markers.map(el => (
                         <Marker key={el.name} latitude={el.latitude} longitude={el.longitude}>
-                            <button style={{ background: 'none', border: 'none', outline: 'none' }}>
+                            <button className="geo-button" onClick={fetchCountryInfo}>
                                 <img src={Logo} alt={`${el.capital} ${el.name}`} width="30px" style={{ background: 'white', borderRadius: '50%' }}></img>
                             </button>
                         </Marker>

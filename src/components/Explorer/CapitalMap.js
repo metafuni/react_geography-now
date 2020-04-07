@@ -110,6 +110,8 @@ const CapitalMap = ({ country }) => {
                 economy: scoresresult.data.categories[11],
                 leisure: scoresresult.data.categories[14]
             }]);
+        } else {
+            document.getElementById('teleport-info').innerHTML = 'Sorry Geograpeeps... no info for this capital city';
         };
         console.log(scoresresult.data);
 

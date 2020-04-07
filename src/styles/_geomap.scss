@@ -1,25 +1,39 @@
 .geomap-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5rem;
 
-    h1 {
-        margin: 2rem auto;
-    
-        .elearn {
-          margin-right: 0.75rem;
-          .fa-graduation-cap {
-            position: absolute;
-            transform: rotate(-15deg) scale(0.75) translate(-45px, -15px);
-          }
-        }
+  h1 {
+    margin: 2rem auto;
+
+    .elearn {
+      margin-right: 0.75rem;
+      .fa-graduation-cap {
+        position: absolute;
+        transform: rotate(-15deg) scale(0.75) translate(-45px, -15px);
       }
-
-    .geomap {
-        box-shadow: -4px -4px 15px rgba(200, 200, 200, 0.25),
-                    4px 4px 15px rgba(0, 0, 0, 0.25);
     }
-}
+  }
 
+  .geomap {
+    box-shadow: -4px -4px 15px rgba(200, 200, 200, 0.25),
+      4px 4px 15px rgba(0, 0, 0, 0.25);
+  }
+  .geo-button {
+    background: white;
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    transition: 0.2s;
+    opacity: 0.8;
+    display: flex;
+    
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
+}
