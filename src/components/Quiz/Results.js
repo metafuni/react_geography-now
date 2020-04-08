@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-const Results = ({ answers, countriesArray }) => {
+const Results = ({ answers, countriesArray, resetScore }) => {
 
-    const [countries] = useState(countriesArray);
+    const [countries, setCountries] = useState(countriesArray);
 
     for (let i = 0; i < countries.length; i++) {
         answers.forEach(el => {

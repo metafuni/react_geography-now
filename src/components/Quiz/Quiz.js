@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 
 import CountryImg from './CountryImg';
-import Logo from '../../img/logo.png';
 
 import Input from './Input';
 import Results from './Results';
@@ -45,7 +44,7 @@ const Quiz = () => {
                 let testString = countriesArray[i].name[j];
                 let result;
                 if (testString) {
-                    result = testString.match(inputString)
+                    result = testString.match(inputString);
                 } else {
                     result = null;
                 };
@@ -66,7 +65,7 @@ const Quiz = () => {
                     };
 
                     //amend the countriesArray
-                    countriesArray.filter(el => el === countriesArray[i]);
+                    // countriesArray.filter(el => el === countriesArray[i]);
 
                     // answer correct, set score, empty input field, mark country on map and trigger animations
                     setScore(score + 1);
@@ -74,15 +73,15 @@ const Quiz = () => {
                     e.target.value = '';
                 };
 
-                //answer correct, in case country does exist on map
-                if (result !== null && result[0] === testString && element && element.getAttribute('fill') !== '#3ab54a') {
+                //answer correct, in case country existing on map
+                if (result !== null && result[0] === testString && element) {
                     setScore(score + 1);
                     //test
                     setAnswers([...answers, countriesArray[i]]);
                     e.target.value = '';
 
                     //amend the countriesArray
-                    countriesArray.filter(el => el === countriesArray[i]);
+                    // countriesArray.filter(el => el === countriesArray[i]);
 
                     //mark country green on map
                     if (element) {
@@ -109,25 +108,32 @@ const Quiz = () => {
         }
     };
 
-    //reset score when game has ended
+    //reset score when game has ended/play again
     const resetScore = () => {
         setScore(0);
+
+        //test
+        setAnswers([]);
+        countriesArray = [];
+        getCountries();
 
         //set background color for world map svg to default grey
         const allElements = document.querySelectorAll("path");
         allElements.forEach(el => {
             el.setAttribute("fill", "grey");
         });
+
+        //clear results
+        const countryLi = document.querySelectorAll(".country-li");
+        countryLi.forEach(el => el.style.display = 'none');
+
     };
-
-    //clear results when game has ended/stopped
-
 
     useEffect(() => {
         // set the countries array
         getCountries();
-        console.log(answers);
-    });
+        console.log('resetScore() called')
+    }, [resetScore]);
 
     return (
         <>
@@ -146,7 +152,7 @@ const Quiz = () => {
                 <Input checkAnswer={checkAnswer} score={score} resetScore={resetScore} />
                 <div className="score-box">score: <span style={{ color: 'white' }} id="score">{score} / 250</span></div>
                 <CountryImg />
-                <Results answers={answers} countriesArray={countriesArray} />
+                <Results answers={answers} countriesArray={countriesArray} resetScore={resetScore} />
             </div>
         </>
     )

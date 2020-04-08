@@ -19,9 +19,12 @@ const Input = ({ checkAnswer, score, resetScore }) => {
             document.querySelector('.btn-start').style.backgroundColor = '#3ab54a';
             document.querySelector('.fa-play').style.color = 'white';
 
+            //test
             setPlaying(true);
+            setStop(false);
             setMinutes(0);
             setSeconds(10);
+            resetScore();
         };
     };
 
@@ -47,7 +50,6 @@ const Input = ({ checkAnswer, score, resetScore }) => {
         setStop(true);
         setPlaying(false);
         setPaused(false);
-        resetScore();
 
         //set styling to default again
         document.querySelector('.question-box').style.display = 'none';
@@ -61,6 +63,18 @@ const Input = ({ checkAnswer, score, resetScore }) => {
         document.querySelector('.fa-play').style.color = '#3ab54a';
 
         document.querySelector(".quiz-timer").style.animationName = 'none';
+
+        //reveal missed countries
+        const countryLi = document.querySelectorAll(".country-li");
+        countryLi.forEach(el => el.style.display = 'block');
+
+        //set styling for missed countries on map
+        const allElements = document.querySelectorAll("path");
+        allElements.forEach(el => {
+            if (el.getAttribute("fill") !== '#3ab54a') {
+                el.setAttribute("fill", "#1c166be6");
+            };
+        });
     };
 
     //timer function
@@ -105,7 +119,11 @@ const Input = ({ checkAnswer, score, resetScore }) => {
                 if (el.getAttribute("fill") !== '#3ab54a') {
                     el.setAttribute("fill", "#1c166be6");
                 };
-            })
+            });
+
+            //reveal missed countries
+            const countryLi = document.querySelectorAll(".country-li");
+            countryLi.forEach(el => el.style.display = 'block');
         };
     };
 
