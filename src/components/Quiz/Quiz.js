@@ -9,9 +9,10 @@ import Results from './Results';
 const Quiz = () => {
 
     let countriesArray = [];
-
+    
     const [score, setScore] = useState(0);
     const [answers, setAnswers] = useState([]);
+    const [countries, setCountries] = useState();
 
     //set countriesArray
     const getCountries = async () => {
@@ -110,12 +111,15 @@ const Quiz = () => {
 
     //reset score when game has ended/play again
     const resetScore = () => {
+        console.log('resetScore() called')
+
         setScore(0);
 
         //test
         setAnswers([]);
         countriesArray = [];
         getCountries();
+        setCountries(countriesArray);
 
         //set background color for world map svg to default grey
         const allElements = document.querySelectorAll("path");
@@ -126,13 +130,11 @@ const Quiz = () => {
         //clear results
         const countryLi = document.querySelectorAll(".country-li");
         countryLi.forEach(el => el.style.display = 'none');
-
     };
 
     useEffect(() => {
         // set the countries array
         getCountries();
-        console.log('resetScore() called')
     }, [resetScore]);
 
     return (
@@ -152,7 +154,7 @@ const Quiz = () => {
                 <Input checkAnswer={checkAnswer} score={score} resetScore={resetScore} />
                 <div className="score-box">score: <span style={{ color: 'white' }} id="score">{score} / 250</span></div>
                 <CountryImg />
-                <Results answers={answers} countriesArray={countriesArray} resetScore={resetScore} />
+                <Results answers={answers} countriesArray={countriesArray} resetScore={resetScore} countries={countries} />
             </div>
         </>
     )

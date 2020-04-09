@@ -1,16 +1,25 @@
+  
 import React, { useState, useEffect } from 'react';
 
-const Results = ({ answers, countriesArray, resetScore }) => {
+const Results = ({ answers, countriesArray, resetScore, countries }) => {
 
-    const [countries, setCountries] = useState(countriesArray);
+    // const [countries, setCountries] = useState(countriesArray);
 
-    for (let i = 0; i < countries.length; i++) {
-        answers.forEach(el => {
-            if (el.name[0] === countries[i].name[0]) {
-                countries.splice(i, 1);
-            };
-        });
+    if (countries) {
+        for (let i = 0; i < countries.length; i++) {
+            answers.forEach(el => {
+                if (el.name[0] === countries[i].name[0]) {
+                    countries.splice(i, 1);
+                };
+            });
+        };
     };
+
+    // useEffect(() => {
+    //     setCountries(countriesArray);
+    //     console.log(answers);
+    //     console.log(countries);
+    // }, [resetScore]);
 
     return (
         <div className="results">
@@ -24,7 +33,7 @@ const Results = ({ answers, countriesArray, resetScore }) => {
                                 return <li className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
                             };
                         })}<br></br>
-                        {countries.map(el => {
+                        {countries && countries.map(el => {
                             if (el.region === 'Americas') {
                                 return <li className="country-li" key={el.id} style={{ color: '#1c166be6' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
                             };
@@ -40,7 +49,7 @@ const Results = ({ answers, countriesArray, resetScore }) => {
                                 return <li className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
                             };
                         })}<br></br>
-                        {countries.map(el => {
+                        {countries && countries.map(el => {
                             if (el.region === 'Europe') {
                                 return <li className="country-li" key={el.id} style={{ color: '#1c166be6' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
                             };
@@ -56,7 +65,7 @@ const Results = ({ answers, countriesArray, resetScore }) => {
                                 return <li className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
                             };
                         })}<br></br>
-                        {countries.map(el => {
+                        {countries && countries.map(el => {
                             if (el.region === 'Africa') {
                                 return <li className="country-li" key={el.id} style={{ color: '#1c166be6' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
                             };
@@ -74,7 +83,7 @@ const Results = ({ answers, countriesArray, resetScore }) => {
                                 return <li className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
                             };
                         })}<br></br>
-                        {countries.map(el => {
+                        {countries && countries.map(el => {
                             if (el.region === 'Asia') {
                                 return <li className="country-li" key={el.id} style={{ color: '#1c166be6' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
                             };
@@ -90,7 +99,7 @@ const Results = ({ answers, countriesArray, resetScore }) => {
                                 return <li className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
                             };
                         })}<br></br>
-                        {countries.map(el => {
+                        {countries && countries.map(el => {
                             if (el.region === 'Oceania') {
                                 return <li className="country-li" key={el.id} style={{ color: '#1c166be6' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
                             };
@@ -106,7 +115,7 @@ const Results = ({ answers, countriesArray, resetScore }) => {
                                 return <span className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</span>
                             };
                         })}<br></br>
-                        {countries.map(el => {
+                        {countries && countries.map(el => {
                             if (el.region === 'Polar') {
                                 return <li className="country-li" key={el.id} style={{ color: '#1c166be6' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
                             };
