@@ -9,6 +9,7 @@ const Weather = ({ country }) => {
 
     const getWeather = async () => {
         const result = await Axios(`https://api.openweathermap.org/data/2.5/weather?q=${country.capital},${country.name}&appid=${API_KEY}&units=metric`);
+
         setWeather({
             description: result.data.weather[0].description,
             temperature: result.data.main.temp,

@@ -2,16 +2,19 @@ import React, { useState, useEffect } from 'react';
 import ReactMapGl, { Marker, Popup } from 'react-map-gl';
 import Axios from 'axios';
 
-import Logo from '../img/logo.png'
+import Logo from '../img/logo.webp'
 
 const GeoMap = ({ country }) => {
 
-    const API_KEY = 'pk.eyJ1IjoibWV0YWZ1bmlzdGVmYW5vIiwiYSI6ImNrOGl2ZDZjdTAzYXczZW55aTl6aHl5MHYifQ.e4hq7DmvQFFATjKR24028A';
+    const YT_API_KEY = 'AIzaSyBimMgTEpBaf0Dmt1FjuF8Vdw_rQGBMXO8';
+    const channelID = 'UCmmPgObSUPw1HL2lq6H4ffA';
+    const playlistID = 'PLR7XO54Pktt8_jNjAVaunw1EqqcEAdcow';
 
     const [lat, setLat] = useState(15);
     const [lng, setLng] = useState(15);
     const [markers, setMarkers] = useState([]);
-    const [selected, setSelected] = useState(false);
+    const [selectedCountry, setSelectedCountry] = useState();
+    const [videoURL, setVideoURL] = useState(null);
     const [loading, setLoading] = useState(true);
 
     const [viewport, setViewport] = useState({
@@ -27,7 +30,8 @@ const GeoMap = ({ country }) => {
         const result = await Axios(`https://restcountries.eu/rest/v2/all`);
         result.data.forEach(async el => {
             if (el.capital) {
-                const result = await Axios(`https://api.mapbox.com/geocoding/v5/mapbox.places/${el.capital}.json?&country=${el.alpha2Code}&access_token=${API_KEY}`);
+                const result = await Axios(`https://api.mapbox.com/geocoding/v5/mapbox.places/${el.capital}.json?&country=${el.alpha2Code}&access_token=${process.env.REACT_APP_MAPBOX_KEY}`);
+
                 if (result.data.features[0] && result.data.features[0].center[1] && result.data.features[0].center[0]) {
                     setMarkers(markers => [...markers, {
                         name: el.name,
@@ -65,9 +69,27 @@ const GeoMap = ({ country }) => {
         setLoading(false);
     };
 
-    const fetchCountryInfo = async (e) => {
-        e.preventDefault();
-        console.log(e);
+    const fetchYoutube = async () => {
+        if (selectedCountry) {
+            const ytURL = `https://www.googleapis.com/youtube/v3/search?key=${YT_API_KEY}&channelId=${channelID}&part=snippet,id&order=relevance&maxResults=10&q=Geography+Now!+${selectedCountry.name}`;
+
+            const result = await Axios(ytURL);
+            console.log(result.data);
+
+            if (result.data.items[0]) {
+                setVideoURL(`https://www.youtube.com/embed/${result.data.items[0].id.videoId}`);
+            } else {
+                setVideoURL(null);
+            };
+
+            // for (let i = 0; i < result.data.items.length; i++) {
+            //     if (result.data.items[i].snippet.title === `Geography Now! ${selectedCountry.name}`) {
+            //         setVideoURL(`https://www.youtube.com/watch?v=${result.data.items[0].id.videoId}`);
+            //     } else {
+            //         setVideoURL(null);
+            //     };
+            // };
+        };
     };
 
     useEffect(() => {
@@ -77,6 +99,14 @@ const GeoMap = ({ country }) => {
     useEffect(() => {
         setViewport({ ...viewport, latitude: lat, longitude: lng });
     }, [lat, lng]);
+
+    useEffect(() => {
+        fetchYoutube();
+    }, [selectedCountry]);
+
+    useEffect(() => {
+        console.log(videoURL)
+    }, [videoURL]);
 
     return (
         <>
@@ -97,37 +127,53 @@ const GeoMap = ({ country }) => {
                     className="geomap"
                     {...viewport}
                     onViewportChange={(viewport) => { setViewport(viewport) }}
-                    mapboxApiAccessToken={API_KEY}
+                    // mapboxApiAccessToken={API_KEY}
+                    mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
                     mapStyle='mapbox://styles/metafunistefano/ck8q6qwwi0vr31imu3g7ikcwn'
                 >
                     {/* map over all capital cities in the world to display all markers */}
 
                     {markers && markers.map(el => (
                         <Marker key={el.name} latitude={el.latitude} longitude={el.longitude}>
-                            <button className="geo-button" onClick={fetchCountryInfo}>
-                                <img src={Logo} alt={`${el.capital} ${el.name}`} width="30px" style={{ background: 'white', borderRadius: '50%' }}></img>
+                            <button className="geo-button" onClick={(e) => {
+                                e.preventDefault();
+                                !selectedCountry ? setSelectedCountry(el) : setSelectedCountry(null);
+                            }}>
+                                <img src={Logo} alt={`${el.capital} ${el.name}`} width="20px" style={{ background: 'white', borderRadius: '50%' }}></img>
                             </button>
                         </Marker>
                     ))}
-                    {/* {lat && lng && <Marker key={country.name} latitude={lat} longitude={lng}>
-                    <button onClick={(e) => {
-                        e.preventDefault();
-                        setSelected(!selected);
-                        fetchCapitalInfo();
-                    }}>
-                        <img src={Logo} alt={`${country.capital} ${country.name}`} style={{borderRadius: '50%'}} width="50px"></img>
-                    </button>
-                </Marker>}
-                {selected && (
-                    <Popup 
-                        latitude={lat} 
-                        longitude={lng}
-                        onClose={() => setSelected(false)}
-                    >
-                        <div className="capital-info">
-                            
-                        </div>
-                    </Popup>)} */}
+
+                    {/* display popup when selected */}
+
+                    {selectedCountry &&
+                        <Popup
+                            className="youtube-popup"
+                            latitude={selectedCountry.latitude}
+                            longitude={selectedCountry.longitude}
+                            onClose={() => { 
+                                setSelectedCountry(null);
+                                setVideoURL(null);
+                            }}
+                        >
+                            {/* <h3>{selectedCountry.name} <span style={{ fontStyle: 'italic' }}>({selectedCountry.capital})</span></h3> */}
+                            {videoURL && setSelectedCountry ?
+                                <div className="youtube-container">
+                                    <iframe
+                                        width="450"
+                                        height="250"
+                                        title="Geography Now! Episode"
+                                        src={videoURL}
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen>
+                                    </iframe>
+                                </div>
+                                :
+                                <p>WOOops.. :(<br></br>
+                                    No Geography Now episode for {selectedCountry.name} yet peeps ...</p>
+                            }
+                        </Popup>}
                 </ReactMapGl>
             </div>
         </>
