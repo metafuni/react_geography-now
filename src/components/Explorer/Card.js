@@ -27,7 +27,6 @@ const Card = ({ country }) => {
                 convertBorders(el.toLowerCase());
             });
         };
-        setLoading(false);
     }, [country.borders]);
 
     useEffect(() => {
@@ -54,6 +53,7 @@ const Card = ({ country }) => {
                 });
             };
         }
+        setLoading(false);
     }, [country.alpha2Code]);
 
     return (

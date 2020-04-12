@@ -91,6 +91,8 @@ const CapitalMap = ({ country }) => {
             .then(function (response) {
                 if (response.query.pages[Object.keys(response.query.pages)[0]].extract && response.query.pages[Object.keys(response.query.pages)[0]].extract.length > 50) {
                     document.getElementById('wiki-info').innerHTML = response.query.pages[Object.keys(response.query.pages)[0]].extract;
+                } else {
+                    document.getElementById('teleport-info').innerHTML = 'Sorry Geograpeeps... no info for this capital city';
                 }
             })
             .catch(function (error) { console.log(error); });
@@ -111,8 +113,9 @@ const CapitalMap = ({ country }) => {
                 leisure: scoresresult.data.categories[14]
             }]);
         } else {
-            document.getElementById('teleport-info').innerHTML = 'Sorry Geograpeeps... no info for this capital city';
+            // fetchCountryWikiInfo();
         };
+
         console.log(scoresresult.data);
 
         const imgresult = await Axios(`https://api.teleport.org/api/urban_areas/slug:${country.capital.toLowerCase()}/images/`);
@@ -170,7 +173,7 @@ const CapitalMap = ({ country }) => {
                                 <span> {country.name}</span> {country.capital && <span style={{ fontStyle: 'italic' }}>({country.capital})</span>}
                             </h3>
 
-                            {/* <div id="wiki-info"></div><span></span> */}
+                            {/* <div id="wiki-info"></div> */}
 
                             <div id="teleport-info"></div>
                             {teleportImg[0] && <img src={teleportImg[0].img} alt={country.capital} width="100%"></img>}

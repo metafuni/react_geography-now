@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 
 import CountryImg from './CountryImg';
+import Logo from '../../img/logo.webp';
 
 import Input from './Input';
 import Results from './Results';
@@ -9,10 +10,11 @@ import Results from './Results';
 const Quiz = () => {
 
     let countriesArray = [];
-    
+
     const [score, setScore] = useState(0);
     const [answers, setAnswers] = useState([]);
     const [countries, setCountries] = useState();
+    const [loading, setLoading] = useState(true);
 
     //set countriesArray
     const getCountries = async () => {
@@ -30,6 +32,7 @@ const Quiz = () => {
             altArray.shift();
             altArray.forEach(el => countriesArray[countriesArray.length - 1].name.push(el));
         });
+        setLoading(false);
     };
 
     //check the input answer if correct
@@ -147,6 +150,7 @@ const Quiz = () => {
 
     return (
         <>
+            {loading ? <div className="loading"><span className="loading-icon"><img src={Logo} alt="Geography Now! Loading"></img></span></div> : null}
             <div className="quiz">
                 <div className="header">
                     <h1>

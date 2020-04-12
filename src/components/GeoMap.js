@@ -94,6 +94,7 @@ const GeoMap = ({ country }) => {
 
     useEffect(() => {
         getAllCapitals();
+        // setLoading(false);
     }, []);
 
     useEffect(() => {
