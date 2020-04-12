@@ -17,8 +17,8 @@ const CapitalMap = ({ country }) => {
     const [teleportData, setTeleportData] = useState([]);
 
     const [viewport, setViewport] = useState({
-        width: 1050,
-        height: 650,
+        width: 1400,
+        height: 700,
         latitude: lat,
         longitude: lng,
         zoom: 6

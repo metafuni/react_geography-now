@@ -23,7 +23,7 @@ const App = () => (
         <Route path="/explorer" exact component={Explorer} />
         <Route path="/geomap" exact component={GeoMap} />
         <Route path="/quiz" exact component={Quiz} />
-        <Route path="/info" exact component={Info} />
+        {/* <Route path="/info" exact component={Info} /> */}
         <Route path="/404" component={NotFound} />
       </Switch>
       <Footer />

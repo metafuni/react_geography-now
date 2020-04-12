@@ -3,9 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const Results = ({ answers, countriesArray, resetScore, countries }) => {
 
-    // const [countries, setCountries] = useState(countriesArray);
-
-    if (countries) {
+    if (countries && answers) {
         for (let i = 0; i < countries.length; i++) {
             answers.forEach(el => {
                 if (el.name[0] === countries[i].name[0]) {
@@ -15,12 +13,6 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
         };
     };
 
-    // useEffect(() => {
-    //     setCountries(countriesArray);
-    //     console.log(answers);
-    //     console.log(countries);
-    // }, [resetScore]);
-
     return (
         <div className="results">
             <div className="results-top">
@@ -28,7 +20,7 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                     <h3>Americas</h3>
                     <ul>
                         <br></br>
-                        {answers.map(el => {
+                        {answers && answers.map(el => {
                             if (el.region === 'Americas') {
                                 return <li className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
                             };
@@ -44,7 +36,7 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                     <h3>Europe</h3>
                     <ul>
                         <br></br>
-                        {answers.map(el => {
+                        {answers && answers.map(el => {
                             if (el.region === 'Europe') {
                                 return <li className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
                             };
@@ -60,7 +52,7 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                     <h3>Africa</h3>
                     <ul>
                         <br></br>
-                        {answers.map(el => {
+                        {answers && answers.map(el => {
                             if (el.region === 'Africa') {
                                 return <li className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
                             };
@@ -78,7 +70,7 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                     <h3>Asia</h3>
                     <ul>
                         <br></br>
-                        {answers.map(el => {
+                        {answers && answers.map(el => {
                             if (el.region === 'Asia') {
                                 return <li className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
                             };
@@ -94,7 +86,7 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                     <h3>Oceania</h3>
                     <ul>
                         <br></br>
-                        {answers.map(el => {
+                        {answers && answers.map(el => {
                             if (el.region === 'Oceania') {
                                 return <li className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
                             };
@@ -110,7 +102,7 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                     <h3>Polar</h3>
                     <ul>
                         <br></br>
-                        {answers.map(el => {
+                        {answers && answers.map(el => {
                             if (el.region === 'Polar') {
                                 return <span className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</span>
                             };

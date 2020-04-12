@@ -1,0 +1,78 @@
+@media (max-width: 1100px) {
+
+    .input {
+        flex-direction: column;
+        padding: 0;
+
+        #inputbox {
+            width: 70vw;
+            max-width: 500px;
+            margin: 0;
+        }
+
+        .question-box {
+            left: -70px;
+            max-width: 300px;
+            margin: auto;
+            z-index: 300;
+        }
+
+        .quiz-buttons {
+            margin: 1rem auto;
+        }
+        
+        .start-button {
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    .results-top, .results-bottom {
+        flex-direction: column;
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .home {
+        .overlay {
+            .header {
+                flex-direction: column;
+                h1 {
+                    font-size: 3.5rem !important;
+                }
+                img {
+                    width: 200px;
+                }
+                .elearn {
+                    position: relative;
+                    margin-left: -55px;
+                }
+            }
+        }
+    }
+    .banner-img {
+        width: 200%;
+        height: 200%;
+    }
+}
+
+@media (max-width: 750px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+
+        ul {
+            li {
+                margin: 0 .25rem !important;
+            }
+        }
+    }
+
+    .footer {
+        flex-direction: column;
+
+        div {
+            margin: 2.5rem auto;
+        }
+    }
+}

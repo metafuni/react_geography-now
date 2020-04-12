@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const Input = ({ checkAnswer, score, resetScore }) => {
 
-    const [minutes, setMinutes] = useState(15);
+    const [minutes, setMinutes] = useState(17);
     const [seconds, setSeconds] = useState(0);
     const [playing, setPlaying] = useState(false);
     const [paused, setPaused] = useState(false);
@@ -15,15 +15,21 @@ const Input = ({ checkAnswer, score, resetScore }) => {
         document.querySelector('.btn-pause').style.backgroundColor = 'white';
         document.querySelector('.fa-pause').style.color = '#01aaad';
 
+        const resultBox = document.querySelectorAll('.result-box');
+        resultBox.forEach(el => el.style.display = 'block');
+
         if (!playing) {
             document.querySelector('.btn-start').style.backgroundColor = '#3ab54a';
             document.querySelector('.fa-play').style.color = 'white';
 
+            //empty inputfield when starting over
+            document.getElementById('inputbox').value = '';
+
             //test
             setPlaying(true);
             setStop(false);
-            setMinutes(0);
-            setSeconds(10);
+            setMinutes(16);
+            setSeconds(59);
             resetScore();
         };
     };
@@ -47,34 +53,36 @@ const Input = ({ checkAnswer, score, resetScore }) => {
 
     //stop function
     const updateStop = () => {
-        setStop(true);
-        setPlaying(false);
-        setPaused(false);
+        if (playing) {
+            setStop(true);
+            setPlaying(false);
+            setPaused(false);
 
-        //set styling to default again
-        document.querySelector('.question-box').style.display = 'none';
-        document.querySelector('.btn-question').style.backgroundColor = 'white';
-        document.querySelector('.fa-question').style.color = '#01aaad';
+            //set styling to default again for buttons input component
+            document.querySelector('.question-box').style.display = 'none';
+            document.querySelector('.btn-question').style.backgroundColor = 'white';
+            document.querySelector('.fa-question').style.color = '#01aaad';
 
-        document.querySelector('.btn-pause').style.backgroundColor = 'white';
-        document.querySelector('.fa-pause').style.color = '#01aaad';
+            document.querySelector('.btn-pause').style.backgroundColor = 'white';
+            document.querySelector('.fa-pause').style.color = '#01aaad';
 
-        document.querySelector('.btn-start').style.backgroundColor = 'white';
-        document.querySelector('.fa-play').style.color = '#3ab54a';
+            document.querySelector('.btn-start').style.backgroundColor = 'white';
+            document.querySelector('.fa-play').style.color = '#3ab54a';
 
-        document.querySelector(".quiz-timer").style.animationName = 'none';
+            document.querySelector(".quiz-timer").style.animationName = 'none';
 
-        //reveal missed countries
-        const countryLi = document.querySelectorAll(".country-li");
-        countryLi.forEach(el => el.style.display = 'block');
+            //reveal missed countries
+            const countryLi = document.querySelectorAll(".country-li");
+            countryLi.forEach(el => el.style.display = 'block');
 
-        //set styling for missed countries on map
-        const allElements = document.querySelectorAll("path");
-        allElements.forEach(el => {
-            if (el.getAttribute("fill") !== '#3ab54a') {
-                el.setAttribute("fill", "#1c166be6");
-            };
-        });
+            //set styling for missed countries on map
+            const allElements = document.querySelectorAll("path");
+            allElements.forEach(el => {
+                if (el.getAttribute("fill") !== '#3ab54a') {
+                    el.setAttribute("fill", "#1c166be6");
+                };
+            });
+        };
     };
 
     //timer function
@@ -158,7 +166,7 @@ const Input = ({ checkAnswer, score, resetScore }) => {
                     <h3>Guess all the countries and territories in the world</h3><br></br>
                     <p>Enter your answers in the <span style={{ fontStyle: 'italic', color: '#5757579d' }}>"Enter country... "</span> input-field, whether it's in English or your own language. <br></br><br></br>
                         The input field is case insensitive, so lowercase or uppercase does not matter. <br></br><br></br>
-                        There is no specific order, just try to guess all the countries and independent territories in the world within the time limit. <br></br><br></br>Good luck!<br></br>
+                        There is no specific order, just try to guess all the countries and independent territories in the world within the time limit. <br></br><br></br>Once you hit the stop button after playing we'll reveal all the countries for you. <br></br><br></br>Good luck!<br></br>
                     </p>
                 </div>
                 <button className="btn btn-pause" onClick={updatePause}><i className="fas fa-pause"></i></button>

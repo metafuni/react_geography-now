@@ -76,6 +76,16 @@ const Quiz = () => {
 
                 //answer correct, in case country existing on map
                 if (result !== null && result[0] === testString && element) {
+
+                    //check if not already in answers
+                    if (answers.length > 0) {
+                        for (let x = 0; x < answers.length; x++) {
+                            if (countriesArray[i].name[0] === answers[x].name[0]) {
+                                return;
+                            };
+                        };
+                    };
+
                     setScore(score + 1);
                     //test
                     setAnswers([...answers, countriesArray[i]]);
@@ -111,8 +121,6 @@ const Quiz = () => {
 
     //reset score when game has ended/play again
     const resetScore = () => {
-        console.log('resetScore() called')
-
         setScore(0);
 
         //test
