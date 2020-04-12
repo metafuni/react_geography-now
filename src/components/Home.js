@@ -65,8 +65,8 @@ const Home = () => {
 
             <div className="video-container">
                 <iframe 
-                    width="560" 
-                    height="315" 
+                    width="790" 
+                    height="460" 
                     title="Geography Now! reached 2 Million subscribers Youtube video"
                     src="https://www.youtube.com/embed/_GyOH5_b4Xg?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1" 
                     frameBorder="0" 

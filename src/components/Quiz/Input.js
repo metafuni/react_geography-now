@@ -73,7 +73,7 @@ const Input = ({ checkAnswer, score, resetScore }) => {
 
             //reveal missed countries
             const countryLi = document.querySelectorAll(".country-li");
-            countryLi.forEach(el => el.style.display = 'block');
+            countryLi.forEach(el => el.style.display = 'flex');
 
             //set styling for missed countries on map
             const allElements = document.querySelectorAll("path");
@@ -131,7 +131,7 @@ const Input = ({ checkAnswer, score, resetScore }) => {
 
             //reveal missed countries
             const countryLi = document.querySelectorAll(".country-li");
-            countryLi.forEach(el => el.style.display = 'block');
+            countryLi.forEach(el => el.style.display = 'flex');
         };
     };
 

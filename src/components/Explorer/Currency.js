@@ -15,6 +15,7 @@ const Currency = ({ country }) => {
         setConversion([]);
         setConversionRate([]);
         const result = await Axios(`https://api.openrates.io/latest?base=${base}`);
+
         setConversion(conversion => [...conversion, Object.keys(result.data.rates)]);
         setConversionRate(conversionRate => [...conversionRate, result.data.rates]);
     };
@@ -194,7 +195,7 @@ const Currency = ({ country }) => {
             <h3>Local Currency</h3><br></br>
             <p>The currency used in {country.name} is the <span>{country.currencies[0].name} ({country.currencies[0].code})</span></p>
 
-            <div className="currency-container">
+            {conversion.length > 0 && conversionRate.length > 0 && <div className="currency-container">
                 {country.currencies[0].symbol ?
                     <div>{country.currencies[0].symbol} 1 <i className="fas fa-equals"></i></div>
                     :
@@ -207,7 +208,7 @@ const Currency = ({ country }) => {
                 </select>
                     {/* set value to 5 decimals accurately */}
                     {value && <span>{symbol} {Math.floor(value*10000000) / 10000000}</span>}
-            </div>
+            </div>}
         </div>
     )
 }

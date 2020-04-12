@@ -225,8 +225,11 @@
           list-style: none;
           margin: 0.5rem;
           height: 1.75rem;
-          display: flex !important;
           line-height: 1rem;
+        }
+
+        .answer-li {
+          display: flex;
         }
 
         .country-li {
