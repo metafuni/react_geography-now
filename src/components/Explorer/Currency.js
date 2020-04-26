@@ -177,7 +177,6 @@ const Currency = ({ country }) => {
     }, [country]);
 
     useEffect(() => {
-        console.log(base);
         getCurrencies();
         if (conversionRate[0]) {
             setValue(conversionRate[0].GBP);

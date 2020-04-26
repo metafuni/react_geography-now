@@ -17,8 +17,10 @@ const CapitalMap = ({ country }) => {
     const [teleportData, setTeleportData] = useState([]);
 
     const [viewport, setViewport] = useState({
-        width: 1400,
-        height: 700,
+        // width: 1400,
+        width: "100%",
+        // height: 700,
+        height: "100%",
         latitude: lat,
         longitude: lng,
         zoom: 6
@@ -90,9 +92,10 @@ const CapitalMap = ({ country }) => {
             .then(function (response) { return response.json(); })
             .then(function (response) {
                 if (response.query.pages[Object.keys(response.query.pages)[0]].extract && response.query.pages[Object.keys(response.query.pages)[0]].extract.length > 50) {
+                    console.log(response.query.pages[Object.keys(response.query.pages)[0]].extract);
                     document.getElementById('wiki-info').innerHTML = response.query.pages[Object.keys(response.query.pages)[0]].extract;
                 } else {
-                    document.getElementById('teleport-info').innerHTML = 'Sorry Geograpeeps... no info for this capital city';
+                    document.getElementById('wiki-info').innerHTML = 'Sorry Geograpeeps... no info for this capital city';
                 }
             })
             .catch(function (error) { console.log(error); });
@@ -116,8 +119,6 @@ const CapitalMap = ({ country }) => {
             // fetchCountryWikiInfo();
         };
 
-        console.log(scoresresult.data);
-
         const imgresult = await Axios(`https://api.teleport.org/api/urban_areas/slug:${country.capital.toLowerCase()}/images/`);
         if (imgresult.data.photos[0].image.web) {
             setTeleportImg(teleportImg => [...teleportImg, { img: imgresult.data.photos[0].image.web }]);
@@ -127,7 +128,6 @@ const CapitalMap = ({ country }) => {
 
     useEffect(() => {
         getCoord();
-        console.log(teleportData);
     });
 
     useEffect(() => {
@@ -173,7 +173,8 @@ const CapitalMap = ({ country }) => {
                                 <span> {country.name}</span> {country.capital && <span style={{ fontStyle: 'italic' }}>({country.capital})</span>}
                             </h3>
 
-                            {/* <div id="wiki-info"></div> */}
+                            <div id="wiki-info"></div>
+                            <div className="wikipedia-footer" style={{fontStyle: 'italic', fontSize: '.65rem'}}>(wikipedia.org)</div>
 
                             <div id="teleport-info"></div>
                             {teleportImg[0] && <img src={teleportImg[0].img} alt={country.capital} width="100%"></img>}
@@ -308,6 +309,7 @@ const CapitalMap = ({ country }) => {
                                         </div>}
                                 </div>
                             </div>
+                            {teleportData[0] && <div className="teleport-footer" style={{fontStyle: 'italic', fontSize: '.65rem'}}>(teleport.org)</div>}
                         </div>
                     </Popup>)}
             </ReactMapGl>

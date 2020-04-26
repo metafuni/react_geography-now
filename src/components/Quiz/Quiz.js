@@ -28,6 +28,32 @@ const Quiz = () => {
                 id: el.alpha2Code,
                 completed: false
             });
+
+            //add alternative/easier names for countries
+            if (el.alpha2Code === 'SY') {
+                countriesArray[countriesArray.length - 1].name.push("Syria");
+            };
+            if (el.alpha2Code === 'VG') {
+                countriesArray[countriesArray.length - 1].name.push("Virgin Islands");
+            };
+            if (el.alpha2Code === 'VI') {
+                countriesArray[countriesArray.length - 1].name.push("American Virgin Islands");
+                countriesArray[countriesArray.length - 1].name.push("US Virgin Islands");
+            };
+            if (el.alpha2Code === 'BL') {
+                countriesArray[countriesArray.length - 1].name.push("Saint Barthelemy");
+            };
+            if (el.alpha2Code === 'KR') {
+                countriesArray[countriesArray.length - 1].name.push("South Korea");
+            };
+            if (el.alpha2Code === 'KP') {
+                countriesArray[countriesArray.length - 1].name.push("North Korea");
+            };
+            if (el.alpha2Code === 'CC') {
+                countriesArray[countriesArray.length - 1].name.push("Cocos Islands");
+            };
+            //testcode
+
             let altArray = el.altSpellings;
             altArray.shift();
             altArray.forEach(el => countriesArray[countriesArray.length - 1].name.push(el));
@@ -96,6 +122,7 @@ const Quiz = () => {
 
                     //amend the countriesArray
                     // countriesArray.filter(el => el === countriesArray[i]);
+                    console.log(countriesArray[i]);
 
                     //mark country green on map
                     if (element) {

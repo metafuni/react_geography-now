@@ -51,7 +51,6 @@ const Search = ({ updateCountry }) => {
                         onSuggestionSelected={(event, { suggestion, method }) => {
                             if (method === 'enter' || method === 'click') {
                                 updateCountry(suggestion);
-                                console.log(suggestion);
                             }
                             setSearchText(suggestion.name);
                         }}

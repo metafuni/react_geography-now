@@ -183,6 +183,7 @@ const Input = ({ checkAnswer, score, resetScore }) => {
                 </div>
             }
 
+
             {/* testcode */}
             {seconds === 0 && minutes === 0 ?
                 <div className="time-up-overlay">

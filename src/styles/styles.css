@@ -30,6 +30,9 @@
             flex-direction: column;
     max-width: 500px;
   }
+  .capitalmap {
+    height: 80vh;
+  }
 }
 
 @media (max-width: 1000px) {
@@ -53,6 +56,15 @@
     width: 200%;
     height: 200%;
   }
+  .card .info-container, .card .info-modals, .card .map {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .input {
+    position: relative !important;
+  }
 }
 
 @media (max-width: 750px) {
@@ -74,6 +86,53 @@
   }
   .footer div {
     margin: 2.5rem auto;
+  }
+  .capitalmap {
+    height: 70vh;
+  }
+}
+
+@media (max-width: 680px) {
+  .search .search-form input {
+    width: 60%;
+    margin: 0;
+  }
+  .search .search-form .x-button {
+    margin-right: .5rem;
+  }
+  .card {
+    padding: .75rem !important;
+  }
+  .card h1 {
+    font-size: 3.75rem !important;
+  }
+  .card .country-header div {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    text-align: center;
+  }
+  .card .country-header div h1 {
+    margin: 1rem auto !important;
+  }
+  .card .country-images img {
+    width: 100%;
+  }
+  .card .countryimg {
+    display: none;
+  }
+  .card .info-card, .card .map-box, .card .borders-box, .card .weather-box {
+    width: 100% !important;
+  }
+  .card .weather-box .weather-main, .card .weather-box .weather-extra {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .card .weather-box .weather-extra span {
+    margin: .5rem;
   }
 }
 
@@ -865,7 +924,8 @@
 .capitalmap {
   margin: 0 auto 5rem auto;
   padding: 0;
-  width: 1400px;
+  width: 90vw;
+  height: 90vh;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   display: -webkit-box;
@@ -1328,7 +1388,9 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-bottom: 5rem;
+  margin: 0 auto 5rem auto;
+  width: 90vw;
+  height: 100vh;
 }
 
 .geomap-container h1 {

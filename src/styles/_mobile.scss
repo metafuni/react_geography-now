@@ -30,6 +30,10 @@
         flex-direction: column;
         max-width: 500px;
     }
+
+    .capitalmap {
+        height: 80vh;
+    }
 }
 
 @media (max-width: 1000px) {
@@ -54,6 +58,18 @@
         width: 200%;
         height: 200%;
     }
+
+    //Explorer
+    .card {
+        .info-container, .info-modals, .map {
+            flex-direction: column;
+        }
+    }
+
+    //Quiz
+    .input {
+        position: relative !important;
+    }
 }
 
 @media (max-width: 750px) {
@@ -73,6 +89,69 @@
 
         div {
             margin: 2.5rem auto;
+        }
+    }
+
+    .capitalmap {
+        height: 70vh;
+    }
+}
+
+@media (max-width: 680px) {
+    .search {
+        .search-form {
+            input {
+                width: 60%;
+                margin: 0;
+            }
+            .x-button {
+                margin-right: .5rem;
+            }
+        }
+    }
+    
+    .card {
+        padding: .75rem !important;
+
+        h1 {
+            font-size: 3.75rem !important;
+        }
+
+        .country-header {
+            div {
+                flex-direction: column;
+                text-align: center;
+
+                h1 {
+                    margin: 1rem auto !important;
+                }
+            }
+        }
+
+        .country-images {
+            img {
+                width: 100%;
+            }
+        }
+
+        .countryimg {
+            display: none;
+        }
+
+        .info-card, .map-box, .borders-box, .weather-box {
+            width: 100% !important;
+        }
+
+        .weather-box {        
+            .weather-main, .weather-extra {
+                flex-direction: column;
+            }
+
+            .weather-extra {
+                span {
+                    margin: .5rem;
+                }
+            }
         }
     }
 }

@@ -17,7 +17,6 @@ const Weather = ({ country }) => {
             humidity: result.data.main.humidity,
             icon: result.data.weather[0].icon
         });
-        console.log(result.data);
     };
 
     useEffect(() => {

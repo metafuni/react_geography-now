@@ -13,6 +13,11 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
         };
     };
 
+    useEffect(() => {
+        console.log(countriesArray);
+        console.log(countries);
+    });
+
     return (
         <div className="results">
             <div className="results-top">

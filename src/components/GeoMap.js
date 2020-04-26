@@ -18,8 +18,10 @@ const GeoMap = ({ country }) => {
     const [loading, setLoading] = useState(true);
 
     const [viewport, setViewport] = useState({
-        width: 1400,
-        height: 700,
+        // width: 1400,
+        width: "100%",
+        // height: 700,
+        height: "100%",
         latitude: lat,
         longitude: lng,
         zoom: 2
@@ -74,7 +76,6 @@ const GeoMap = ({ country }) => {
             const ytURL = `https://www.googleapis.com/youtube/v3/search?key=${YT_API_KEY}&channelId=${channelID}&part=snippet,id&order=relevance&maxResults=10&q=Geography+Now!+${selectedCountry.name}`;
 
             const result = await Axios(ytURL);
-            console.log(result.data);
 
             if (result.data.items[0]) {
                 setVideoURL(`https://www.youtube.com/embed/${result.data.items[0].id.videoId}`);
@@ -104,10 +105,6 @@ const GeoMap = ({ country }) => {
     useEffect(() => {
         fetchYoutube();
     }, [selectedCountry]);
-
-    useEffect(() => {
-        console.log(videoURL)
-    }, [videoURL]);
 
     return (
         <>
