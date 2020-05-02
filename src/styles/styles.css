@@ -51,7 +51,7 @@
             flex-direction: column;
   }
   .capitalmap .capital-info {
-    max-width: 275px !important;
+    max-width: 250px !important;
   }
   .capitalmap .capital-info .teleport-data {
     -webkit-box-orient: vertical;
@@ -200,7 +200,7 @@
     width: 90vw !important;
   }
   .youtube-popup {
-    width: 275px !important;
+    width: 250px !important;
   }
 }
 
@@ -287,10 +287,11 @@
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .home .overlay {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -338,7 +339,7 @@
 
 .home .overlay .header-paragraph {
   font-size: 1.75rem;
-  margin: 7.5rem 0 2.5rem 0;
+  margin: 5rem 0 2.5rem 0;
   text-align: center;
 }
 
@@ -1527,7 +1528,7 @@
 }
 
 body {
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .btn {

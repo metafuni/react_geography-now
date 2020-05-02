@@ -5,9 +5,10 @@
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
-  overflow-x: hidden;
+  overflow: hidden;
 
   .overlay {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -44,7 +45,7 @@
 
     .header-paragraph {
       font-size: 1.75rem;
-      margin: 7.5rem 0 2.5rem 0;
+      margin: 5rem 0 2.5rem 0;
       text-align: center;
 
       p {
