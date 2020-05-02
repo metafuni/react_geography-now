@@ -64,15 +64,17 @@ const Home = () => {
             </div>
 
             <div className="video-container">
+                <div className="youtube-video">
                 <iframe 
-                    width="790" 
-                    height="460" 
+                    width="100%"
+                    height="100%" 
                     title="Geography Now! reached 2 Million subscribers Youtube video"
                     src="https://www.youtube.com/embed/_GyOH5_b4Xg?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1" 
                     frameBorder="0" 
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                     allowFullScreen>
                 </iframe>
+                </div>
             </div>
 
             <a href="https://www.youtube.com/user/GeographyNow" target="blank" title="Geography Now Youtube Channel">

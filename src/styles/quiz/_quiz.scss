@@ -22,6 +22,14 @@
     position: sticky;
     top: 0;
 
+    .all-buttons {
+      display: flex;
+
+      .right-buttons {
+        display: flex;
+      }
+    }
+
     input {
       background: white;
       transform: scale(1.3);

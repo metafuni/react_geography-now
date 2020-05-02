@@ -149,7 +149,44 @@ const Input = ({ checkAnswer, score, resetScore }) => {
                     <input id="inputbox" type="text" placeholder="Enter country..." pattern="[A-Za-z]" autoComplete="off"></input> :
                     <input id="inputbox" placeholder="Enter country..." disabled style={{ backgroundColor: '#f6fbff' }}></input>}
             </form>
-            <div className="quiz-buttons">
+            <div className="all-buttons">
+                <div className="quiz-buttons">
+                    <button className="btn btn-question" onClick={() => {
+                        if (document.querySelector('.question-box').style.display === 'block') {
+                            document.querySelector('.question-box').style.display = 'none';
+                            document.querySelector('.btn-question').style.backgroundColor = 'white';
+                            document.querySelector('.fa-question').style.color = '#01aaad';
+                        } else {
+                            document.querySelector('.question-box').style.display = 'block';
+                            document.querySelector('.btn-question').style.backgroundColor = '#01aaad';
+                            document.querySelector('.fa-question').style.color = 'white';
+                        }
+                    }}><i className="fas fa-question"></i></button>
+                    <div className="question-box">
+                        <br></br>
+                        <h3>Guess all the countries and territories of the world</h3><br></br>
+                        <p>Enter your answers in the <span style={{ fontStyle: 'italic', color: '#5757579d' }}>"Enter country... "</span> input-field, whether it's in English or your own language. <br></br><br></br>
+                        There is no specific order, just try to guess all the countries and independent territories in the world within the time limit. <br></br><br></br>Once you hit the stop button after playing we'll reveal all the countries for you. <br></br><br></br>Good luck!<br></br>
+                        </p>
+                    </div>
+                    <button className="btn btn-pause" onClick={updatePause}><i className="fas fa-pause"></i></button>
+                    <button className="btn btn-stop" onClick={updateStop}><i className="fas fa-stop"></i></button>
+                </div>
+                <div className="right-buttons">
+                    <div className="start-button">
+                        <button onClick={startQuiz} className="btn btn-start"><i className="fas fa-play"></i></button>
+                    </div>
+                    {playing && !paused && !stop ?
+                        <div className="quiz-timer">
+                            {minutes < 10 ? <>0{minutes}</> : minutes}:{seconds < 10 ? <>0{seconds}</> : seconds}
+                        </div> :
+                        <div className="quiz-timer" style={{ backgroundColor: '#f6fbff', color: 'grey' }}>
+                            {minutes < 10 ? <>0{minutes}</> : minutes}:{seconds < 10 ? <>0{seconds}</> : seconds}
+                        </div>
+                    }
+                </div>
+            </div>
+            {/* <div className="quiz-buttons">
                 <button className="btn btn-question" onClick={() => {
                     if (document.querySelector('.question-box').style.display === 'block') {
                         document.querySelector('.question-box').style.display = 'none';
@@ -171,7 +208,20 @@ const Input = ({ checkAnswer, score, resetScore }) => {
                 <button className="btn btn-pause" onClick={updatePause}><i className="fas fa-pause"></i></button>
                 <button className="btn btn-stop" onClick={updateStop}><i className="fas fa-stop"></i></button>
             </div>
-            <div className="start-button">
+            <div className="right-buttons">
+                <div className="start-button">
+                    <button onClick={startQuiz} className="btn btn-start"><i className="fas fa-play"></i></button>
+                </div>
+                {playing && !paused && !stop ?
+                    <div className="quiz-timer">
+                        {minutes < 10 ? <>0{minutes}</> : minutes}:{seconds < 10 ? <>0{seconds}</> : seconds}
+                    </div> :
+                    <div className="quiz-timer" style={{ backgroundColor: '#f6fbff', color: 'grey' }}>
+                        {minutes < 10 ? <>0{minutes}</> : minutes}:{seconds < 10 ? <>0{seconds}</> : seconds}
+                    </div>
+                }
+            </div> */}
+            {/* <div className="start-button">
                 <button onClick={startQuiz} className="btn btn-start"><i className="fas fa-play"></i></button>
             </div>
             {playing && !paused && !stop ?
@@ -181,7 +231,7 @@ const Input = ({ checkAnswer, score, resetScore }) => {
                 <div className="quiz-timer" style={{ backgroundColor: '#f6fbff', color: 'grey' }}>
                     {minutes < 10 ? <>0{minutes}</> : minutes}:{seconds < 10 ? <>0{seconds}</> : seconds}
                 </div>
-            }
+            } */}
 
 
             {/* testcode */}

@@ -9,18 +9,6 @@
   .input #inputbox {
     width: 70vw;
     max-width: 500px;
-    margin: 0;
-  }
-  .input .question-box {
-    left: -70px;
-    max-width: 300px;
-    margin: auto;
-    z-index: 300;
-  }
-  .input .quiz-buttons {
-    margin: 1rem auto;
-  }
-  .input .start-button {
     margin-bottom: 1.5rem;
   }
   .results-top, .results-bottom {
@@ -62,6 +50,21 @@
         -ms-flex-direction: column;
             flex-direction: column;
   }
+  .capitalmap .capital-info {
+    max-width: 275px !important;
+  }
+  .capitalmap .capital-info .teleport-data {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .capitalmap .capital-info .teleport-data .bar {
+    height: 20px !important;
+  }
+  .capitalmap .capital-info .teleport-data .charts-container .chart span {
+    top: 2px !important;
+  }
   .input {
     position: relative !important;
   }
@@ -74,6 +77,11 @@
         -ms-flex-direction: column;
             flex-direction: column;
     text-align: center;
+  }
+  .navbar ul {
+    -webkit-box-pack: space-evenly !important;
+        -ms-flex-pack: space-evenly !important;
+            justify-content: space-evenly !important;
   }
   .navbar ul li {
     margin: 0 .25rem !important;
@@ -93,6 +101,52 @@
 }
 
 @media (max-width: 680px) {
+  .home .header {
+    text-align: center;
+  }
+  .home .header .elearn {
+    position: relative !important;
+    -webkit-transform: translate(0, 0) !important;
+            transform: translate(0, 0) !important;
+    left: 0;
+  }
+  .home .header .elearn .e {
+    text-align: right !important;
+    position: relative;
+    top: 0;
+    left: 15%;
+  }
+  .home .header .elearn .fa-graduation-cap {
+    position: relative !important;
+    left: -60px !important;
+    bottom: 28px !important;
+  }
+  .home .header img {
+    margin: .5rem auto;
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+  }
+  .input .all-buttons {
+    width: 90vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .input .quiz-timer {
+    -webkit-transform: scale(1) !important;
+            transform: scale(1) !important;
+    margin: 0 .2rem !important;
+  }
+  .input .all-buttons button {
+    padding: .4rem .7rem;
+  }
+  .video-container .youtube-video {
+    width: 90vw !important;
+    height: 50vw !important;
+  }
   .search .search-form input {
     width: 60%;
     margin: 0;
@@ -133,6 +187,20 @@
   }
   .card .weather-box .weather-extra span {
     margin: .5rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .navbar ul {
+    -webkit-box-pack: justify !important;
+        -ms-flex-pack: justify !important;
+            justify-content: space-between !important;
+  }
+  .input .quiz-buttons .question-box {
+    width: 90vw !important;
+  }
+  .youtube-popup {
+    width: 275px !important;
   }
 }
 
@@ -369,11 +437,18 @@
 
 .video-container {
   text-align: center;
-  background: #f6fbff;
+  margin: 0 auto 5rem auto;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f6fbff), to(white));
+  background: linear-gradient(#f6fbff, white);
 }
 
-.video-container iframe {
-  margin: 7.5rem auto;
+.video-container .youtube-video {
+  width: 65vw;
+  height: 35vw;
+  margin: auto;
+}
+
+.video-container .youtube-video iframe {
   -webkit-box-shadow: -4px -4px 7.5px rgba(0, 0, 0, 0.75), 4px 4px 7.5px rgba(68, 49, 49, 0.75), 4px -4px 7.5px rgba(0, 0, 0, 0.75), -4px 4px 7.5px rgba(0, 0, 0, 0.75);
           box-shadow: -4px -4px 7.5px rgba(0, 0, 0, 0.75), 4px 4px 7.5px rgba(68, 49, 49, 0.75), 4px -4px 7.5px rgba(0, 0, 0, 0.75), -4px 4px 7.5px rgba(0, 0, 0, 0.75);
 }
@@ -1080,6 +1155,18 @@
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+}
+
+.quiz .input .all-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.quiz .input .all-buttons .right-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .quiz .input input {

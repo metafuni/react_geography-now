@@ -30,29 +30,36 @@ const Quiz = () => {
             });
 
             //add alternative/easier names for countries
-            if (el.alpha2Code === 'SY') {
-                countriesArray[countriesArray.length - 1].name.push("Syria");
+            switch (el.alpha2Code) {
+                case 'SY':
+                    countriesArray[countriesArray.length - 1].name.push("Syria");
+                    break;
+                case 'VG':
+                    countriesArray[countriesArray.length - 1].name.push("Virgin Islands");
+                    break;
+                case 'VI':
+                    countriesArray[countriesArray.length - 1].name.push("American Virgin Islands");
+                    countriesArray[countriesArray.length - 1].name.push("US Virgin Islands");
+                    break;
+                case 'BL':
+                    countriesArray[countriesArray.length - 1].name.push("Saint Barthelemy");
+                    break;
+                case 'KR':
+                    countriesArray[countriesArray.length - 1].name.push("South Korea");
+                    break;
+                case 'KP':
+                    countriesArray[countriesArray.length - 1].name.push("North Korea");
+                    break;
+                case 'CC':
+                    countriesArray[countriesArray.length - 1].name.push("Cocos Islands");
+                    break;
+                case 'CF':
+                    countriesArray[countriesArray.length - 1].name.push("CAR");
+                    break;
+                case 'GW':
+                    countriesArray[countriesArray.length - 1].name.push("Guinea Bissau");
+                    break;
             };
-            if (el.alpha2Code === 'VG') {
-                countriesArray[countriesArray.length - 1].name.push("Virgin Islands");
-            };
-            if (el.alpha2Code === 'VI') {
-                countriesArray[countriesArray.length - 1].name.push("American Virgin Islands");
-                countriesArray[countriesArray.length - 1].name.push("US Virgin Islands");
-            };
-            if (el.alpha2Code === 'BL') {
-                countriesArray[countriesArray.length - 1].name.push("Saint Barthelemy");
-            };
-            if (el.alpha2Code === 'KR') {
-                countriesArray[countriesArray.length - 1].name.push("South Korea");
-            };
-            if (el.alpha2Code === 'KP') {
-                countriesArray[countriesArray.length - 1].name.push("North Korea");
-            };
-            if (el.alpha2Code === 'CC') {
-                countriesArray[countriesArray.length - 1].name.push("Cocos Islands");
-            };
-            //testcode
 
             let altArray = el.altSpellings;
             altArray.shift();
@@ -101,6 +108,19 @@ const Quiz = () => {
                     setScore(score + 1);
                     setAnswers([...answers, countriesArray[i]]);
                     e.target.value = '';
+
+                    //add animation green color when answer is correct
+                    const input = document.getElementById('inputbox');
+                    input.style.animationName = 'score';
+                    setTimeout(() => {
+                        input.style.animationName = 'none';
+                    }, 1000);
+
+                    const scorebox = document.querySelector(".score-box");
+                    scorebox.style.backgroundColor = '#3ab54a';
+                    setTimeout(() => {
+                        scorebox.style.backgroundColor = '#01aaad';
+                    }, 1000);
                 };
 
                 //answer correct, in case country existing on map

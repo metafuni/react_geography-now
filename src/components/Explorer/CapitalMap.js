@@ -102,7 +102,29 @@ const CapitalMap = ({ country }) => {
     };
 
     const fetchCountryTeleportInfo = async () => {
-        const scoresresult = await Axios(`https://api.teleport.org/api/urban_areas/slug:${country.capital.toLowerCase()}/scores/`);
+        // console.log(country.capital.toLowerCase() + lat + ' ' + lng);
+        // const nearestCity = await Axios(`https://api.teleport.org/api/locations/${lat},${lng}/`);
+        // console.log(nearestCity.data._embedded[Object.keys(nearestCity.data._embedded)[0]][0]._links[Object.keys(nearestCity.data._embedded[Object.keys(nearestCity.data._embedded)[0]][0]._links)[0]].name);
+        // let countryCapitalName = nearestCity.data._embedded[Object.keys(nearestCity.data._embedded)[0]][0]._links[Object.keys(nearestCity.data._embedded[Object.keys(nearestCity.data._embedded)[0]][0]._links)[0]].name.toLowerCase();
+        // const nearestCityURL = nearestCity.data._embedded[Object.keys(nearestCity.data._embedded)[0]][0]._links[Object.keys(nearestCity.data._embedded[Object.keys(nearestCity.data._embedded)[0]][0]._links)[0]].href;
+
+        // const nearestCityData = await Axios(`${nearestCityURL}`);
+        // console.log(nearestCityData.data.geoname_id);
+        // const geonameId = nearestCityData.data.geoname_id;
+        // const geonameName = nearestCityData.data.name;
+        // console.log(typeof geonameId);
+
+        let searchName = country.capital.toLowerCase();
+        searchName = searchName.replace(/\s+/g, '-').toLowerCase();
+
+        if (country.capital === "Washington, D.C.") {
+            searchName = "washington-dc";
+        } if (country.capital ==="Asunción") {
+            searchName = "asuncion";
+        };
+
+        const scoresresult = await Axios(`https://api.teleport.org/api/urban_areas/slug:${searchName}/scores/`);
+        console.log(scoresresult.data);
         if (scoresresult.data.summary) {
             document.getElementById('teleport-info').innerHTML = scoresresult.data.summary;
             setTeleportData(teleportData => [...teleportData, {
@@ -119,7 +141,7 @@ const CapitalMap = ({ country }) => {
             // fetchCountryWikiInfo();
         };
 
-        const imgresult = await Axios(`https://api.teleport.org/api/urban_areas/slug:${country.capital.toLowerCase()}/images/`);
+        const imgresult = await Axios(`https://api.teleport.org/api/urban_areas/slug:${searchName}/images/`);
         if (imgresult.data.photos[0].image.web) {
             setTeleportImg(teleportImg => [...teleportImg, { img: imgresult.data.photos[0].image.web }]);
         };
@@ -173,8 +195,8 @@ const CapitalMap = ({ country }) => {
                                 <span> {country.name}</span> {country.capital && <span style={{ fontStyle: 'italic' }}>({country.capital})</span>}
                             </h3>
 
-                            <div id="wiki-info"></div>
-                            <div className="wikipedia-footer" style={{fontStyle: 'italic', fontSize: '.65rem'}}>(wikipedia.org)</div>
+                            {/* <div id="wiki-info"></div> */}
+                            {/* <div className="wikipedia-footer" style={{fontStyle: 'italic', fontSize: '.65rem'}}>(wikipedia.org)</div> */}
 
                             <div id="teleport-info"></div>
                             {teleportImg[0] && <img src={teleportImg[0].img} alt={country.capital} width="100%"></img>}

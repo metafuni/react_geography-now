@@ -136,14 +136,20 @@
 //Video Container
 .video-container {
   text-align: center;
-  background: $bluegrey;
-  
-  iframe {
-    margin: 7.5rem auto;
-    box-shadow: -4px -4px 7.5px rgba(0, 0, 0, 0.75),
-        4px 4px 7.5px rgba(68, 49, 49, 0.75),
-        4px -4px 7.5px rgba(0, 0, 0, 0.75),
-        -4px 4px 7.5px rgba(0, 0, 0, 0.75);
+  margin: 0 auto 5rem auto;
+  background: linear-gradient(#f6fbff, white);
+
+  .youtube-video {
+    width: 65vw;
+    height: 35vw;
+    margin: auto;
+
+    iframe {
+      box-shadow: -4px -4px 7.5px rgba(0, 0, 0, 0.75),
+          4px 4px 7.5px rgba(68, 49, 49, 0.75),
+          4px -4px 7.5px rgba(0, 0, 0, 0.75),
+          -4px 4px 7.5px rgba(0, 0, 0, 0.75);
+    }
   }
 }
 
