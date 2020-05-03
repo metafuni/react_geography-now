@@ -79,7 +79,7 @@ const Input = ({ checkAnswer, score, resetScore }) => {
             const allElements = document.querySelectorAll("path");
             allElements.forEach(el => {
                 if (el.getAttribute("fill") !== '#3ab54a') {
-                    el.setAttribute("fill", "#1c166be6");
+                    el.setAttribute("fill", "#ff3c00");
                 };
             });
         };
