@@ -100,7 +100,7 @@ const Input = ({ checkAnswer, score, resetScore }) => {
         //time running low
         if (minutes === 0) {
             //orange box shadow time box animation
-            document.querySelector(".quiz-timer").style.color = 'orange';
+            document.querySelector(".quiz-timer").style.color = '#ff6600';
             document.querySelector(".quiz-timer").style.animationName = 'timelow';
         };
         if (minutes === 0 && seconds < 15) {
@@ -163,11 +163,10 @@ const Input = ({ checkAnswer, score, resetScore }) => {
                         }
                     }}><i className="fas fa-question"></i></button>
                     <div className="question-box">
-                        <br></br>
-                        <h3>Guess all the countries and territories of the world</h3><br></br>
-                        <p>Enter your answers in the <span style={{ fontStyle: 'italic', color: '#5757579d' }}>"Enter country... "</span> input-field, whether it's in English or your own language. <br></br><br></br>
-                        There is no specific order, just try to guess all the countries and independent territories in the world within the time limit. <br></br><br></br>Once you hit the stop button after playing we'll reveal all the countries for you. <br></br><br></br>Good luck!<br></br>
-                        </p>
+                        <p>There's no specific order, just try to guess all the countries and independent territories in the world within the time limit</p><br></br>
+                        <p>Type the countries in English or your own language</p><br></br>
+                        <p>Capital letters and punctuation don't matter here</p>
+
                     </div>
                     <button className="btn btn-pause" onClick={updatePause}><i className="fas fa-pause"></i></button>
                     <button className="btn btn-stop" onClick={updateStop}><i className="fas fa-stop"></i></button>

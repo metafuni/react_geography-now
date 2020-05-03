@@ -12,14 +12,11 @@ const CapitalMap = ({ country }) => {
     const [lng, setLng] = useState();
     const [selected, setSelected] = useState(false);
 
-    const [teleportUrl, setTeleportUrl] = useState(`https://api.teleport.org/api/urban_areas/slug:${country.capital.toLowerCase()}/scores/`);
     const [teleportImg, setTeleportImg] = useState([]);
     const [teleportData, setTeleportData] = useState([]);
 
     const [viewport, setViewport] = useState({
-        // width: 1400,
         width: "100%",
-        // height: 700,
         height: "100%",
         latitude: lat,
         longitude: lng,
@@ -102,21 +99,11 @@ const CapitalMap = ({ country }) => {
     };
 
     const fetchCountryTeleportInfo = async () => {
-        // console.log(country.capital.toLowerCase() + lat + ' ' + lng);
-        // const nearestCity = await Axios(`https://api.teleport.org/api/locations/${lat},${lng}/`);
-        // console.log(nearestCity.data._embedded[Object.keys(nearestCity.data._embedded)[0]][0]._links[Object.keys(nearestCity.data._embedded[Object.keys(nearestCity.data._embedded)[0]][0]._links)[0]].name);
-        // let countryCapitalName = nearestCity.data._embedded[Object.keys(nearestCity.data._embedded)[0]][0]._links[Object.keys(nearestCity.data._embedded[Object.keys(nearestCity.data._embedded)[0]][0]._links)[0]].name.toLowerCase();
-        // const nearestCityURL = nearestCity.data._embedded[Object.keys(nearestCity.data._embedded)[0]][0]._links[Object.keys(nearestCity.data._embedded[Object.keys(nearestCity.data._embedded)[0]][0]._links)[0]].href;
-
-        // const nearestCityData = await Axios(`${nearestCityURL}`);
-        // console.log(nearestCityData.data.geoname_id);
-        // const geonameId = nearestCityData.data.geoname_id;
-        // const geonameName = nearestCityData.data.name;
-        // console.log(typeof geonameId);
-
+        //Teleport uses cities with spaces as 'dashed url', hence replacing the spaces with dash via regex
         let searchName = country.capital.toLowerCase();
         searchName = searchName.replace(/\s+/g, '-').toLowerCase();
 
+        //exceptions (special characters)
         if (country.capital === "Washington, D.C.") {
             searchName = "washington-dc";
         } if (country.capital ==="Asunción") {

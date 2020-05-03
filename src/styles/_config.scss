@@ -11,3 +11,27 @@ $green: #3ab54a;
 $primary-font: 'Work Sans', sans-serif;
 $secondary-font: 'Varela Round', sans-serif;
 $third-font: 'Pacifico', cursive;
+
+.mapboxgl-popup {
+    left: 0;
+    top: 0;
+}
+
+.mapboxgl-popup-content {
+    padding: .45rem .45rem .3rem .45rem;
+}
+
+.mapboxgl-popup-close-button {
+    transform: scale(1.85) !important;
+    margin: .5rem;
+    padding: 0 .25rem;
+    color: $darkred;
+    background: white;
+    border-radius: 50%;
+    z-index: 15;
+
+    &:hover {
+        color: $red;
+        background: white;
+    }
+}

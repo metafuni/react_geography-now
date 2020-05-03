@@ -72,8 +72,8 @@ const Quiz = () => {
     const checkAnswer = (e) => {
         e.preventDefault();
 
-        //define regular expression input string
-        let inputString = new RegExp(e.target.value, "i");
+        //define regular expression input string, ignore spaces and capital letters
+        let inputString = new RegExp(e.target.value.replace(/\s/g, ''), "i");
 
         // loop through all country names in array and match regular expression if exists
         for (let i = 0; i < countriesArray.length; i++) {
@@ -209,6 +209,12 @@ const Quiz = () => {
                     </span>
                     Quiz
                 </h1>
+                </div>
+                <div style={{padding: '1rem'}}>
+                <h2>Guess all the countries and territories of the world</h2><br></br>
+                <p>Time to test your geographical knowledge and see how many you can guess! </p><br></br>
+                <p style={{maxWidth: '900px', margin: '0 auto'}}>Type your answers in the <span style={{ fontStyle: 'italic', color: 'grey' }}>Enter country...</span> field, the countries that you guessed will be marked <span style={{ color: '#3ab54a' }}>green</span> on the map.                 Have a look below the map to keep track of all your answers. Once you hit the stop button after playing we'll reveal all the countries for you. <br></br><br></br>Good luck!<br></br>
+                </p>
                 </div>
                 <Input checkAnswer={checkAnswer} score={score} resetScore={resetScore} />
                 <div className="score-box">score: <span style={{ color: 'white' }} id="score">{score} / 250</span></div>

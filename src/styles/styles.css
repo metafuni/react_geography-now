@@ -1,3 +1,28 @@
+.mapboxgl-popup {
+  left: 0;
+  top: 0;
+}
+
+.mapboxgl-popup-content {
+  padding: .45rem .45rem .3rem .45rem;
+}
+
+.mapboxgl-popup-close-button {
+  -webkit-transform: scale(1.85) !important;
+          transform: scale(1.85) !important;
+  margin: .5rem;
+  padding: 0 .25rem;
+  color: #691a17;
+  background: white;
+  border-radius: 50%;
+  z-index: 15;
+}
+
+.mapboxgl-popup-close-button:hover {
+  color: #c4302b;
+  background: white;
+}
+
 @media (max-width: 1100px) {
   .input {
     -webkit-box-orient: vertical;
@@ -1528,7 +1553,7 @@
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .btn {
