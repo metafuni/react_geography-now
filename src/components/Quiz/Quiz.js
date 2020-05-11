@@ -29,10 +29,56 @@ const Quiz = () => {
                 completed: false
             });
 
-            //add alternative/easier names for countries
+            //add alternative/easier names for countries to make quiz easier to do, we don't need spaces as regex will exclude spaces
+            // IS IT REALLY NEEDED TO HAVE SO MANY?? NO-->USE REGULAR EXPRESSION FOR YOUR INPUT TO REMOVE SPACES BEFORE FIRST WORD, 
+            // AND EXCLUDE DOUBLE SPACES
             switch (el.alpha2Code) {
-                case 'SY':
-                    countriesArray[countriesArray.length - 1].name.push("Syria");
+                //Europe
+                case 'GB':
+                    countriesArray[countriesArray.length - 1].name.push("GB");
+                    break;
+                case 'MK':
+                    countriesArray[countriesArray.length - 1].name.push("FYROM");
+                    countriesArray[countriesArray.length - 1].name.push("North Macedonia");
+                    break;
+                case 'BA':
+                    countriesArray[countriesArray.length - 1].name.push("Bosnia");
+                    countriesArray[countriesArray.length - 1].name.push("Herzegovina");
+                    break;
+                case 'CZ':
+                    countriesArray[countriesArray.length - 1].name.push("Czechia");
+                    break;
+                //Africa
+                case 'CF':
+                    countriesArray[countriesArray.length - 1].name.push("CAR");
+                    break;
+                case 'CD':
+                    countriesArray[countriesArray.length - 1].name.push("DRC");
+                    break;
+                case 'GW':
+                    countriesArray[countriesArray.length - 1].name.push("Bissau");
+                    countriesArray[countriesArray.length - 1].name.push("Guinea Bissau");
+                    break;
+                //Americas
+                case 'US':
+                    countriesArray[countriesArray.length - 1].name.push("United States");
+                    countriesArray[countriesArray.length - 1].name.push("US");
+                    countriesArray[countriesArray.length - 1].name.push("U.S");
+                    break;
+                case 'UM':
+                    countriesArray[countriesArray.length - 1].name.push("United States Minor Outlying Islands");
+                    countriesArray[countriesArray.length - 1].name.push("US Minor Outlying Islands");
+                    countriesArray[countriesArray.length - 1].name.push("US Minor Islands");
+                    countriesArray[countriesArray.length - 1].name.push("U.S. Minor Outlying Islands");
+                    countriesArray[countriesArray.length - 1].name.push("U.S. Minor Islands");
+                    countriesArray[countriesArray.length - 1].name.push("U.S Minor Outlying Islands");
+                    countriesArray[countriesArray.length - 1].name.push("U.S Minor Islands");
+                    countriesArray[countriesArray.length - 1].name.push("United States Minor Islands");
+                    countriesArray[countriesArray.length - 1].name.push("Minor Outlying Islands");
+                    break;
+                case 'FK':
+                    countriesArray[countriesArray.length - 1].name.push("Falkland");
+                    countriesArray[countriesArray.length - 1].name.push("Malvinas");
                     break;
                 case 'VG':
                     countriesArray[countriesArray.length - 1].name.push("Virgin Islands");
@@ -40,9 +86,27 @@ const Quiz = () => {
                 case 'VI':
                     countriesArray[countriesArray.length - 1].name.push("American Virgin Islands");
                     countriesArray[countriesArray.length - 1].name.push("US Virgin Islands");
+                    countriesArray[countriesArray.length - 1].name.push("United States Virgin Islands");
+                    countriesArray[countriesArray.length - 1].name.push("U.S Virgin Islands");
+                    countriesArray[countriesArray.length - 1].name.push("U.S. Virgi nIslands");
                     break;
-                case 'BL':
-                    countriesArray[countriesArray.length - 1].name.push("Saint Barthelemy");
+                case 'TT':
+                    countriesArray[countriesArray.length - 1].name.push("Trinidad");
+                    countriesArray[countriesArray.length - 1].name.push("Tobago");
+                    break;
+                case 'AG':
+                    countriesArray[countriesArray.length - 1].name.push("Antigua");
+                    countriesArray[countriesArray.length - 1].name.push("Barbuda");
+                    break;
+                case 'BQ':
+                    countriesArray[countriesArray.length - 1].name.push("Sint Eustatius");
+                    countriesArray[countriesArray.length - 1].name.push("Saint Eustatius");
+                    countriesArray[countriesArray.length - 1].name.push("St Eustatius");
+                    countriesArray[countriesArray.length - 1].name.push("Saba");
+                    break;
+                //Asia
+                case 'SY':
+                    countriesArray[countriesArray.length - 1].name.push("Syria");
                     break;
                 case 'KR':
                     countriesArray[countriesArray.length - 1].name.push("South Korea");
@@ -50,15 +114,36 @@ const Quiz = () => {
                 case 'KP':
                     countriesArray[countriesArray.length - 1].name.push("North Korea");
                     break;
+                //Islands
+                case 'BL':
+                    countriesArray[countriesArray.length - 1].name.push("Saint Barthelemy");
+                    countriesArray[countriesArray.length - 1].name.push("St Barthelemy");
+                    countriesArray[countriesArray.length - 1].name.push("Barthelemy");
+                    break;
+                case 'KN':
+                    countriesArray[countriesArray.length - 1].name.push("Saint Kitts");
+                    countriesArray[countriesArray.length - 1].name.push("Saint Nevis");
+                    countriesArray[countriesArray.length - 1].name.push("Kitts and Nevis");
+                    countriesArray[countriesArray.length - 1].name.push("St Kitts");
+                    break;
+                case 'LC':
+                    countriesArray[countriesArray.length - 1].name.push("St Lucia");
+                    break;
+                case 'SH':
+                    countriesArray[countriesArray.length - 1].name.push("St Helena");
+                    break;
+                case 'MF':
+                    countriesArray[countriesArray.length - 1].name.push("St Martin");
+                    break;
+                case 'GS':
+                    countriesArray[countriesArray.length - 1].name.push("Sandwich Islands");
+                    break;
                 case 'CC':
                     countriesArray[countriesArray.length - 1].name.push("Cocos Islands");
                     break;
-                case 'CF':
-                    countriesArray[countriesArray.length - 1].name.push("CAR");
-                    break;
-                case 'GW':
-                    countriesArray[countriesArray.length - 1].name.push("Guinea Bissau");
-                    break;
+                case 'TC':
+                    countriesArray[countriesArray.length - 1].name.push("Turks Islands");
+                    countriesArray[countriesArray.length - 1].name.push("Caicos Islands");
             };
 
             let altArray = el.altSpellings;
@@ -72,8 +157,14 @@ const Quiz = () => {
     const checkAnswer = (e) => {
         e.preventDefault();
 
-        //define regular expression input string, ignore spaces and capital letters
-        let inputString = new RegExp(e.target.value.replace(/\s/g, ''), "i");
+        //define regular expression input string, case insensitive, remove spaces before 'sentence' and replace multiple spaces with single space 
+        // let inputString = new RegExp(e.target.value.replace(/\s/g, ''), "i");
+        let inputString = new RegExp(e.target.value.trim().replace(/\s\s+/g, ' '), "i");
+        //TESTESTEST
+        // let inputString = new RegExp(e.target.value.replace(/^\s+|\s+$/g, ""));
+        // let trimmedString = e.target.value.trim(); //removes double spaces, case insensitive
+        // let inputString = new RegExp(trimmedString.replace(/\s\s+/g, ' ', "i"));
+
 
         // loop through all country names in array and match regular expression if exists
         for (let i = 0; i < countriesArray.length; i++) {
@@ -195,6 +286,8 @@ const Quiz = () => {
         getCountries();
     }, [resetScore]);
 
+    useEffect(() => { console.log(answers) }, [answers]);
+
     return (
         <>
             {loading ? <div className="loading"><span className="loading-icon"><img src={Logo} alt="Geography Now! Loading"></img></span></div> : null}
@@ -210,11 +303,11 @@ const Quiz = () => {
                     Quiz
                 </h1>
                 </div>
-                <div style={{padding: '1rem'}}>
-                <h2>Guess all the countries and territories of the world</h2><br></br>
-                <p>Time to test your geographical knowledge and see how many you can guess! </p><br></br>
-                <p style={{maxWidth: '900px', margin: '0 auto'}}>Type your answers in the <span style={{ fontStyle: 'italic', color: 'grey' }}>Enter country...</span> field, the countries that you guessed will be marked <span style={{ color: '#3ab54a' }}>green</span> on the map.                 Have a look below the map to keep track of all your answers. Once you hit the stop button after playing we'll reveal all the countries for you. <br></br><br></br>Good luck!<br></br>
-                </p>
+                <div style={{ padding: '1rem' }}>
+                    <h2>Guess all the countries and territories of the world</h2><br></br>
+                    <p>Time to test your geographical knowledge and see how many you can guess! </p><br></br>
+                    <p style={{ maxWidth: '900px', margin: '0 auto' }}>Type your answers in the <span style={{ fontStyle: 'italic', color: 'grey' }}>Enter country...</span> field, the countries that you guessed will be marked <span style={{ color: '#3ab54a' }}>green</span> on the map.                 Have a look below the map to keep track of all your answers. Once you hit the stop button after playing we'll reveal all the countries for you. <br></br><br></br>Good luck!<br></br>
+                    </p>
                 </div>
                 <Input checkAnswer={checkAnswer} score={score} resetScore={resetScore} />
                 <div className="score-box">score: <span style={{ color: 'white' }} id="score">{score} / 250</span></div>

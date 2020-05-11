@@ -156,10 +156,21 @@ const GeoMap = ({ country }) => {
                         >
                             {/* <h3>{selectedCountry.name} <span style={{ fontStyle: 'italic' }}>({selectedCountry.capital})</span></h3> */}
                             {videoURL && setSelectedCountry ?
+                                // <div className="youtube-container">
+                                //     <iframe
+                                //         width="450"
+                                //         height="250"
+                                //         title="Geography Now! Episode"
+                                //         src={videoURL}
+                                //         frameBorder="0"
+                                //         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                //         allowFullScreen>
+                                //     </iframe>
+                                // </div>
                                 <div className="youtube-container">
                                     <iframe
-                                        width="450"
-                                        height="250"
+                                        width="100%"
+                                        height="100%"
                                         title="Geography Now! Episode"
                                         src={videoURL}
                                         frameBorder="0"

@@ -76,22 +76,6 @@
     }
   }
 
-  .info-modals {
-    display: flex;
-    justify-content: space-evenly;
-    margin-bottom: 1.75rem;
-
-    .info-card {
-      span {
-        color: $green;
-      }
-    }
-
-    .timezone-info, .telephone-info, .language-info, .regionalbloc {
-      display: none;
-    }
-  }
-
   .info-card {
     width: 375px;
     padding: 2.5rem;
@@ -104,6 +88,27 @@
     text-align: center;
     box-shadow: -6px -6px 20px rgb(255, 255, 255),
       6px 6px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .info-modals {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 1.75rem;
+
+    .info-card {
+      font-size: 1.1rem;
+
+      span {
+        color: $green;
+      }
+      i {
+        margin-bottom: .75rem;
+      }
+    }
+
+    .timezone-info, .telephone-info, .language-info, .regionalbloc {
+      display: none;
+    }
   }
 
   div {

@@ -164,7 +164,7 @@ const Input = ({ checkAnswer, score, resetScore }) => {
                     }}><i className="fas fa-question"></i></button>
                     <div className="question-box">
                         <p>There's no specific order, just try to guess all the countries and independent territories in the world within the time limit</p><br></br>
-                        <p>Type the countries in English or your own language</p><br></br>
+                        <p>Other languages will be supported soon, but for now the quiz is in English language</p><br></br>
                         <p>Capital letters and punctuation don't matter here</p>
 
                     </div>

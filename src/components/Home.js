@@ -57,7 +57,7 @@ const Home = () => {
                     </div>
                     <h2>Quiz</h2>
                     <p>
-                        You think your geographicational knowledge is up to date now?<br></br> Well... let's see if you can pass the <span style={{ textTransform: 'italic' }}>Geography Now!</span> quiz.
+                        You think your <span>Geography Now!</span> knowledge is up to date now?<br></br> Well... let's see if you can pass the <span style={{ textTransform: 'italic' }}>Geography Now!</span> quiz.
                     </p><br></br>
                     <NavLink to="/quiz" className="btn btn-m">take the Quiz</NavLink>
                 </div>

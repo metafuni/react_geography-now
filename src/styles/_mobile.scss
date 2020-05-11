@@ -1,269 +1,269 @@
 @media (max-width: 1100px) {
+  .input {
+    flex-direction: column;
+    padding: 0;
 
-    .input {
-        flex-direction: column;
-        padding: 0;
-
-        #inputbox {
-            width: 70vw;
-            max-width: 500px;
-            margin-bottom: 1.5rem;
-        }
+    #inputbox {
+      width: 70vw;
+      max-width: 500px;
+      margin-bottom: 1.5rem;
     }
+  }
 
-    // .input {
-    //     flex-direction: column;
-    //     padding: 0;
+  .results-top,
+  .results-bottom {
+    flex-direction: column;
+    max-width: 500px;
+  }
 
-    //     #inputbox {
-    //         width: 70vw;
-    //         max-width: 500px;
-    //         margin: 0;
-    //     }
-
-    //     .question-box {
-    //         left: -70px;
-    //         max-width: 300px;
-    //         margin: auto;
-    //         z-index: 300;
-    //     }
-
-    //     .quiz-buttons {
-    //         margin: 1rem auto;
-    //     }
-        
-    //     .start-button {
-    //         margin-bottom: 1.5rem;
-    //     }
-    // }
-
-    .results-top, .results-bottom {
-        flex-direction: column;
-        max-width: 500px;
-    }
-
-    .capitalmap {
-        height: 80vh;
-    }
+  .capitalmap {
+    height: 80vh;
+  }
 }
 
 @media (max-width: 1000px) {
-    .home {
-        .overlay {
-            .header {
-                flex-direction: column;
-                h1 {
-                    font-size: 3.5rem !important;
-                }
-                img {
-                    width: 200px;
-                }
-                .elearn {
-                    position: relative;
-                    margin-left: -55px;
-                }
+  .home {
+    .overlay {
+      .header {
+        flex-direction: column;
+        h1 {
+          font-size: 3.5rem !important;
+        }
+        img {
+          width: 200px;
+        }
+        .elearn {
+          position: relative;
+          margin-left: -55px;
+        }
+      }
+    }
+  }
+  .banner-img {
+    width: 200%;
+    height: 200%;
+  }
+
+  //Explorer
+  .card {
+    .info-container,
+    .info-modals,
+    .map {
+      flex-direction: column;
+    }
+  }
+
+  .capitalmap {
+    .capital-info {
+      max-width: 250px !important;
+      font-size: .8rem;
+
+      .teleport-data {
+        flex-direction: column;
+
+        .bar {
+          height: 20px !important;
+        }
+
+        .charts-container {
+          .chart {
+            span {
+              top: 2px !important;
             }
+          }
         }
+      }
     }
-    .banner-img {
-        width: 200%;
-        height: 200%;
-    }
+  }
 
-    //Explorer
-    .card {
-        .info-container, .info-modals, .map {
-            flex-direction: column;
-        }
-    }
-
-    .capitalmap {
-        .capital-info {
-            max-width: 250px !important;
-
-            .teleport-data {
-                flex-direction: column;
-
-                .bar {
-                    height: 20px !important;
-                }
-
-                .charts-container {
-                    .chart {
-                        span {
-                            top: 2px !important;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    //Quiz
-    .input {
-        position: relative !important;
-    }
+  //Quiz
+  .input {
+    position: relative !important;
+  }
 }
 
 @media (max-width: 750px) {
-    .navbar {
-        flex-direction: column;
-        text-align: center;
+  .navbar {
+    flex-direction: column;
+    text-align: center;
 
-        ul {
-            justify-content: space-evenly !important;
+    ul {
+      justify-content: space-evenly !important;
 
-            li {
-                margin: 0 .25rem !important;
-            }
-        }
+      li {
+        margin: 0 0.25rem !important;
+      }
     }
+  }
 
-    .footer {
-        flex-direction: column;
+  .footer {
+    flex-direction: column;
 
-        div {
-            margin: 2.5rem auto;
-        }
+    div {
+      margin: 2.5rem auto;
     }
+  }
 
-    .capitalmap {
-        height: 70vh;
+  .capitalmap {
+    height: 70vh;
+  }
+}
+
+@media (min-width: 680px) {
+  .info-buttons {
+    display: none;
+  }
+
+  .info-modals {
+    .info-card {
+      display: block !important;
+      max-width: 275px;
+
+      span {
+        color: $blue !important;
+      }
+
+      i {
+        color: $grey !important;
+      }
     }
+  }
 }
 
 @media (max-width: 680px) {
-    .home {
-        .header {
-            text-align: center;
+  .home {
+    .header {
+      text-align: center;
 
-            .elearn {
-                position: relative !important;
-                transform: translate(0,0) !important;
-                left: 0;
+      .elearn {
+        position: relative !important;
+        transform: translate(0, 0) !important;
+        left: 0;
 
-                .e {
-                    text-align: right !important;
-                    position: relative;
-                    top: 0;
-                    left: 15%;
-                }
-
-                .fa-graduation-cap {
-                    position: relative !important;
-                    left: -60px !important;
-                    bottom: 28px !important;
-                }
-            }
-
-            img {
-                margin: .5rem auto;
-                transform: scale(.8);
-            }
-        }
-    }
-    .input {
-        .all-buttons {
-            width: 90vw;
-            display: flex;
-            justify-content: space-between;
+        .e {
+          text-align: right !important;
+          position: relative;
+          top: 0;
+          left: 15%;
         }
 
-        .quiz-timer {
-            transform: scale(1) !important;
-            margin: 0 .2rem !important;
-        }
-        .all-buttons {
-
-            button {
-                padding: .4rem .7rem;
-            }
-        }
-    }
-    
-    .video-container {
-      
-        .youtube-video {
-          width: 90vw !important;
-          height: 50vw !important;
+        .fa-graduation-cap {
+          position: relative !important;
+          left: -60px !important;
+          bottom: 28px !important;
         }
       }
 
-    .search {
-        .search-form {
-            input {
-                width: 60%;
-                margin: 0;
-            }
-            .x-button {
-                margin-right: .5rem;
-            }
-        }
+      img {
+        margin: 0.5rem auto;
+        transform: scale(0.8);
+      }
     }
-    
-    .card {
-        padding: .75rem !important;
+  }
+  .input {
+    .all-buttons {
+      width: 90vw;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .quiz-timer {
+      transform: scale(1) !important;
+      margin: 0 0.2rem !important;
+    }
+    .all-buttons {
+      button {
+        padding: 0.4rem 0.7rem;
+      }
+    }
+  }
+
+  .video-container {
+    .youtube-video {
+      width: 90vw !important;
+      height: 50vw !important;
+    }
+  }
+
+  .search {
+    .search-form {
+      input {
+        width: 60%;
+        margin: 0;
+      }
+      .x-button {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  .card {
+    padding: 0.75rem !important;
+
+    h1 {
+      font-size: 3.75rem !important;
+    }
+
+    .country-header {
+      div {
+        flex-direction: column;
+        text-align: center;
 
         h1 {
-            font-size: 3.75rem !important;
+          margin: 1rem auto !important;
         }
-
-        .country-header {
-            div {
-                flex-direction: column;
-                text-align: center;
-
-                h1 {
-                    margin: 1rem auto !important;
-                }
-            }
-        }
-
-        .country-images {
-            img {
-                width: 100%;
-            }
-        }
-
-        .countryimg {
-            display: none;
-        }
-
-        .info-card, .map-box, .borders-box, .weather-box {
-            width: 100% !important;
-        }
-
-        .weather-box {        
-            .weather-main, .weather-extra {
-                flex-direction: column;
-            }
-
-            .weather-extra {
-                span {
-                    margin: .5rem;
-                }
-            }
-        }
+      }
     }
+
+    .country-images {
+      img {
+        width: 100%;
+      }
+    }
+
+    .countryimg {
+      display: none;
+    }
+
+    .info-card,
+    .map-box,
+    .borders-box,
+    .weather-box {
+      width: 100% !important;
+      max-width: 350px !important;
+    }
+
+    .weather-box {
+      .weather-main,
+      .weather-extra {
+        flex-direction: column;
+      }
+
+      .weather-extra {
+        span {
+          margin: 0.5rem;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 500px) {
-
-    .navbar {
-        ul {
-            justify-content: space-between !important;
-        }
+  .navbar {
+    ul {
+      justify-content: space-between !important;
     }
+  }
 
-    .input {
-        .quiz-buttons {
-            .question-box {
-                width: 90vw !important;
-            }
-        }
+  .input {
+    .quiz-buttons {
+      .question-box {
+        width: 90vw !important;
+      }
     }
+  }
 
-        .youtube-popup {
-            width: 250px !important;
-        }
+  .youtube-popup {
+    width: 250px !important;
+  }
 }
