@@ -130,6 +130,9 @@
 }
 
 @media (min-width: 680px) {
+  #mobile-message {
+    display: none !important;
+  }
   .info-buttons {
     display: none;
   }
@@ -495,6 +498,7 @@
 
 .video-container .youtube-video {
   width: 65vw;
+  max-width: 800px;
   height: 35vw;
   margin: auto;
 }
@@ -1178,6 +1182,84 @@
   top: 8px;
   font-size: .85rem;
   text-shadow: 1px 1px 2px black, 1px -1px 2px black, -1px -1px 2px black, 1px -1px 2px black;
+}
+
+#mobile-message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: #ffffffbd;
+  z-index: 100;
+}
+
+#mobile-message div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  position: relative;
+  background: white;
+  width: 80vw;
+  max-width: 350px;
+  border-radius: .5rem;
+  padding: 1rem;
+  -webkit-box-shadow: -4px -4px 5px rgba(0, 0, 0, 0.1), 4px 4px 5px rgba(0, 0, 0, 0.1), -4px 4px 5px rgba(0, 0, 0, 0.1), 4px -4px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: -4px -4px 5px rgba(0, 0, 0, 0.1), 4px 4px 5px rgba(0, 0, 0, 0.1), -4px 4px 5px rgba(0, 0, 0, 0.1), 4px -4px 5px rgba(0, 0, 0, 0.1);
+}
+
+#mobile-message div i {
+  color: #01aaad;
+  -webkit-transform: scale(1.35);
+          transform: scale(1.35);
+  margin-bottom: 1rem;
+}
+
+#mobile-message div p {
+  width: 80%;
+}
+
+#mobile-message div button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: .65rem;
+  background: none;
+  outline: none;
+  border: none;
+}
+
+#mobile-message div button i {
+  color: #c4302b;
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+#mobile-message div button i:hover {
+  color: red;
+  cursor: pointer;
 }
 
 .quiz {

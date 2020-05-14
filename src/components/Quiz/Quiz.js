@@ -291,6 +291,15 @@ const Quiz = () => {
     return (
         <>
             {loading ? <div className="loading"><span className="loading-icon"><img src={Logo} alt="Geography Now! Loading"></img></span></div> : null}
+            <div id="mobile-message">
+                <div>
+                    <i className="fas fa-exclamation"></i>
+                    <p>The Geography Now! Quiz requires fast typing. We recommend a desktop/laptop version for a better user experience.</p>
+                    <button onClick={() => {
+                        document.getElementById('mobile-message').style.display = 'none';
+                    }}><i className="fas fa-times"></i></button>
+                </div>
+            </div>
             <div className="quiz">
                 <div className="header">
                     <h1>

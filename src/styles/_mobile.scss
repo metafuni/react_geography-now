@@ -110,6 +110,9 @@
 }
 
 @media (min-width: 680px) {
+  #mobile-message {
+    display: none !important;
+  }
   .info-buttons {
     display: none;
   }
