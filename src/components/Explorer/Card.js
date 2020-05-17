@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import Axios from 'axios';
 
 import CountryImg from '../Quiz/CountryImg';
@@ -11,8 +13,10 @@ const Card = ({ country }) => {
 
     const [borders, setBorders] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [flagfileURL, setFlagfileURL] = useState();
 
-    let flagUrl = '';
+    // let flagUrl = '';
+    // let flagFile = '';
 
     const convertBorders = async (code) => {
         const result = await Axios(`https://restcountries.eu/rest/v2/alpha/${code.toLowerCase()}`);
@@ -56,7 +60,7 @@ const Card = ({ country }) => {
             };
         }
         if (country.alpha2Code) {
-            flagUrl = `../../img/svg/flags/${country.alpha2Code.toLowerCase()}.svg`;
+            setFlagfileURL(`/flags/${country.alpha2Code.toLowerCase()}.svg`);
         };
         setLoading(false);
     }, [country.alpha2Code]);
@@ -81,10 +85,8 @@ const Card = ({ country }) => {
 
                             <div className="country-images">
                                 {country.flag ? <img src={country.flag} alt={country.name} width="75%"></img> : null}
+                                    <Link to={flagfileURL} target="_blank" className="btn" download><i className="fas fa-download"></i>download<img src={country.flag} alt={country.name}></img></Link>
                             </div>
-
-                            {/* <a href={flagUrl} download={country.name}>Download</a> */}
-
 
                             {/* Info Container */}
 

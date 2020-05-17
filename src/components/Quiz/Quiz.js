@@ -30,8 +30,6 @@ const Quiz = () => {
             });
 
             //add alternative/easier names for countries to make quiz easier to do, we don't need spaces as regex will exclude spaces
-            // IS IT REALLY NEEDED TO HAVE SO MANY?? NO-->USE REGULAR EXPRESSION FOR YOUR INPUT TO REMOVE SPACES BEFORE FIRST WORD, 
-            // AND EXCLUDE DOUBLE SPACES
             switch (el.alpha2Code) {
                 //Europe
                 case 'GB':
@@ -48,6 +46,8 @@ const Quiz = () => {
                 case 'CZ':
                     countriesArray[countriesArray.length - 1].name.push("Czechia");
                     break;
+                case 'LI':
+                    countriesArray[countriesArray.length-1].name.push("Lichtenstein");
                 //Africa
                 case 'CF':
                     countriesArray[countriesArray.length - 1].name.push("CAR");
@@ -126,6 +126,9 @@ const Quiz = () => {
                     countriesArray[countriesArray.length - 1].name.push("Kitts and Nevis");
                     countriesArray[countriesArray.length - 1].name.push("St Kitts");
                     break;
+                case 'VC':
+                    countriesArray[countriesArray.length - 1].name.push("St Vincent");
+                    countriesArray[countriesArray.length - 1].name.push("Saint Vincent");
                 case 'LC':
                     countriesArray[countriesArray.length - 1].name.push("St Lucia");
                     break;

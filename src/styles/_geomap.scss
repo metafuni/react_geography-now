@@ -41,8 +41,10 @@
 
   .youtube-popup {
     .youtube-container {
-      width: 40vw;
-      height: 30vw;
+      width: 60vw;
+      max-width: 350px;
+      height: 40vw;
+      max-height: 230px;
     }
   }
 }
