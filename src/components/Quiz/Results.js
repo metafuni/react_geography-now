@@ -1,4 +1,4 @@
-  
+
 import React, { useState, useEffect } from 'react';
 
 const Results = ({ answers, countriesArray, resetScore, countries }) => {
@@ -15,7 +15,7 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
 
     useEffect(() => {
         console.log(countriesArray);
-        console.log(countries);
+        // console.log(countries);
     });
 
     return (
@@ -23,6 +23,16 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
             <div className="results-top">
                 <div className="result-box americas">
                     <h3>Americas</h3>
+                    <div className="summation">
+                        <span className="accumulator">
+                            {answers && answers.reduce((acc, country) => {
+                                if (country.region == "Americas") {
+                                    return acc + 1;
+                                } return acc;
+                            }, 0)}
+                        </span>
+                        /57
+                    </div>
                     <ul>
                         <br></br>
                         {answers && answers.map(el => {
@@ -39,6 +49,16 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                 </div>
                 <div className="result-box europe">
                     <h3>Europe</h3>
+                    <div className="summation">
+                        <span className="accumulator">
+                            {answers && answers.reduce((acc, country) => {
+                                if (country.region == "Europe") {
+                                    return acc + 1;
+                                } return acc;
+                            }, 0)}
+                        </span>
+                        /53
+                    </div>
                     <ul>
                         <br></br>
                         {answers && answers.map(el => {
@@ -55,6 +75,16 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                 </div>
                 <div className="result-box africa">
                     <h3>Africa</h3>
+                    <div className="summation">
+                        <span className="accumulator">
+                            {answers && answers.reduce((acc, country) => {
+                                if (country.region == "Africa") {
+                                    return acc + 1;
+                                } return acc;
+                            }, 0)}
+                        </span>
+                        /60
+                    </div>
                     <ul>
                         <br></br>
                         {answers && answers.map(el => {
@@ -73,6 +103,16 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
             <div className="results-bottom">
                 <div className="result-box asia">
                     <h3>Asia</h3>
+                    <div className="summation">
+                        <span className="accumulator">
+                            {answers && answers.reduce((acc, country) => {
+                                if (country.region == "Asia") {
+                                    return acc + 1;
+                                } return acc;
+                            }, 0)}
+                        </span>
+                        /50
+                    </div>
                     <ul>
                         <br></br>
                         {answers && answers.map(el => {
@@ -89,6 +129,16 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                 </div>
                 <div className="result-box oceania">
                     <h3>Oceania</h3>
+                    <div className="summation">
+                        <span className="accumulator">
+                            {answers && answers.reduce((acc, country) => {
+                                if (country.region == "Oceania") {
+                                    return acc + 1;
+                                } return acc;
+                            }, 0)}
+                        </span>
+                        /27
+                    </div>
                     <ul>
                         <br></br>
                         {answers && answers.map(el => {
@@ -105,6 +155,16 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                 </div>
                 <div className="result-box polar">
                     <h3>Polar</h3>
+                    <div className="summation">
+                        <span className="accumulator">
+                            {answers && answers.reduce((acc, country) => {
+                                if (country.region == "Polar") {
+                                    return acc + 1;
+                                } return acc;
+                            }, 0)}
+                        </span>
+                        /1
+                    </div>
                     <ul>
                         <br></br>
                         {answers && answers.map(el => {

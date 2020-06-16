@@ -1596,11 +1596,22 @@
   width: 100%;
   margin: 1rem 0.5rem;
   padding: 1rem 0;
-  text-align: left;
+  text-align: center;
   border-radius: 1.5rem;
   -webkit-box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
           box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
   display: none;
+}
+
+.quiz .results .results-top .result-box .summation,
+.quiz .results .results-bottom .result-box .summation {
+  color: #1c166be6;
+  line-height: 1.5rem;
+}
+
+.quiz .results .results-top .result-box .summation .accumulator,
+.quiz .results .results-bottom .result-box .summation .accumulator {
+  color: #3ab54a;
 }
 
 .quiz .results .results-top .result-box img,

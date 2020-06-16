@@ -8,19 +8,17 @@ const GeoMap = ({ country }) => {
 
     const YT_API_KEY = 'AIzaSyBimMgTEpBaf0Dmt1FjuF8Vdw_rQGBMXO8';
     const channelID = 'UCmmPgObSUPw1HL2lq6H4ffA';
-    const playlistID = 'PLR7XO54Pktt8_jNjAVaunw1EqqcEAdcow';
+    // const playlistID = 'PLR7XO54Pktt8_jNjAVaunw1EqqcEAdcow';
 
-    const [lat, setLat] = useState(15);
-    const [lng, setLng] = useState(15);
+    const [lat] = useState(15);
+    const [lng] = useState(15);
     const [markers, setMarkers] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState();
     const [videoURL, setVideoURL] = useState(null);
     const [loading, setLoading] = useState(true);
 
     const [viewport, setViewport] = useState({
-        // width: 1400,
         width: "100%",
-        // height: 700,
         height: "100%",
         latitude: lat,
         longitude: lng,
@@ -95,7 +93,6 @@ const GeoMap = ({ country }) => {
 
     useEffect(() => {
         getAllCapitals();
-        // setLoading(false);
     }, []);
 
     useEffect(() => {

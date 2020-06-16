@@ -144,7 +144,7 @@ const Input = ({ checkAnswer, score, resetScore }) => {
     return (
         //Note that the input will break once you type in a ) or (, anything else permitted
         <div className="input">
-            <form onChange={checkAnswer} onSubmit={checkAnswer}>
+            <form onChange={checkAnswer} onSubmit={checkAnswer} autoComplete="off">
                 {playing && !paused ?
                     <input id="inputbox" type="text" placeholder="Enter country..." pattern="[A-Za-z]" autoComplete="off"></input> :
                     <input id="inputbox" placeholder="Enter country..." disabled style={{ backgroundColor: '#f6fbff' }}></input>}
