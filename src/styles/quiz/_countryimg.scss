@@ -1,9 +1,5 @@
-// svg {
-//   g {
-//     &:hover {
-//       > path {
-//         fill: #00192c;
-//       }
-//     }
-//   }
-// }
+svg {
+  path {
+    transition: 0.2s;
+  }
+}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import CountryHover from './CountryHover';
 
-const Input = ({ checkAnswer, score, resetScore }) => {
+const Input = ({ checkAnswer, score, resetScore, countries, answers }) => {
 
     const [minutes, setMinutes] = useState(17);
     const [seconds, setSeconds] = useState(0);
@@ -232,6 +233,9 @@ const Input = ({ checkAnswer, score, resetScore }) => {
                 </div>
             } */}
 
+            {/* TESTCODE */}
+            <CountryHover stop={stop} playing={playing} countries={countries} answers={answers} />
+            {/* TESTCODE */}
 
             {/* testcode */}
             {seconds === 0 && minutes === 0 ?

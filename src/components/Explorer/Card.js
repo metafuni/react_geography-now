@@ -15,9 +15,6 @@ const Card = ({ country }) => {
     const [loading, setLoading] = useState(true);
     const [flagfileURL, setFlagfileURL] = useState();
 
-    // let flagUrl = '';
-    // let flagFile = '';
-
     const convertBorders = async (code) => {
         const result = await Axios(`https://restcountries.eu/rest/v2/alpha/${code.toLowerCase()}`);
         setBorders(borders => [...borders, {
@@ -52,18 +49,49 @@ const Card = ({ country }) => {
                 element.querySelectorAll("path").forEach(el => {
                     el.setAttribute("fill", "#01aaad");
                 });
+
+                //TESTCODE
+                // //hover over country changes color
+                // element.addEventListener("mouseover", () => {
+                //     element.setAttribute("style", "fill: #1c166be6; stroke: #1c166be6");
+                //     element.querySelectorAll("path").forEach(el => {
+                //         el.setAttribute("fill", "#1c166be6");
+                //     });
+                // });
+                // element.addEventListener("mouseout", () => {
+                //     element.setAttribute("style", "fill: #01aaad; stroke: #01aaad");
+                //     element.querySelectorAll("path").forEach(el => {
+                //         el.setAttribute("fill", "#01aaad");
+                //     });
+                // });
+                // //hover over country for popup 
+                // const countryHoverBox = document.querySelector('.country-hover-box');
+                // element.addEventListener("mouseover", () => {
+                //     countryHoverBox.style.display = 'flex';
+                //     const cursor = (e) => {
+                //         countryHoverBox.style.top = e.pageY - 20 + 'px';
+                //         countryHoverBox.style.left = e.pageX + 7 + 'px';
+                //     };
+                //     window.addEventListener('mousemove', cursor);
+                // });
+                // element.addEventListener("mouseout", () => {
+                //     countryHoverBox.style.display = 'none';
+                // });
+                //TESTCODE
+
             } if (element !== document.getElementById(`${code}`)) {
                 element.setAttribute("fill", "grey");
                 element.querySelectorAll("path").forEach(el => {
                     el.setAttribute("fill", "grey");
                 });
             };
-        }
+        };
         if (country.alpha2Code) {
             setFlagfileURL(`/flags/${country.alpha2Code.toLowerCase()}.svg`);
         };
         setLoading(false);
     }, [country.alpha2Code]);
+
 
     return (
         <div>
@@ -85,7 +113,7 @@ const Card = ({ country }) => {
 
                             <div className="country-images">
                                 {country.flag ? <img src={country.flag} alt={country.name} width="75%"></img> : null}
-                                    <Link to={flagfileURL} target="_blank" className="btn" download><i className="fas fa-download"></i>download<img src={country.flag} alt={country.name}></img></Link>
+                                <Link to={flagfileURL} target="_blank" className="btn" download><i className="fas fa-download"></i>download<img src={country.flag} alt={country.name}></img></Link>
                             </div>
 
                             {/* Info Container */}
@@ -201,6 +229,10 @@ const Card = ({ country }) => {
                             </div>
                         </div>
 
+                        {/* <h5 className="country-hover-box">
+                            <img src={country.flag}></img>
+                            {country.name}
+                        </h5> */}
                         <CountryImg />
 
                         {/* Map */}

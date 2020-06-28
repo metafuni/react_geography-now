@@ -19,6 +19,21 @@ $third-font: 'Pacifico', cursive;
 //     top: 0;
 // }
 
+.country-hover-box {
+    display: none;
+    position: absolute;
+    width: max-content;
+    background: white;
+    border-radius: .15rem;
+    border: 1px solid grey;
+    padding: .15rem;
+
+    img {
+      max-height: 15px;
+      margin: 0 .5rem 0 0;
+    }
+  }
+
 .mapboxgl-popup-content {
     padding: .45rem .45rem .3rem .45rem;
 }

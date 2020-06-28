@@ -47,7 +47,7 @@ const Quiz = () => {
                     countriesArray[countriesArray.length - 1].name.push("Czechia");
                     break;
                 case 'LI':
-                    countriesArray[countriesArray.length-1].name.push("Lichtenstein");
+                    countriesArray[countriesArray.length - 1].name.push("Lichtenstein");
                 //Africa
                 case 'CF':
                     countriesArray[countriesArray.length - 1].name.push("CAR");
@@ -291,6 +291,68 @@ const Quiz = () => {
 
     useEffect(() => { console.log(answers) }, [answers]);
 
+    //TESTCODE
+    //TESTCODE
+    //TESTCODE
+    // const countryHoverBox = document.querySelector('.country-hover-box');
+    // const allPaths = document.querySelectorAll('path');
+
+    // allPaths.forEach((e) => {
+    //     e.addEventListener("mouseover", (x) => {
+    //         countryHoverBox.style.display = 'flex';
+    //         const cursor = (e) => {
+    //             countryHoverBox.style.top = e.pageY - 20 + 'px';
+    //             countryHoverBox.style.left = e.pageX + 7 + 'px';
+    //         };
+    //         window.addEventListener('mousemove', cursor);
+
+    //         if (x.target.id.length === 2) {
+    //             e.setAttribute("style", "fill: #1c166be6; stroke: #1c166be6");
+    //         } else if (x.target.parentNode.id.length === 2) {
+    //             const paths = e.parentElement.querySelectorAll('path');
+    //             for (let i = 0; i < paths.length; i++) {
+    //                 paths[i].setAttribute("style", "fill: #1c166be6; stroke: #1c166be6");
+    //             };
+    //         } else if (x.target.parentNode.parentNode.id.length === 2) {
+    //             const paths = e.parentElement.parentElement.querySelectorAll('path');
+    //             for (let i = 0; i < paths.length; i++) {
+    //                 paths[i].setAttribute("style", "fill: #1c166be6; stroke: #1c166be6");
+    //             };
+    //         } else if (x.target.parentNode.parentNode.parentNode.id.length === 2) {
+    //             const paths = e.parentElement.parentElement.parentElement.querySelectorAll('path');
+    //             for (let i = 0; i < paths.length; i++) {
+    //                 paths[i].setAttribute("style", "fill: #1c166be6; stroke: #1c166be6");
+    //             };
+    //         };
+    //     });
+    // });
+    // allPaths.forEach((e) => {
+    //     e.addEventListener("mouseout", (x) => {
+    //         countryHoverBox.style.display = 'none';
+    //         if (x.target.id.length === 2) {
+    //             e.setAttribute("style", "fill: grey");
+    //         } else if (x.target.parentNode.id.length === 2) {
+    //             const paths = e.parentElement.querySelectorAll('path');
+    //             for (let i = 0; i < paths.length; i++) {
+    //                 paths[i].setAttribute("style", "fill: grey");
+    //             };
+    //         } else if (x.target.parentNode.parentNode.id.length === 2) {
+    //             const paths = e.parentElement.parentElement.querySelectorAll('path');
+    //             for (let i = 0; i < paths.length; i++) {
+    //                 paths[i].setAttribute("style", "fill: grey");
+    //             };
+    //         } else if (x.target.parentNode.parentNode.parentNode.id.length === 2) {
+    //             const paths = e.parentElement.parentElement.parentElement.querySelectorAll('path');
+    //             for (let i = 0; i < paths.length; i++) {
+    //                 paths[i].setAttribute("style", "fill: grey");
+    //             };
+    //         };
+    //     });
+    // });
+
+    //TESTCODE
+    //TESTCODE
+    //TESTCODE
     return (
         <>
             {loading ? <div className="loading"><span className="loading-icon"><img src={Logo} alt="Geography Now! Loading"></img></span></div> : null}
@@ -321,9 +383,13 @@ const Quiz = () => {
                     <p style={{ maxWidth: '900px', margin: '0 auto' }}>Type your answers in the <span style={{ fontStyle: 'italic', color: 'grey' }}>Enter country...</span> field, the countries that you guessed will be marked <span style={{ color: '#3ab54a' }}>green</span> on the map.                 Have a look below the map to keep track of all your answers. Once you hit the stop button after playing we'll reveal all the countries for you. <br></br><br></br>Good luck!<br></br>
                     </p>
                 </div>
-                <Input checkAnswer={checkAnswer} score={score} resetScore={resetScore} />
+                <Input checkAnswer={checkAnswer} score={score} resetScore={resetScore} countries={countries} answers={answers} />
                 <div className="score-box">score: <span style={{ color: 'white' }} id="score">{score} / 250</span></div>
                 <CountryImg />
+                <div className="country-hover-box">
+                    <img id="country-hover-img" src="https://restcountries.eu/data/usa.svg"></img>
+                    <h5 id="country-hover-text">United States of America</h5>
+                </div>
                 <Results answers={answers} countriesArray={countriesArray} resetScore={resetScore} countries={countries} />
             </div>
         </>
