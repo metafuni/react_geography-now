@@ -48,6 +48,7 @@ const Quiz = () => {
                     break;
                 case 'LI':
                     countriesArray[countriesArray.length - 1].name.push("Lichtenstein");
+                    break;
                 //Africa
                 case 'CF':
                     countriesArray[countriesArray.length - 1].name.push("CAR");
@@ -129,6 +130,7 @@ const Quiz = () => {
                 case 'VC':
                     countriesArray[countriesArray.length - 1].name.push("St Vincent");
                     countriesArray[countriesArray.length - 1].name.push("Saint Vincent");
+                    break;
                 case 'LC':
                     countriesArray[countriesArray.length - 1].name.push("St Lucia");
                     break;
@@ -147,6 +149,8 @@ const Quiz = () => {
                 case 'TC':
                     countriesArray[countriesArray.length - 1].name.push("Turks Islands");
                     countriesArray[countriesArray.length - 1].name.push("Caicos Islands");
+                    break;
+                default:
             };
 
             let altArray = el.altSpellings;
@@ -236,7 +240,6 @@ const Quiz = () => {
 
                     //amend the countriesArray
                     // countriesArray.filter(el => el === countriesArray[i]);
-                    console.log(countriesArray[i]);
 
                     //mark country green on map
                     if (element) {
@@ -288,8 +291,6 @@ const Quiz = () => {
         // set the countries array
         getCountries();
     }, [resetScore]);
-
-    useEffect(() => { console.log(answers) }, [answers]);
 
     //TESTCODE
     //TESTCODE

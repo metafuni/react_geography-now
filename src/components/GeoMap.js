@@ -80,14 +80,6 @@ const GeoMap = ({ country }) => {
             } else {
                 setVideoURL(null);
             };
-
-            // for (let i = 0; i < result.data.items.length; i++) {
-            //     if (result.data.items[i].snippet.title === `Geography Now! ${selectedCountry.name}`) {
-            //         setVideoURL(`https://www.youtube.com/watch?v=${result.data.items[0].id.videoId}`);
-            //     } else {
-            //         setVideoURL(null);
-            //     };
-            // };
         };
     };
 

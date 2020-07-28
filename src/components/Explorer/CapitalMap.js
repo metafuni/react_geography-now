@@ -65,39 +65,6 @@ const CapitalMap = ({ country }) => {
     //     };
     // };
 
-    const fetchCountryWikiInfo = () => {
-        //Wikipedia
-        //fetch summary data from wikipedia API
-        let url = "https://en.wikipedia.org/w/api.php";
-
-        //url parameters, with maximum 2 sentences of the intro section on the Wikipedia page
-        let params = {
-            action: "query",
-            titles: country.capital,
-            prop: "extracts",
-            format: "json",
-            exintro: true,
-            exsentences: 2
-        };
-
-        //loop over object parameter keys and append to base url
-        url = url + "?origin=*";
-        Object.keys(params).forEach(function (key) { url += "&" + key + "=" + params[key]; });
-
-        //fetch the url and avoid 'did you mean?' pages by setting minimum amount of characters to 50
-        fetch(url)
-            .then(function (response) { return response.json(); })
-            .then(function (response) {
-                if (response.query.pages[Object.keys(response.query.pages)[0]].extract && response.query.pages[Object.keys(response.query.pages)[0]].extract.length > 50) {
-                    console.log(response.query.pages[Object.keys(response.query.pages)[0]].extract);
-                    document.getElementById('wiki-info').innerHTML = response.query.pages[Object.keys(response.query.pages)[0]].extract;
-                } else {
-                    document.getElementById('wiki-info').innerHTML = 'Sorry Geograpeeps... no info for this capital city';
-                }
-            })
-            .catch(function (error) { console.log(error); });
-    };
-
     const fetchCountryTeleportInfo = async () => {
         //Teleport uses cities with spaces as 'dashed url', hence replacing the spaces with dash via regex
         let searchName = country.capital.toLowerCase();
@@ -111,7 +78,6 @@ const CapitalMap = ({ country }) => {
         };
 
         const scoresresult = await Axios(`https://api.teleport.org/api/urban_areas/slug:${searchName}/scores/`);
-        console.log(scoresresult.data);
         if (scoresresult.data.summary) {
             document.getElementById('teleport-info').innerHTML = scoresresult.data.summary;
             setTeleportData(teleportData => [...teleportData, {

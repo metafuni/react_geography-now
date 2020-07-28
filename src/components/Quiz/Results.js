@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 const Results = ({ answers, countriesArray, resetScore, countries }) => {
 
@@ -13,11 +13,6 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
         };
     };
 
-    useEffect(() => {
-        console.log(countriesArray);
-        // console.log(countries);
-    });
-
     return (
         <div className="results">
             <div className="results-top">
@@ -26,7 +21,7 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                     <div className="summation">
                         <span className="accumulator">
                             {answers && answers.reduce((acc, country) => {
-                                if (country.region == "Americas") {
+                                if (country.region === "Americas") {
                                     return acc + 1;
                                 } return acc;
                             }, 0)}
@@ -38,12 +33,12 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                         {answers && answers.map(el => {
                             if (el.region === 'Americas') {
                                 return <li className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
-                            };
+                            } return null;
                         })}<br></br>
                         {countries && countries.map(el => {
                             if (el.region === 'Americas') {
                                 return <li className="country-li" key={el.id} style={{ color: '#ff3c00' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
-                            };
+                            } return null;
                         })}
                     </ul>
                 </div>
@@ -52,7 +47,7 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                     <div className="summation">
                         <span className="accumulator">
                             {answers && answers.reduce((acc, country) => {
-                                if (country.region == "Europe") {
+                                if (country.region === "Europe") {
                                     return acc + 1;
                                 } return acc;
                             }, 0)}
@@ -64,12 +59,12 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                         {answers && answers.map(el => {
                             if (el.region === 'Europe') {
                                 return <li className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
-                            };
+                            } return null;
                         })}<br></br>
                         {countries && countries.map(el => {
                             if (el.region === 'Europe') {
                                 return <li className="country-li" key={el.id} style={{ color: '#ff3c00' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
-                            };
+                            } return null;
                         })}
                     </ul>
                 </div>
@@ -78,7 +73,7 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                     <div className="summation">
                         <span className="accumulator">
                             {answers && answers.reduce((acc, country) => {
-                                if (country.region == "Africa") {
+                                if (country.region === "Africa") {
                                     return acc + 1;
                                 } return acc;
                             }, 0)}
@@ -90,12 +85,12 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                         {answers && answers.map(el => {
                             if (el.region === 'Africa') {
                                 return <li className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
-                            };
+                            } return null;
                         })}<br></br>
                         {countries && countries.map(el => {
                             if (el.region === 'Africa') {
                                 return <li className="country-li" key={el.id} style={{ color: '#ff3c00' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
-                            };
+                            } return null;
                         })}
                     </ul>
                 </div>
@@ -106,7 +101,7 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                     <div className="summation">
                         <span className="accumulator">
                             {answers && answers.reduce((acc, country) => {
-                                if (country.region == "Asia") {
+                                if (country.region === "Asia") {
                                     return acc + 1;
                                 } return acc;
                             }, 0)}
@@ -118,12 +113,12 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                         {answers && answers.map(el => {
                             if (el.region === 'Asia') {
                                 return <li className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
-                            };
+                            } return null;
                         })}<br></br>
                         {countries && countries.map(el => {
                             if (el.region === 'Asia') {
                                 return <li className="country-li" key={el.id} style={{ color: '#ff3c00' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
-                            };
+                            } return null;
                         })}
                     </ul>
                 </div>
@@ -132,7 +127,7 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                     <div className="summation">
                         <span className="accumulator">
                             {answers && answers.reduce((acc, country) => {
-                                if (country.region == "Oceania") {
+                                if (country.region === "Oceania") {
                                     return acc + 1;
                                 } return acc;
                             }, 0)}
@@ -144,12 +139,12 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                         {answers && answers.map(el => {
                             if (el.region === 'Oceania') {
                                 return <li className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
-                            };
+                            } return null;
                         })}<br></br>
                         {countries && countries.map(el => {
                             if (el.region === 'Oceania') {
                                 return <li className="country-li" key={el.id} style={{ color: '#ff3c00' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
-                            };
+                            } return null;
                         })}
                     </ul>
                 </div>
@@ -158,7 +153,7 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                     <div className="summation">
                         <span className="accumulator">
                             {answers && answers.reduce((acc, country) => {
-                                if (country.region == "Polar") {
+                                if (country.region === "Polar") {
                                     return acc + 1;
                                 } return acc;
                             }, 0)}
@@ -170,12 +165,12 @@ const Results = ({ answers, countriesArray, resetScore, countries }) => {
                         {answers && answers.map(el => {
                             if (el.region === 'Polar') {
                                 return <span className="answer-li" key={el.id} style={{ color: '#3ab54a' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</span>
-                            };
+                            } return null;
                         })}<br></br>
                         {countries && countries.map(el => {
                             if (el.region === 'Polar') {
                                 return <li className="country-li" key={el.id} style={{ color: '#ff3c00' }}><img src={el.flag} alt={el.name[0]}></img>{el.name[0]}</li>
-                            };
+                            } return null;
                         })}
                     </ul>
                 </div>
