@@ -143,7 +143,6 @@ const Input = ({ checkAnswer, score, resetScore, countries, answers }) => {
     };
 
     return (
-        //Note that the input will break once you type in a ) or (, anything else permitted
         <div className="input">
             <form onChange={checkAnswer} onSubmit={checkAnswer} autoComplete="off">
                 {playing && !paused ?
@@ -233,11 +232,8 @@ const Input = ({ checkAnswer, score, resetScore, countries, answers }) => {
                 </div>
             } */}
 
-            {/* TESTCODE */}
             <CountryHover stop={stop} playing={playing} countries={countries} answers={answers} />
-            {/* TESTCODE */}
 
-            {/* testcode */}
             {seconds === 0 && minutes === 0 ?
                 <div className="time-up-overlay">
                     <div className="time-up-box">
@@ -252,7 +248,6 @@ const Input = ({ checkAnswer, score, resetScore, countries, answers }) => {
                     </div>
                 </div> : null}
 
-            {/* testcode */}
             {score === 250 &&
                 <div className="winner-overlay">
                     <div className="winner-box">

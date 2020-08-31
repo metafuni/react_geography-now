@@ -165,13 +165,7 @@ const Quiz = () => {
         e.preventDefault();
 
         //define regular expression input string, case insensitive, remove spaces before 'sentence' and replace multiple spaces with single space 
-        // let inputString = new RegExp(e.target.value.replace(/\s/g, ''), "i");
         let inputString = new RegExp(e.target.value.trim().replace(/\s\s+/g, ' '), "i");
-        //TESTESTEST
-        // let inputString = new RegExp(e.target.value.replace(/^\s+|\s+$/g, ""));
-        // let trimmedString = e.target.value.trim(); //removes double spaces, case insensitive
-        // let inputString = new RegExp(trimmedString.replace(/\s\s+/g, ' ', "i"));
-
 
         // loop through all country names in array and match regular expression if exists
         for (let i = 0; i < countriesArray.length; i++) {
@@ -292,68 +286,6 @@ const Quiz = () => {
         getCountries();
     }, [resetScore]);
 
-    //TESTCODE
-    //TESTCODE
-    //TESTCODE
-    // const countryHoverBox = document.querySelector('.country-hover-box');
-    // const allPaths = document.querySelectorAll('path');
-
-    // allPaths.forEach((e) => {
-    //     e.addEventListener("mouseover", (x) => {
-    //         countryHoverBox.style.display = 'flex';
-    //         const cursor = (e) => {
-    //             countryHoverBox.style.top = e.pageY - 20 + 'px';
-    //             countryHoverBox.style.left = e.pageX + 7 + 'px';
-    //         };
-    //         window.addEventListener('mousemove', cursor);
-
-    //         if (x.target.id.length === 2) {
-    //             e.setAttribute("style", "fill: #1c166be6; stroke: #1c166be6");
-    //         } else if (x.target.parentNode.id.length === 2) {
-    //             const paths = e.parentElement.querySelectorAll('path');
-    //             for (let i = 0; i < paths.length; i++) {
-    //                 paths[i].setAttribute("style", "fill: #1c166be6; stroke: #1c166be6");
-    //             };
-    //         } else if (x.target.parentNode.parentNode.id.length === 2) {
-    //             const paths = e.parentElement.parentElement.querySelectorAll('path');
-    //             for (let i = 0; i < paths.length; i++) {
-    //                 paths[i].setAttribute("style", "fill: #1c166be6; stroke: #1c166be6");
-    //             };
-    //         } else if (x.target.parentNode.parentNode.parentNode.id.length === 2) {
-    //             const paths = e.parentElement.parentElement.parentElement.querySelectorAll('path');
-    //             for (let i = 0; i < paths.length; i++) {
-    //                 paths[i].setAttribute("style", "fill: #1c166be6; stroke: #1c166be6");
-    //             };
-    //         };
-    //     });
-    // });
-    // allPaths.forEach((e) => {
-    //     e.addEventListener("mouseout", (x) => {
-    //         countryHoverBox.style.display = 'none';
-    //         if (x.target.id.length === 2) {
-    //             e.setAttribute("style", "fill: grey");
-    //         } else if (x.target.parentNode.id.length === 2) {
-    //             const paths = e.parentElement.querySelectorAll('path');
-    //             for (let i = 0; i < paths.length; i++) {
-    //                 paths[i].setAttribute("style", "fill: grey");
-    //             };
-    //         } else if (x.target.parentNode.parentNode.id.length === 2) {
-    //             const paths = e.parentElement.parentElement.querySelectorAll('path');
-    //             for (let i = 0; i < paths.length; i++) {
-    //                 paths[i].setAttribute("style", "fill: grey");
-    //             };
-    //         } else if (x.target.parentNode.parentNode.parentNode.id.length === 2) {
-    //             const paths = e.parentElement.parentElement.parentElement.querySelectorAll('path');
-    //             for (let i = 0; i < paths.length; i++) {
-    //                 paths[i].setAttribute("style", "fill: grey");
-    //             };
-    //         };
-    //     });
-    // });
-
-    //TESTCODE
-    //TESTCODE
-    //TESTCODE
     return (
         <>
             {loading ? <div className="loading"><span className="loading-icon"><img src={Logo} alt="Geography Now! Loading"></img></span></div> : null}
