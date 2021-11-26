@@ -27,8 +27,9 @@ const GeoMap = ({ country }) => {
 
     //set all the markers with coordinates on the map for the capital cities/countries
     const getAllCapitals = async () => {
-        const result = await Axios(`https://restcountries.eu/rest/v2/all`);
+        const result = await Axios(`https://restcountries.com/v2/all`);
         result.data.forEach(async el => {
+            console.log(el)
             if (el.capital) {
                 const result = await Axios(`https://api.mapbox.com/geocoding/v5/mapbox.places/${el.capital}.json?&country=${el.alpha2Code}&access_token=${process.env.REACT_APP_MAPBOX_KEY}`);
 
@@ -49,7 +50,7 @@ const GeoMap = ({ country }) => {
                 };
 
             } else {
-                if (el.latlng[0] && el.latlng[1]) {
+                if (el.latlng) {
                     setMarkers(markers => [...markers, {
                         name: el.name,
                         capital: undefined,

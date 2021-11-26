@@ -39,7 +39,7 @@ const Search = ({ updateCountry }) => {
                                 return;
                             }
                             try {
-                                const result = await Axios(`https://restcountries.eu/rest/v2/name/${value}`);
+                                const result = await Axios(`https://restcountries.com/v2/name/${value}`);
                                 setSuggestions(result.data);
                             } catch (e) {
                                 setSuggestions([]);

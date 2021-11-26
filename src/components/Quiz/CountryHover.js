@@ -34,7 +34,7 @@ const CountryHover = ({ stop, playing, countries, answers }) => {
                                 countryHoverText.innerText = countries[i].name[0];
                             };
                             if (x.target.id === "ss") {
-                                countryHoverImg.src = "https://restcountries.eu/data/ata.svg";
+                                countryHoverImg.src = "https://restcountries.com/data/ata.svg";
                                 countryHoverText.innerText = "Antarctica";
                             };
                         };

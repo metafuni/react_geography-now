@@ -16,7 +16,7 @@ const Card = ({ country }) => {
     const [flagfileURL, setFlagfileURL] = useState();
 
     const convertBorders = async (code) => {
-        const result = await Axios(`https://restcountries.eu/rest/v2/alpha/${code.toLowerCase()}`);
+        const result = await Axios(`https://restcountries.com/v2/alpha/${code.toLowerCase()}`);
         setBorders(borders => [...borders, {
             name: result.data.name,
             flag: result.data.flag
@@ -187,35 +187,35 @@ const Card = ({ country }) => {
 
                         <div className="info-modals">
                             <div className="info-card timezone-info">
-                                {country.name && country.timezones.length === 1 ?
+                                {country.name && country.timezones && country.timezones.length === 1 ?
                                     <p><i className="far fa-clock"></i><br></br>Timezone <span>{country.timezones[0]}</span></p> :
                                     null
                                 }
-                                {country.name && country.timezones.length > 1 ?
+                                {country.name && country.timezones && country.timezones.length > 1 ?
                                     <p><i className="far fa-clock"></i><br></br>Timezones <span>{country.timezones[0]}</span> to <span>{country.timezones[country.timezones.length - 1]}</span></p> :
                                     null
                                 }
                             </div>
                             <div className="info-card regionalbloc">
-                                {country.name && country.regionalBlocs.length > 0 ?
+                                {country.name && country.regionalBlocs && country.regionalBlocs.length > 0 ?
                                     <p><i className="fas fa-landmark"></i><br></br>{country.name} belongs to the {country.regionalBlocs[0].name} <span className="alternative-text">(or {country.regionalBlocs[0].acronym})</span></p> :
                                     null
                                 }
-                                {country.name && country.regionalBlocs.length === 0 ?
+                                {country.name && country.regionalBlocs && country.regionalBlocs.length === 0 ?
                                     <p><i className="fas fa-landmark"></i><br></br>{country.name} is completely independent and does not belong to any political or economic union!</p> :
                                     null
                                 }
                             </div>
                             <div className="info-card language-info">
-                                {country.name && country.languages.length === 1 ?
+                                {country.name && country.languages && country.languages.length === 1 ?
                                     <p><i className="fas fa-language"></i><br></br>The native language spoken in {country.name} is {country.languages[0].name} {country.languages[0].nativeName ? <span className="alternative-text">({country.languages[0].nativeName})</span> : null}</p> :
                                     null
                                 }
-                                {country.name && country.languages.length === 2 ?
+                                {country.name && country.languages && country.languages.length === 2 ?
                                     <p><i className="fas fa-language"></i><br></br>{country.name} has two native languages: {country.languages[0].name} {country.languages[0].nativeName ? <span className="alternative-text">({country.languages[0].nativeName})</span> : null} and {country.languages[1].name} {country.languages[0].nativeName ? <span className="alternative-text">({country.languages[1].nativeName})</span> : null}</p> :
                                     null
                                 }
-                                {country.name && country.languages.length > 2 ?
+                                {country.name && country.languages && country.languages.length > 2 ?
                                     <div><i className="fas fa-language"></i><br></br>{country.demonym} people speak {country.languages.length} different languages. <br></br>These are:<br></br><br></br>
                                         <ul>
                                             {country.languages.map(el => <li key={Math.random()}>{el.name} {el.nativeName ? <span className="alternative-text">({el.nativeName})</span> : null}</li>)}

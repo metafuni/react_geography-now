@@ -18,7 +18,7 @@ const Quiz = () => {
 
     //set countriesArray
     const getCountries = async () => {
-        const result = await Axios(`https://restcountries.eu/rest/v2/all`);
+        const result = await Axios(`https://restcountries.com/v2/all`);
         result.data.forEach(el => {
             //set name with alternative names and translated names for the quiz, flag and region
             countriesArray.push({
@@ -153,9 +153,11 @@ const Quiz = () => {
                 default:
             };
 
-            let altArray = el.altSpellings;
-            altArray.shift();
-            altArray.forEach(el => countriesArray[countriesArray.length - 1].name.push(el));
+            if (el.altSpellings) {
+                let altArray = el.altSpellings;
+                altArray.shift();
+                altArray.forEach(el => countriesArray[countriesArray.length - 1].name.push(el));
+            };
         });
         setLoading(false);
     };
@@ -320,7 +322,7 @@ const Quiz = () => {
                 <div className="score-box">score: <span style={{ color: 'white' }} id="score">{score} / 250</span></div>
                 <CountryImg />
                 <div className="country-hover-box">
-                    <img id="country-hover-img" src="https://restcountries.eu/data/usa.svg"></img>
+                    <img id="country-hover-img" src="https://restcountries.com/data/usa.svg"></img>
                     <h5 id="country-hover-text">United States of America</h5>
                 </div>
                 <Results answers={answers} countriesArray={countriesArray} resetScore={resetScore} countries={countries} />
